@@ -1,0 +1,28 @@
+# Cloudflare Pages — Headers de segurança e cache
+# Este arquivo substitui o netlify.toml quando hospedado no Cloudflare Pages
+
+# Service Worker: nunca em cache, sempre atualizado
+/sw.js
+  Cache-Control: no-cache
+  Content-Type: application/javascript
+
+# Manifest do PWA
+/manifest.json
+  Content-Type: application/manifest+json
+  Cache-Control: no-cache
+
+# Config do cliente: sem cache para atualizações chegarem imediatamente
+/config.json
+  Cache-Control: no-cache
+
+# Imagens das figurinhas: cache longo (raramente mudam)
+/img/*
+  Cache-Control: public, max-age=604800
+
+# Ícones do PWA: cache longo
+/icons/*
+  Cache-Control: public, max-age=604800
+
+# HTML principal: sem cache agressivo para atualizações do calendário
+/index.html
+  Cache-Control: no-cache

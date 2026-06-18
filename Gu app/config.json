@@ -1,0 +1,20 @@
+{
+  "app_titulo": "Carteirinha Digital de Vacinas",
+  "app_subtitulo": "Gustavo Piva Vicentini",
+
+  "cor_principal":  "#D4620A",
+  "cor_fundo_leve": "#FEF0E4",
+  "cor_borda":      "#F5C49A",
+
+  "logo": "icons/icon-192.png",
+
+  "medico_nome":       "Gustavo Piva Vicentini",
+  "medico_cargo":      "Médico pediatra",
+  "medico_crm":        "CRM 184184/SP · RQE 84911",
+  "medico_instagram":  "@pediatra.nerd",
+  "medico_foto":       "gu.foto.jpg",
+  "medico_badges":     ["UNIFESP","EPM","CRM 184184/SP","RQE 84911"],
+  "medico_bio": ["O que é que há, papais e mamães? Este aplicativo foi criado com muito carinho para ajudar vocês a acompanhar o calendário vacinal dos seus filhos de forma simples e organizada. As vacinas são a ferramenta mais eficaz da medicina preventiva. Vamos juntos proteger nossas crianças!"],
+
+  "quote": "A vacinação é um pacto coletivo de erradicação de doenças."
+}

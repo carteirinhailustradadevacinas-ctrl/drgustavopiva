@@ -1,0 +1,3 @@
+# Cloudflare Pages — Redirects
+# Garante que qualquer rota desconhecida volte para o index.html
+/*  /index.html  200
