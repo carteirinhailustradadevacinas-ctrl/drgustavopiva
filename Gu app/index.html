@@ -1,0 +1,1822 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Carteirinha de Vacinas</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#D4620A" id="metaTheme">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Carteirinha" id="metaAppTitle">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" id="metaAppTitle" content="Carteirinha">
+  <meta name="theme-color" id="metaThemeColor" content="#D4620A">
+  <link rel="apple-touch-icon" id="appleTouchIcon" href="icons/icon-192.png">
+  <link rel="icon" type="image/png" id="faviconLink" href="icons/icon-192.png">
+  <style id="themeStyle">
+    :root {
+      --color-background-primary: #ffffff;
+      --color-background-secondary: #FDF8F3;
+      --color-text-primary: #1A1A1A;
+      --color-text-secondary: #5C5C5C;
+      --color-border-tertiary: #EEE6DC;
+      --color-border-secondary: #DDD0C0;
+      --color-accent: #D4620A;
+      --color-accent-light: #FEF0E4;
+      --color-accent-mid: #F5C49A;
+      --font-sans: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #FBF5EE;
+      font-family: var(--font-sans);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      /* Fundo com micro-padrão SVG de vírus, bactérias e seringas — muito sutil */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' opacity='0.045'%3E%3C!-- Vírus 1 --%3E%3Ccircle cx='40' cy='40' r='10' fill='none' stroke='%23D4620A' stroke-width='1.5'/%3E%3Cline x1='40' y1='26' x2='40' y2='22' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='40' cy='21' r='2' fill='%23D4620A'/%3E%3Cline x1='40' y1='54' x2='40' y2='58' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='40' cy='59' r='2' fill='%23D4620A'/%3E%3Cline x1='26' y1='40' x2='22' y2='40' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='21' cy='40' r='2' fill='%23D4620A'/%3E%3Cline x1='54' y1='40' x2='58' y2='40' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='59' cy='40' r='2' fill='%23D4620A'/%3E%3Cline x1='30' y1='30' x2='27' y2='27' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='26' r='2' fill='%23D4620A'/%3E%3Cline x1='50' y1='50' x2='53' y2='53' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='54' cy='54' r='2' fill='%23D4620A'/%3E%3Cline x1='50' y1='30' x2='53' y2='27' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='54' cy='26' r='2' fill='%23D4620A'/%3E%3Cline x1='30' y1='50' x2='27' y2='53' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='26' cy='54' r='2' fill='%23D4620A'/%3E%3C!-- Bactéria oval 1 --%3E%3Cellipse cx='160' cy='55' rx='10' ry='16' fill='none' stroke='%23D4620A' stroke-width='1.5'/%3E%3Cline x1='156' y1='45' x2='154' y2='34' stroke='%23D4620A' stroke-width='1' stroke-linecap='round' stroke-dasharray='2 2'/%3E%3Cline x1='164' y1='65' x2='166' y2='76' stroke='%23D4620A' stroke-width='1' stroke-linecap='round' stroke-dasharray='2 2'/%3E%3Cline x1='170' y1='52' x2='180' y2='48' stroke='%23D4620A' stroke-width='1' stroke-linecap='round' stroke-dasharray='2 2'/%3E%3Cline x1='150' y1='58' x2='140' y2='62' stroke='%23D4620A' stroke-width='1' stroke-linecap='round' stroke-dasharray='2 2'/%3E%3C!-- Seringa --%3E%3Crect x='255' y='25' width='8' height='22' rx='2' fill='none' stroke='%23D4620A' stroke-width='1.5'/%3E%3Crect x='257' y='20' width='4' height='6' rx='1' fill='none' stroke='%23D4620A' stroke-width='1.2'/%3E%3Cline x1='259' y1='47' x2='259' y2='55' stroke='%23D4620A' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='253' y1='32' x2='250' y2='32' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Cline x1='253' y1='37' x2='250' y2='37' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3C!-- Vírus 2 menor --%3E%3Ccircle cx='100' cy='180' r='7' fill='none' stroke='%23D4620A' stroke-width='1.2'/%3E%3Cline x1='100' y1='170' x2='100' y2='167' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='166' r='1.5' fill='%23D4620A'/%3E%3Cline x1='100' y1='190' x2='100' y2='193' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='194' r='1.5' fill='%23D4620A'/%3E%3Cline x1='90' y1='180' x2='87' y2='180' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='86' cy='180' r='1.5' fill='%23D4620A'/%3E%3Cline x1='110' y1='180' x2='113' y2='180' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='114' cy='180' r='1.5' fill='%23D4620A'/%3E%3Cline x1='95' y1='175' x2='92' y2='172' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='91' cy='171' r='1.5' fill='%23D4620A'/%3E%3Cline x1='105' y1='185' x2='108' y2='188' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='109' cy='189' r='1.5' fill='%23D4620A'/%3E%3Cline x1='105' y1='175' x2='108' y2='172' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='109' cy='171' r='1.5' fill='%23D4620A'/%3E%3Cline x1='95' y1='185' x2='92' y2='188' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='91' cy='189' r='1.5' fill='%23D4620A'/%3E%3C!-- Bactéria esférica com flagelo --%3E%3Ccircle cx='260' cy='190' r='9' fill='none' stroke='%23D4620A' stroke-width='1.5'/%3E%3Cpath d='M269 190 Q280 178 275 165' fill='none' stroke='%23D4620A' stroke-width='1' stroke-linecap='round'/%3E%3Cpath d='M251 190 Q240 202 245 215' fill='none' stroke='%23D4620A' stroke-width='1' stroke-linecap='round'/%3E%3C!-- Vírus 3 --%3E%3Ccircle cx='200' cy='265' r='8' fill='none' stroke='%23D4620A' stroke-width='1.2'/%3E%3Cline x1='200' y1='254' x2='200' y2='251' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='200' cy='250' r='1.5' fill='%23D4620A'/%3E%3Cline x1='200' y1='276' x2='200' y2='279' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='200' cy='280' r='1.5' fill='%23D4620A'/%3E%3Cline x1='189' y1='265' x2='186' y2='265' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='185' cy='265' r='1.5' fill='%23D4620A'/%3E%3Cline x1='211' y1='265' x2='214' y2='265' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='215' cy='265' r='1.5' fill='%23D4620A'/%3E%3Cline x1='194' y1='259' x2='191' y2='256' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='190' cy='255' r='1.5' fill='%23D4620A'/%3E%3Cline x1='206' y1='271' x2='209' y2='274' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='210' cy='275' r='1.5' fill='%23D4620A'/%3E%3Cline x1='206' y1='259' x2='209' y2='256' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='210' cy='255' r='1.5' fill='%23D4620A'/%3E%3Cline x1='194' y1='271' x2='191' y2='274' stroke='%23D4620A' stroke-width='1.2' stroke-linecap='round'/%3E%3Ccircle cx='190' cy='275' r='1.5' fill='%23D4620A'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 320px 320px;
+    }
+
+    /* APP */
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+      padding-bottom: 90px;
+    }
+
+    /* HEADER */
+    .header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--color-border-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 1px 8px rgba(212,98,10,0.06);
+    }
+
+    .hav {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--color-accent-light);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .img-header { width: 100%; height: 100%; object-fit: cover; }
+
+    .header h1 {
+      font-size: 15px; font-weight: 700;
+      color: var(--color-text-primary); line-height: 1.3;
+    }
+    .header p { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+
+    /* BOTTOM NAV */
+    .tabs {
+      display: flex;
+      background: white;
+      position: fixed;
+      bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100%; max-width: 480px;
+      z-index: 100;
+      border-top: 1px solid var(--color-border-tertiary);
+      box-shadow: 0 -4px 20px rgba(212,98,10,0.08);
+      padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+      gap: 2px;
+    }
+    .tab {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      padding: 6px 4px;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: all .18s ease;
+      font-family: var(--font-sans);
+      line-height: 1.2;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .tab .tab-icon {
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      transition: all .18s ease;
+      font-size: 16px;
+    }
+    .tab:hover { background: var(--color-accent-light); color: var(--color-accent); }
+    .tab.active {
+      color: var(--color-accent);
+      font-weight: 700;
+    }
+    .tab.active .tab-icon {
+      background: var(--color-accent-light);
+    }
+
+    /* SCREENS */
+    .screen { display: none; padding: 16px; }
+    .screen.active { display: block; }
+
+    /* CARD */
+    .card {
+      background: white;
+      border: 1px solid var(--color-border-tertiary);
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 12px;
+      box-shadow: 0 1px 4px rgba(212,98,10,0.05);
+    }
+    .card h2 { font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px; }
+    .card p  { font-size: 13px; color: var(--color-text-secondary); line-height: 1.65; }
+    .card p + p { margin-top: 8px; }
+
+    .sec {
+      font-size: 11px; font-weight: 700; color: var(--color-text-secondary);
+      text-transform: uppercase; letter-spacing: .6px; margin: 18px 0 10px;
+    }
+
+    /* PROFILE */
+    .profile-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .pav {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--color-accent-light); overflow: hidden;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .foto-perfil { width: 100%; height: 100%; object-fit: cover; }
+    .pname { font-size: 15px; font-weight: 600; color: var(--color-text-primary); }
+    .prole { font-size: 12px; color: var(--color-text-secondary); margin-top: 2px; }
+    .badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+    .bdg {
+      font-size: 11px; padding: 3px 9px; border-radius: 20px;
+      background: var(--color-background-secondary);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border-tertiary);
+    }
+
+    .quote {
+      border-left: 3px solid var(--color-accent-mid);
+      padding: 8px 12px; margin: 12px 0;
+      background: var(--color-background-secondary);
+      border-radius: 0 8px 8px 0;
+    }
+    .quote p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; font-style: italic; }
+    .quote span { font-size: 11px; color: var(--color-text-secondary); display: block; margin-top: 4px; }
+
+    /* COMO USAR */
+    .how-item { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; border-bottom: 1px solid var(--color-border-tertiary); }
+    .how-item:last-child { border-bottom: none; }
+    .how-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent-mid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; color: var(--color-accent);
+      flex-shrink: 0; margin-top: 1px;
+    }
+    .how-text h3 { font-size: 13px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 2px; }
+    .how-text p  { font-size: 12px; color: var(--color-text-secondary); line-height: 1.55; }
+
+    /* PROGRESS */
+    .prog-wrap {
+      background:#ffffff;
+      border: 1px solid var(--color-border-tertiary);
+      border-radius: 12px; padding: 14px; margin-bottom: 14px;
+    }
+    .prog-label { display: flex; justify-content: space-between; font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px; }
+    .prog-bar { height: 7px; background: var(--color-border-tertiary); border-radius: 4px; overflow: hidden; }
+    .prog-fill { height: 100%; background: linear-gradient(90deg, #D4620A, #E8821E); border-radius: 4px; transition: width .4s; }
+
+    /* REGISTRO */
+    .reg-card { background:#ffffff; border-radius: 12px; padding: 14px; margin-bottom: 14px; border: 1px solid var(--color-border-tertiary); }
+    .reg-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--color-border-tertiary); }
+    .reg-row:last-child { border-bottom: none; }
+    .reg-lbl { font-size: 12px; color: var(--color-text-secondary); }
+    .reg-val { font-size: 13px; font-weight: 500; color: var(--color-text-primary); }
+
+    /* INPUTS */
+    .ig { margin-bottom: 14px; }
+    .ig label { display: block; font-size: 13px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 5px; }
+    input, select {
+      width: 100%; padding: 11px 12px; font-size: 16px;
+      font-family: var(--font-sans);
+      border: 1.5px solid var(--color-border-secondary);
+      border-radius: 10px; background: #fff;
+      color: var(--color-text-primary); outline: none;
+      -webkit-appearance: none; appearance: none;
+      transition: border-color .15s;
+    }
+    input:focus, select:focus { border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(212,98,10,0.1); }
+
+    /* BOTÕES */
+    .btn-p {
+      width: 100%; padding: 13px;
+      background: linear-gradient(135deg, #D4620A, #D4620A);
+      color: white; border: none; border-radius: 10px;
+      font-size: 15px; font-weight: 700; font-family: var(--font-sans);
+      cursor: pointer; margin-top: 6px;
+      box-shadow: 0 2px 8px rgba(212,98,10,0.25);
+    }
+    .btn-s {
+      width: 100%; padding: 11px; background: transparent;
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border-secondary);
+      border-radius: 10px; font-size: 13px;
+      font-family: var(--font-sans); cursor: pointer; margin-top: 8px;
+    }
+
+    /* FILTROS */
+    .cal-filter { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+    .fil-btn {
+      padding: 6px 13px; border-radius: 20px;
+      border: 1px solid var(--color-border-secondary);
+      background: white; font-size: 12px;
+      font-family: var(--font-sans); color: var(--color-text-secondary); cursor: pointer;
+      transition: all .15s;
+    }
+    .fil-btn.active {
+      background: var(--color-accent); color: white;
+      border-color: var(--color-accent);
+      box-shadow: 0 1px 4px rgba(212,98,10,0.2);
+    }
+
+    /* VACINAS — LISTA */
+    .age-group { margin-bottom: 4px; }
+    .age-lbl { font-size: 11px; font-weight: 700; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: .4px; padding: 10px 0 6px; display: flex; align-items: center; gap: 8px; }
+    .age-pill {
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent-mid);
+      border-radius: 20px; padding: 2px 10px; font-size: 11px;
+      color: var(--color-accent); font-weight: 600;
+    }
+
+    .vc {
+      background: white;
+      border: 1px solid var(--color-border-tertiary);
+      border-radius: 10px; padding: 11px 12px; margin-bottom: 7px;
+      display: flex; align-items: center; gap: 10px; cursor: pointer;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .vc:hover { box-shadow: 0 2px 8px rgba(212,98,10,0.08); }
+    .vc.done-card { border-color: var(--color-accent-mid); background: #FFF8F2; }
+
+    .vdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .d-ok    { background: #2E9E5B; }
+    .d-due   { background: #E6B800; }
+    .d-late  { background: #D93F3F; }
+    .d-empty { background: var(--color-border-secondary); }
+
+    .vinfo { flex: 1; }
+    .vname { font-size: 13px; font-weight: 600; color: var(--color-text-primary); }
+    .vsub  { font-size: 11px; color: var(--color-text-secondary); margin-top: 1px; line-height: 1.4; }
+
+    .vcheck {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 1.5px solid var(--color-border-secondary);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; cursor: pointer; transition: all .15s;
+    }
+    .vcheck.done { background: var(--color-accent-light); border-color: var(--color-accent-mid); }
+    .vcheck svg { opacity: .3; }
+    .vcheck.done svg { opacity: 1; stroke: #A84800; }
+
+    /* TAGS */
+    .priv-tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: var(--color-accent-light); color: #1A1A1A; border: 1px solid var(--color-accent-mid); margin-left: 6px; }
+    .prem-tag { font-size: 10px; padding: 2px 7px; border-radius: 20px; background: var(--color-accent-light); color: #1A1A1A; border: 1px solid var(--color-accent-mid); margin-left: 6px; }
+
+    /* COMPARE BAR */
+    .compare-bar {
+      background: linear-gradient(135deg, #ffffff, #ffffff);
+      border: 1px solid var(--color-accent-mid);
+      border-radius: 12px; padding: 12px 14px; margin-bottom: 14px;
+      display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    }
+    .compare-bar p { font-size: 12px; color: #1A1A1A; flex: 1; font-weight: 500; }
+    .compare-bar button {
+      font-size: 12px; padding: 6px 14px; border-radius: 20px; border: none;
+      background: var(--color-accent); color: white; cursor: pointer;
+      white-space: nowrap; font-family: var(--font-sans); font-weight: 600;
+      box-shadow: 0 1px 4px rgba(212,98,10,0.25);
+    }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--color-border-tertiary); padding: 12px 0; cursor: pointer; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 13px; font-weight: 600; color: var(--color-text-primary); display: flex; justify-content: space-between; align-items: center; gap: 8px; line-height: 1.4; }
+    .faq-arr { color: var(--color-text-secondary); transition: transform .2s; flex-shrink: 0; font-size: 14px; }
+    .faq-item.open .faq-arr { transform: rotate(180deg); }
+    .faq-a { font-size: 12px; color: var(--color-text-secondary); line-height: 1.65; max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .2s; }
+    .faq-item.open .faq-a { max-height: 300px; padding-top: 8px; }
+
+    /* REFS */
+    .ref-item { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--color-border-tertiary); }
+    .ref-item:last-child { border-bottom: none; }
+    .ref-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent-mid); flex-shrink: 0; }
+    .ref-item p { font-size: 13px; color: var(--color-text-secondary); }
+
+    .fnote {
+      font-size: 11px; color: var(--color-text-secondary); text-align: center;
+      padding: 12px; background: white;
+      border: 1px solid var(--color-border-tertiary);
+      border-radius: 10px; margin-top: 16px; line-height: 1.7;
+    }
+
+    /* MODAIS */
+    .modal-ov {
+      display: none; position: fixed; inset: 0;
+      background: rgba(30,15,5,0.6);
+      align-items: center; justify-content: center;
+      padding: 20px; z-index: 9999;
+      backdrop-filter: blur(6px);
+    }
+    .modal-ov.open { display: flex; }
+    .modal {
+      background: white; border-radius: 18px; padding: 24px;
+      width: 100%; max-width: 400px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+    }
+    .modal h3 { font-size: 16px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 6px; }
+    .modal p  { font-size: 13px; color: var(--color-text-secondary); margin-bottom: 16px; line-height: 1.4; }
+
+    .mbtns { display: flex; gap: 8px; margin-top: 12px; }
+    .mbtns button { flex: 1; padding: 11px; border-radius: 10px; font-size: 14px; font-weight: 600; font-family: var(--font-sans); cursor: pointer; }
+    .mc { background: var(--color-background-secondary); border: 1px solid var(--color-border-secondary); color: var(--color-text-primary); }
+    .mk { background: linear-gradient(135deg, #D4620A, #D4620A); border: none; color: white; box-shadow: 0 2px 8px rgba(212,98,10,0.25); }
+
+    /* MODAL COMPARAR */
+    .compare-modal { background: white; border-radius: 14px; padding: 18px; width: 100%; max-height: 80vh; overflow-y: auto; }
+    .compare-modal h3 { font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 14px; }
+    .cmp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+    .cmp-cell { padding: 8px 10px; border-radius: 10px; font-size: 12px; line-height: 1.5; font-family: var(--font-sans); }
+    .cmp-sus  { background:#E6F2FB; color: #1A1A1A; border: 1px solid var(--color-accent-mid); }
+    .cmp-priv { background:#FCE4EC; color: #1A1A1A; border: 1px solid var(--color-accent-mid); }
+    .cmp-hdr  { font-size: 11px; font-weight: 700; text-align: center; padding: 4px; border-radius: 6px; margin-bottom: 4px; }
+
+    /* VACINAS MULTIDOSE */
+    .vc-multi {
+      background: white; border: 1px solid var(--color-border-tertiary);
+      border-radius: 10px; margin-bottom: 7px; overflow: hidden;
+      transition: border-color .15s;
+    }
+    .vc-multi.done-card { border-color: var(--color-accent-mid); background: #FFF8F2; }
+    .vcm-header { padding: 11px 12px; display: flex; align-items: center; gap: 10px; }
+    .dose-counter {
+      font-size: 11px; font-weight: 700; color: var(--color-accent);
+      background: var(--color-accent-light);
+      border: 1px solid var(--color-accent-mid);
+      border-radius: 20px; padding: 2px 9px; flex-shrink: 0;
+    }
+    .vcm-doses { border-top: 1px solid var(--color-border-tertiary); padding: 4px 12px 8px; display: flex; flex-direction: column; gap: 6px; }
+    .dose-row { display: flex; align-items: center; gap: 8px; padding: 5px 0; }
+    .dose-lbl { flex: 1; font-size: 12px; color: var(--color-text-secondary); line-height: 1.3; }
+    .dose-done .dose-lbl { color: var(--color-text-primary); }
+
+    /* LEGENDA */
+    .legend-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--color-border-tertiary); }
+    .legend-row:last-child { border-bottom: none; }
+    .ldot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .legend-row p { font-size: 13px; color: var(--color-text-secondary); }
+
+    /* MODAL CELEBRAÇÃO */
+    .modal-celebra { text-align: center; padding: 28px 24px; }
+    .celebra-sticker {
+      width: 320px; height: 320px; margin: 0 auto 20px;
+      display: flex; align-items: center; justify-content: center;
+      background: #ffffff;
+      border-radius: 20px; overflow: hidden;
+    }
+    .celebra-sticker img { width: 100%; height: 100%; object-fit: contain; }
+    .celebra-titulo { font-size: 17px; font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px; }
+    .celebra-sub { font-size: 13px; color: var(--color-text-secondary); line-height: 1.4; }
+
+    /* MODAL INFO VACINA */
+    .modal-info { padding: 0; overflow: hidden; max-height: 88vh; display: flex; flex-direction: column; }
+    .modal-info-header {
+      display: flex; align-items: center; gap: 12px;
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--color-border-tertiary);
+      flex-shrink: 0;
+    }
+    .modal-info-header .mi-sticker {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--color-background-secondary);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+    .modal-info-header .mi-sticker img { width: 44px; height: 44px; object-fit: contain; }
+    .modal-info-header h3 { font-size: 16px; font-weight: 700; color: var(--color-text-primary); line-height: 1.2; }
+    .modal-info-header p  { font-size: 11px; color: var(--color-text-secondary); margin-top: 2px; }
+    .modal-info-body { overflow-y: auto; padding: 16px 20px 20px; flex: 1; }
+    .mi-section { margin-bottom: 16px; }
+    .mi-section:last-child { margin-bottom: 0; }
+    .mi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; color: var(--color-text-secondary); margin-bottom: 6px; }
+    .mi-text { font-size: 13px; color: var(--color-text-primary); line-height: 1.65; }
+    .mi-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .mi-chip { font-size: 11px; padding: 3px 10px; border-radius: 20px; background: var(--color-background-secondary); border: 1px solid var(--color-border-secondary); color: var(--color-text-secondary); }
+    .mi-chip.ok { background: var(--color-accent-light); border-color: var(--color-accent-mid); color: #1A1A1A; }
+    .mi-divider { height: 1px; background: var(--color-border-tertiary); margin: 14px 0; }
+    .mi-adverse { background: #FFF8F0; border: 1px solid var(--color-accent-mid); border-radius: 10px; padding: 10px 12px; }
+    .mi-adverse .mi-label { color: #7A3E00; }
+
+    /* BOTÃO INFO — realçado */
+    .vinfo-btn {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--color-accent);
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      font-size: 11px; font-weight: 800;
+      display: inline-flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0; margin-left: 6px;
+      vertical-align: middle; line-height: 1;
+      transition: background .15s, color .15s;
+    }
+    .vinfo-btn:hover { background: var(--color-accent); color: white; }
+
+    /* FIGURINHA GUIA */
+    .sticker-guide { width: 100%; max-width: 200px; display: block; margin: 12px auto 4px; border-radius: 12px; }
+    .sticker-guide-note { font-size: 11px; color: var(--color-text-secondary); text-align: center; line-height: 1.5; margin-top: 6px; }
+
+    /* BANNER PREMATURO */
+    #premBanner { background: #FEF0E4; border: 1px solid #F5C49A; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; align-items: center; gap: 10px; }
+    #premBanner p { font-size: 12px; color: #1A1A1A; flex: 1; }
+
+  </style>
+</head>
+<body>
+<div class="app" id="mainApp">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="hav">
+      <img id="headerLogo" src="icons/icon-192.png" alt="Logo" class="img-header" onerror="this.style.display='none'">
+    </div>
+    <div>
+      <h1 id="headerTitle">Carteirinha Digital de Vacinas</h1>
+      <p id="hSub">Carregando...</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div class="tabs">
+    <button class="tab active" onclick="go('inicio')">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      Início
+    </button>
+    <button class="tab" onclick="go('registro')">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      Registro
+    </button>
+    <button class="tab" onclick="go('sus')">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cruz do SUS: barra horizontal e vertical formando um + com recorte diagonal -->
+          <rect x="9" y="2" width="6" height="20" rx="1.2" fill="currentColor"/>
+          <rect x="2" y="9" width="20" height="6" rx="1.2" fill="currentColor"/>
+          <!-- Corte diagonal característico do logo SUS -->
+          <polygon points="9,15 15,9 15,15" fill="rgba(255,255,255,0.35)"/>
+        </svg>
+      </div>
+      SUS
+    </button>
+    <button class="tab" onclick="go('priv')">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </div>
+      Privadas
+    </button>
+    <button class="tab" onclick="go('duvidas')">
+      <div class="tab-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      </div>
+      Dúvidas
+    </button>
+  </div>
+
+  <!-- INÍCIO -->
+  <div id="screen-inicio" class="screen active">
+    <div class="card">
+      <div class="profile-row">
+        <div class="pav">
+          <img id="profilePhoto" src="icons/icon-192.png" alt="Foto do médico" class="foto-perfil" onerror="this.style.display='none'">
+        </div>
+        <div>
+          <div class="pname" id="profileName">Médico Pediatra</div>
+          <div class="prole" id="profileRole">Médico pediatra</div>
+          <div class="badges" id="profileBadges"></div>
+        </div>
+      </div>
+      <p id="profileBio1"></p>
+      <p id="profileBio2" style="display:none"></p>
+      <p id="profileBio3" style="display:none"></p>
+    </div>
+
+    <div class="quote">
+      <p id="profileQuote">"A vacinação é um pacto coletivo de erradicação das doenças."</p>
+      <span></span>
+    </div>
+
+    <div class="sec">Como usar este app</div>
+    <div class="card">
+      <div class="how-item">
+        <div class="how-num">1.</div>
+        <div class="how-text">
+          <h3>Cadastre o bebê</h3>
+          <p>Na aba <strong>Registro</strong>, informe o nome e a data de nascimento. O app calcula automaticamente quais vacinas estão em dia, pendentes ou atrasadas.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">2.</div>
+        <div class="how-text">
+          <h3>Acompanhe o calendário e registre a aplicação</h3>
+          <p>Na aba <strong>SUS</strong> você encontra todas as vacinas gratuitas do SUS organizadas por idade. Toque no círculo ao lado de cada vacina para registrar a aplicação.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">3.</div>
+        <div class="how-text">
+          <h3>Explore as vacinas privadas</h3>
+          <p>Na aba <strong>Privadas</strong> você encontra imunizantes complementares ao SUS, com botão para comparar as opções.</p>
+        </div>
+      </div>
+      <div class="how-item">
+        <div class="how-num">4.</div>
+        <div class="how-text">
+          <h3>Saiba mais sobre cada vacina</h3>
+          <p>Toque no botão <strong>ℹ</strong> ao lado de qualquer vacina para ver informações detalhadas: o que protege, via de administração, doses e possíveis efeitos adversos. Tire dúvidas na aba <strong>Dúvidas</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec">Como ler as figurinhas</div>
+    <div class="card">
+      <img src="img/00.Legenda.png" alt="Legenda das figurinhas" class="sticker-guide" onerror="this.style.display='none'">
+      <p class="sticker-guide-note">Cada figurinha representa o microrganismo combatido pela vacina.<br>As siglas indicam a via de administração:<br><strong>IM</strong> = Intramuscular · <strong>SC</strong> = Subcutânea ·<br> <strong>ID</strong> = Intradérmica · <strong>VO</strong> = Via Oral</p>
+    </div>
+
+    <div class="card">
+      <div class="sec" style="margin-top:0">Legenda de status</div>
+      <div class="legend-row"><div class="ldot d-ok"></div><p>Aplicada</p></div>
+      <div class="legend-row"><div class="ldot d-due"></div><p>No prazo — vacine em breve</p></div>
+      <div class="legend-row"><div class="ldot d-late"></div><p>Atrasada — agende já</p></div>
+      <div class="legend-row"><div class="ldot d-empty"></div><p>Pendente — ainda não é a hora</p></div>
+    </div>
+
+    <div class="fnote" id="inicioFooter">Carteirinha Digital de Vacinas · 1ª edição 2026<br>Reprodução mediante autorização · Sem conflito de interesses com fabricantes</div>
+  </div>
+
+  <!-- REGISTRO -->
+  <div id="screen-registro" class="screen">
+  <div class="card">
+    <div class="sec" style="margin-top:0">Dados do bebê</div>
+
+    <div class="ig">
+      <label>Nome/apelido do bebê</label>
+      <input type="text" id="cfgName" placeholder="Ex: Maria" autocomplete="off">
+    </div>
+
+    <div class="ig">
+      <label>Data de nascimento</label>
+      <input type="date" id="cfgBirth">
+    </div>
+
+    <div class="ig">
+      <label>Tipo de parto</label>
+      <select id="cfgParto">
+        <option value="normal">Normal</option>
+        <option value="cesarea">Cesárea</option>
+      </select>
+    </div>
+
+    <!-- NOVO CAMPO -->
+    <div class="ig">
+      <label>Idade gestacional (semanas)</label>
+      <input type="number" id="cfgIG" placeholder="39" inputmode="numeric" min="20" max="45">
+    </div>
+
+    <div style="display:flex; gap:10px;">
+      <div class="ig" style="flex:1">
+        <label>Peso ao nascer (g)</label>
+        <input type="number" id="cfgPeso" placeholder="3200" inputmode="numeric">
+      </div>
+
+      <div class="ig" style="flex:1">
+        <label>Estatura ao nascer (cm)</label>
+        <input type="number" id="cfgAltura" placeholder="49" inputmode="numeric">
+      </div>
+    </div>
+
+    <button class="btn-p" onclick="saveConfig()">Salvar dados do bebê</button>
+  </div>
+
+  <div id="regResumo" style="display:none">
+    <div class="sec">Resumo da carteirinha</div>
+    <div class="reg-card" id="regCard"></div>
+
+    <div class="prog-wrap">
+      <div class="prog-label">
+        <span>Progresso vacinal geral</span>
+        <span id="rProgLabel">0%</span>
+      </div>
+
+      <div class="prog-bar">
+        <div class="prog-fill" id="rProgFill" style="width:0%"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn-s" onclick="resetAll()" style="color:#E24B4A; border-color:#E24B4A;">
+    Limpar todos os registros
+  </button>
+
+  <div class="fnote">
+    Este app é um complemento educativo.<br>
+    Sempre consulte seu pediatra para decisões sobre vacinação.
+  </div>
+</div>
+
+  <!-- CALENDÁRIO SUS -->
+  <div id="screen-sus" class="screen">
+    <div class="compare-bar">
+      <p>Quer ver quais vacinas privadas complementam o SUS?</p>
+      <button onclick="openCompare()">Comparar</button>
+    </div>
+    <div id="premBanner" style="display:none; background:#FDE8C8; border:0.5px solid #FAC775; border-radius:8px; padding:10px 14px; margin-bottom:14px; align-items:center; gap:10px;">
+      <span style="font-size:18px;">⭐</span>
+      <p style="font-size:12px; color:#1A1A1A; flex:1;"></p>
+    </div>
+    <div class="cal-filter" id="susFilters"></div>
+    <div id="susContent"></div>
+  </div>
+
+  <!-- VACINAS PRIVADAS -->
+  <div id="screen-priv" class="screen">
+    <div id="privContent"></div>
+  </div>
+
+  <!-- DÚVIDAS -->
+  <div id="screen-duvidas" class="screen">
+    <div class="card" style="margin-bottom:14px">
+      <h2>Principais dúvidas</h2>
+      <p>Respostas baseadas nas recomendações do Ministério da Saúde, SBP e SBIm.</p>
+    </div>
+    <div class="card" id="faqList"></div>
+
+    <div class="sec">Referências</div>
+    <div class="card">
+      <div class="ref-item"><div class="ref-dot"></div><p>Ministério da Saúde — Programa Nacional de Imunizações (PNI)</p></div>
+      <div class="ref-item"><div class="ref-dot"></div><p>Sociedade Brasileira de Imunizações (SBIm)</p></div>
+      <div class="ref-item"><div class="ref-dot"></div><p>Sociedade Brasileira de Pediatria (SBP)</p></div>
+      <div class="ref-item"><div class="ref-dot"></div><p>Manual de Imunobiológicos — CRIE</p></div>
+    </div>
+
+    <div class="fnote" id="duvidasFooter">Dúvidas? Entre em contato com seu médico.</div>
+
+    <div class="fnote" style="text-align:center; margin-top:8px; font-size:11px; color:var(--color-text-secondary);">
+      Aplicativo desenvolvido por Gustavo Piva Vicentini
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- MODAL REGISTRAR -->
+<div class="modal-ov" id="modalReg">
+  <div class="modal">
+    <h3 id="mTitle"></h3>
+    <p id="mBody"></p>
+    <div class="ig">
+      <label>Data de aplicação</label>
+      <input type="date" id="mDate">
+    </div>
+    <div class="ig">
+      <label>Local</label>
+      <select id="mLocal">
+        <option>UBS / Postinho</option>
+        <option>Clínica privada</option>
+        <option>Hospital</option>
+      </select>
+    </div>
+    <div class="mbtns">
+      <button class="mc" onclick="closeModal('modalReg')">Cancelar</button>
+      <button class="mk" onclick="confirmVac()">Registrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL INFO VACINA -->
+<div class="modal-ov" id="modalInfo">
+  <div class="modal modal-info">
+    <div class="modal-info-header">
+      <div class="mi-sticker">
+        <img id="miImg" src="" alt="" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <h3 id="miTitle"></h3>
+        <p id="miSub"></p>
+      </div>
+    </div>
+    <div class="modal-info-body" id="miBody"></div>
+    <div style="padding:0 20px 16px; flex-shrink:0;">
+      <button class="btn-s" onclick="closeModal('modalInfo')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL CELEBRAÇÃO (figurinha) -->
+<div class="modal-ov" id="modalCelebra">
+  <div class="modal modal-celebra">
+    <div class="celebra-sticker">
+      <img id="celebraImg" src="" alt="" onerror="this.style.display='none';document.getElementById('celebraEmoji').style.display='flex'">
+      <div id="celebraEmoji" style="display:none; font-size:72px; line-height:1; align-items:center; justify-content:center;">🦠</div>
+    </div>
+    <div class="celebra-titulo" id="celebraTitulo"></div>
+    <div class="celebra-sub" id="celebraSub">Vacina registrada com sucesso!</div>
+    <button class="btn-p" onclick="closeModal('modalCelebra')" style="margin-top:16px;">Parabéns por proteger o seu bebê! 🎉</button>
+  </div>
+</div>
+
+<!-- MODAL COMPARAR -->
+<div class="modal-ov" id="modalCmp">
+  <div class="compare-modal">
+    <h3>SUS vs. Rede Privada</h3>
+    <div class="cmp-row">
+      <div class="cmp-cell cmp-sus">
+        <div class="cmp-hdr" style="background:#ffffff; color:#000000;">Calendário SUS</div>
+        Gratuito · Disponível em UBS e postinhos de saúde em todo o Brasil.
+      </div>
+      <div class="cmp-cell cmp-priv">
+        <div class="cmp-hdr" style="background:#ffffff; color:#000000;">Rede Privada</div>
+        Pago · Oferece vacinas complementares ou versões com mais sorotipos.
+      </div>
+    </div>
+    <div id="cmpRows"></div>
+    <button class="btn-s" style="margin-top:12px" onclick="closeModal('modalCmp')">Fechar</button>
+  </div>
+</div>
+
+<script>
+const SUS=[
+  {id:'bcg',n:'BCG',sub:'Dose única',age:0,lbl:'Ao nascer'},
+  {id:'hepB0',n:'Hepatite B',sub:'Dose ao nascer',age:0,lbl:'Ao nascer'},
+  {id:'nirsev_sus',n:'Nirsevimabe (VSR)',sub:'Direito SUS (Prematuros <37s)',age:0,lbl:'Ao nascer', prem:true},
+  {id:'rota1',n:'Rotavírus',sub:'1ª dose (oral): pode ser dada até, no máximo, 11 meses e 29 dias',age:2,lbl:'2 meses'},
+  {id:'vip1',n:'VIP - Pólio',sub:'1ª dose',age:2,lbl:'2 meses'},
+  {id:'penta1',n:'Pentavalente',sub:'1ª dose (DTP+Hib+HepB)',age:2,lbl:'2 meses'},
+  {id:'pneumo1',n:'Pneumo 20 (VPC20)',sub:'1ª dose',age:2,lbl:'2 meses', notPrem:true},
+  {id:'pneumo20_sus_d1',n:'Pneumo 20 (VPC20)',sub:'1ª dose — Prematuro · SUS',age:2,lbl:'2 meses', prem:true},
+  {id:'meningC1',n:'Meningo C (MenC)',sub:'1ª dose',age:3,lbl:'3 meses'},
+  {id:'rota2',n:'Rotavírus',sub:'2ª dose (oral): pode ser dada até, no máximo, 23 meses e 29 dias',age:4,lbl:'4 meses'},
+  {id:'vip2',n:'VIP - Pólio',sub:'2ª dose',age:4,lbl:'4 meses'},
+  {id:'penta2',n:'Pentavalente',sub:'2ª dose',age:4,lbl:'4 meses'},
+  {id:'pneumo2',n:'Pneumo 10 (VPC10)/Pneumo 20 (VPC20)',sub:'2ª dose',age:4,lbl:'4 meses', notPrem:true},
+  {id:'pneumo20_sus_d2',n:'Pneumo 20 (VPC20)',sub:'2ª dose — Prematuro · SUS',age:4,lbl:'4 meses', prem:true},
+  {id:'meningC2',n:'Meningo C (MenC)',sub:'2ª dose',age:5,lbl:'5 meses'},
+  {id:'penta3',n:'Pentavalente',sub:'3ª dose',age:6,lbl:'6 meses'},
+  {id:'vip3',n:'VIP - Pólio',sub:'3ª dose',age:6,lbl:'6 meses'},
+  {id:'pneumo20_sus_d3',n:'Pneumo 20 (VPC20)',sub:'3ª dose — Prematuro · SUS',age:6,lbl:'6 meses', prem:true},
+  {id:'covid',n:'COVID-19',sub:'Spikevax: 2 doses · Comirnaty: 3 doses',age:6,lbl:'A partir de 6 meses', multi:true, doses:[{id:'covid_d1',sub:'1ª dose'},{id:'covid_d2',sub:'2ª dose'},{id:'covid_d3',sub:'3ª dose (Comirnaty)'}]},
+  {id:'gripe1',n:'Gripe',sub:'1ª vez: 2 doses com 1 mês de intervalo · Depois: dose anual em Campanhas',age:6,lbl:'A partir de 6 meses', multi:true, doses:[{id:'gripe1_d1',sub:'1ª dose'},{id:'gripe1_d2',sub:'2ª dose (intervalo ≥ 1 mês)'}]},
+  {id:'fa1',n:'Febre Amarela (FA)',sub:'1ª dose',age:9,lbl:'9 meses'},
+  {id:'meningACWY1',n:'Meningo ACWY',sub:'Reforço (desde 2025)',age:12,lbl:'12 meses'},
+  {id:'pneumoR',n:'Pneumo 10 (VPC10)',sub:'Reforço',age:12,lbl:'12 meses', notPrem:true},
+  {id:'pneumo20_sus_r',n:'Pneumo 20 (VPC20)',sub:'Reforço — Prematuro · SUS',age:12,lbl:'12 meses', prem:true},
+  {id:'scr1',n:'Tríplice Viral (SCR)',sub:'1ª dose',age:12,lbl:'12 meses'},
+  {id:'tetraviral',n:'Tetraviral (SCR+V)',sub:'Reforço SCR + Varicela',age:15,lbl:'15 meses'},
+  {id:'dtp1r',n:'DTP',sub:'1º Reforço',age:15,lbl:'15 meses'},
+  {id:'hepA1',n:'Hepatite A',sub:'1ª dose',age:15,lbl:'15 meses'},
+  {id:'vipR',n:'VIP - Pólio',sub:'1º Reforço',age:15,lbl:'15 meses'},
+  {id:'dtp2r',n:'DTP',sub:'2º Reforço',age:48,lbl:'4 anos'},
+  {id:'varicela2',n:'Varicela',sub:'2ª dose',age:48,lbl:'4 anos'},
+  {id:'faR',n:'Febre Amarela (FA)',sub:'Reforço',age:48,lbl:'4 anos'},
+  {id:'dt7',n:'dT',sub:'Reforço — difteria e tétano',age:84,lbl:'7 anos'},
+  {id:'hpv4',n:'HPV4',sub:'Dose única (9–14 anos)',age:108,lbl:'Adolescência'},
+  {id:'dengue',n:'Dengue (Qdenga®)',sub:'2 doses (10–14 anos) — intervalo de 3 meses',age:132,lbl:'Adolescência', multi:true, doses:[{id:'dengue_d1',sub:'1ª dose'},{id:'dengue_d2',sub:'2ª dose (3 meses após)'}]},
+  {id:'meningACWY2',n:'Meningo ACWY (MenACWY)',sub:'Reforço (11–14 anos)',age:132,lbl:'Adolescência'},
+  {id:'gripeAnual',n:'Gripe (Campanha Anual)',sub:'Dose anual em Campanhas (até 6 anos pelo SUS)',age:24,lbl:'Campanhas anuais', noStatus:true, multi:true, doses:[
+    {id:'gripeAnual_2a',sub:'Campanha — 2 anos'},
+    {id:'gripeAnual_3a',sub:'Campanha — 3 anos'},
+    {id:'gripeAnual_4a',sub:'Campanha — 4 anos'},
+    {id:'gripeAnual_5a',sub:'Campanha — 5 anos'},
+    {id:'gripeAnual_6a',sub:'Campanha — 6 anos'},
+  ]},
+];
+
+const PRIV=[
+  {id:'nirsev',n:'Nirsevimabe (Beyfortus®)',sub:'Anticorpo contra VSR — bronquiolite',lbl:'Dose ao nascer / 1º inverno',cmp:'Não existe no SUS (exceto grupos de risco)'},
+  {id:'menB',n:'Meningo B (MenB)',sub:'Esquema primário (3,5 meses + reforço aos 12–15 meses)',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'Não está no SUS', multi:true, doses:[{id:'menB_d1',sub:'1ª dose'},{id:'menB_d2',sub:'2ª dose'},{id:'menB_d3',sub:'3ª dose'}]},
+  {id:'meningACWYp',n:'Meningo ACWY (MenACWY)',sub:'Esquema primário (3,5 meses + 2 reforços: 12-15 meses e 5-6 anos)',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'SUS oferece apenas reforços (1 ano e adolescência)', multi:true, doses:[{id:'meningACWYp_d1',sub:'1ª dose'},{id:'meningACWYp_d2',sub:'2ª dose'},{id:'meningACWYp_d3',sub:'3ª dose'}]},
+  {id:'pneumo13',n:'Pneumo 13 (VPC13)',sub:'Substitui ou complementa a VPC10',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'SUS oferece VPC10 (10 sorotipos)', multi:true, doses:[{id:'pneumo13_d1',sub:'1ª dose'},{id:'pneumo13_d2',sub:'2ª dose'},{id:'pneumo13_d3',sub:'3ª dose'},{id:'pneumo13_r',sub:'Reforço'}]},
+  {id:'pneumo15',n:'Pneumo 15 (VPC15)',sub:'Substitui VPC10 e VPC13',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'SUS oferece VPC10 (10 sorotipos)', multi:true, doses:[{id:'pneumo15_d1',sub:'1ª dose'},{id:'pneumo15_d2',sub:'2ª dose'},{id:'pneumo15_d3',sub:'3ª dose'},{id:'pneumo15_r',sub:'Reforço'}]},
+  {id:'pneumo20',n:'Pneumo 20 (VPC20)',sub:'Maior cobertura disponível',lbl:'O nº doses pode variar a depender da idade do início do esquema',cmp:'SUS oferece VPC10 (10 sorotipos)', multi:true, doses:[{id:'pneumo20_d1',sub:'1ª dose'},{id:'pneumo20_d2',sub:'2ª dose'},{id:'pneumo20_d3',sub:'3ª dose'},{id:'pneumo20_r',sub:'Reforço'}]},
+  {id:'hexa',n:'Hexavalente',sub:'DTPa + Hib + HepB + VIP',lbl:'2, 4 e 6 meses + reforço aos 15 meses',cmp:'Substitui Pentavalente + VIP do SUS (menos reatogênica)', multi:true, doses:[{id:'hexa_d1',sub:'1ª dose (2 meses)'},{id:'hexa_d2',sub:'2ª dose (4 meses)'},{id:'hexa_d3',sub:'3ª dose (6 meses)'}]},
+  {id:'rota3',n:'Rotavírus Pentavalente',sub:'3 doses — 5 cepas (G1,G2,G3,G4,P[8])',lbl:'2, 4 e 6 meses',cmp:'SUS oferece monovalente (1 cepa) em 2 doses', multi:true, doses:[{id:'rota3_d1',sub:'1ª dose (2 meses)'},{id:'rota3_d2',sub:'2ª dose (4 meses)'},{id:'rota3_d3',sub:'3ª dose (6 meses)'}]},
+  {id:'gripeQ',n:'Gripe Quadrivalente',sub:'Protege contra 4 tipos de influenza',lbl:'A partir de 6 meses',cmp:'SUS oferece trivalente (3 tipos)'},
+  {id:'hpv9',n:'HPV Nonavalente (HPV9)',sub:'9 sorotipos — maior proteção',lbl:'Adolescência (2 doses)',cmp:'SUS oferece quadrivalente (4 sorotipos)', multi:true, doses:[{id:'hpv9_d1',sub:'1ª dose'},{id:'hpv9_d2',sub:'2ª dose (6 meses após)'}]},
+  {id:'hepAR',n:'Hepatite A',sub:'2ª dose (reforço)',lbl:'1ª dose disponível no SUS',cmp:'SUS oferece apenas 1 dose aos 15 meses'},
+  {id:'dengue',n:'Dengue (Qdenga®)',sub:'2 doses',lbl:'A partir de 4 anos',cmp:'SUS oferece apenas para 10–14 anos', multi:true, doses:[{id:'dengue_priv_d1',sub:'1ª dose'},{id:'dengue_priv_d2',sub:'2ª dose (3 meses após)'}]},
+];
+
+const CMP=[
+  {sus:'Pneumo 10 (VPC10)\n Proteção contra 10 sorotipos da bactéria que pode causar pneumonia, otites e meningite',priv:'Pneumo 13 (VPC13) / 15 (VPC15) / 20 (VPC20)\n Proteção contra até 20 sorotipos. Pode ser oferecida como doses de reforço'},
+  {sus:'Meningo C (MenC)\n Proteção contra o sorogrupo C do meningococo, causador de meningite',priv:'Meningo ACWY (MenACWY) e B (MenB)\nAmplia a proteção com mais sorogrupos do meningococo'},
+  {sus:'Rotavírus monovalente\nProteção contra 1 cepa do vírus que causa diarreia e vômitos. São aplicadas 2 doses (3 e 5 meses)',priv:'Rotavírus pentavalente\nProteção contra 5 cepas. Aplicadas 3 doses (2, 4 e 6 meses)'},
+  {sus:'Gripe trivalente\nProteção contra 3 tipos de Influenza. Disponível até os 6 anos',priv:'Gripe quadrivalente\nProteção contra 4 tipos de Influenza'},
+  {sus:'HPV quadrivalente\nProteção contra 4 sorotipos. Previne alguns tipos de câncer',priv:'HPV nonavalente\nProteção contra 9 sorotipos. Previne alguns tipos de câncer'},
+  {sus:'Pentavalente + VIP\n2 picadas em cada visita',priv:'Hexavalente (DTPa)\n Reduz 1 picada em cada visita, menos reatogênica'},
+  {sus:'Nirsevimabe - VSR\nDisponível para bebês prematuros ou grupos de risco (cardiopatas graves e pneumopatas)',priv:'Nirsevimabe - VSR\nTodos os bebês podem tomar no 1º ano de vida'},
+  {sus:'Hepatite A\nAplicada 1 dose aos 15 meses',priv:'Hepatite A\nO esquema recomendado para a vacina é de 2 doses para uma completa proteção'},
+];
+
+const FAQ=[
+  {q:'Vacinas são seguras?',a:'Sim! Para que uma vacina seja liberada para uso ela precisa passar por inúmeros e rigorosos testes de segurança. O benefício de vacinar é sempre muito maior que o risco de reações.'},
+  {q:'Por que são aplicadas tantas doses?',a:'A imunidade pode diminuir ao longo do tempo ou o vírus pode sofrer mutações. Os reforços relembram o sistema imune ou adaptam a proteção a novas variantes.'},
+  {q:'Esqueci de dar uma dose. Recomeço o esquema?',a:'Dose de vacina dada é dose aproveitada. Se o esquema atrasou, basta levar a criança ao posto ou clínica para completar as doses que faltam'},
+  {q:'Vacinas causam autismo?',a:'Não. Nenhum estudo até hoje provou qualquer relação causal entre vacinas e autismo. Essa fake news coloca crianças em risco real.'},
+  {q:'Posso dar analgésico antes da vacina?',a:'Não! Essa prática comprovadamente diminui a eficácia da vacina. Se ocorrer alguma reação, a medicação poderá ser feita após, de acordo com a orientação do pediatra.'},
+  {q:'Meu bebê está resfriado. Posso vacinar?',a:'Sim! O resfriado ou mesmo a febre baixa não contraindicam a vacinação. Mesmo o uso de antibióticos não é uma contraindicação absoluta.'},
+  {q:'A BCG não deixou marquinha. Não "pegou"?',a:'Não é sinal de falha! Estudos demonstram que a ausência da cicatriz da BCG não indica falta de proteção vacinal. Desde 2019 não está indicada a revacinação.'},
+  {q:'Alergia ao ovo contraindica alguma vacina?',a:'A tríplice viral, tetraviral, gripe e febre amarela têm proteínas do ovo. De modo geral, só estão contraindicadas em quadros alérgicos graves. Consulte sempre seu pediatra antes.'},
+  {q:'Posso voltar do privado para o SUS?',a:'Sim! Mas é fundamental análise da carteirinha para entender quais vacinas ainda são necessárias. Consulte seu pediatra.'},
+  {q:'Bebê com APLV tem restrição vacinal?',a:'De modo geral, não. Bebês com alergia à proteína do leite de vaca não possuem restrição às vacinas do calendário habitual.'},
+];
+
+// Mapa de figurinhas: id da vacina → arquivo de imagem na pasta do app
+// Vacinas do mesmo agente compartilham a mesma figurinha
+const STICKERS = {
+  // BCG — Mycobacterium tuberculosis / leprae
+  'bcg':          { img: '01.BCG.png',           nome: 'BCG' },
+
+  // Hepatite B
+  'hepB0':        { img: '02.HepatiteB.png',     nome: 'Hepatite B' },
+
+  // VSR
+  'nirsev_sus':   { img: '50.VSR.png',           nome: 'VSR (Nirsevimabe)' },
+
+  // Nirsevimabe part
+  'nirsev':       { img: '03.Nirsevimabe.png',           nome: 'VSR (Nirsevimabe)' },
+
+  // Rotavírus — mesma figurinha para todas as doses
+  'rota1':        { img: '04.Rotavirus.png',     nome: 'Rotavírus' },
+  'rota2':        { img: '04.Rotavirus.png',     nome: 'Rotavírus' },
+
+  // Rota penta
+  'rota3':        { img: '44.Rotavirus.png',     nome: 'Rotavírus Pentavalente' },
+
+  // Pólio / VIP
+  'vip1':         { img: '05.Polio.png',         nome: 'Pólio (VIP)' },
+  'vip2':         { img: '05.Polio.png',         nome: 'Pólio (VIP)' },
+  'vip3':         { img: '05.Polio.png',         nome: 'Pólio (VIP)' },
+  'vipR':         { img: '05.Polio.png',         nome: 'Pólio (VIP)' },
+
+  // Pentavalente (DTP + Hib + HepB) — usa figura do Corynebacterium/Bordetella
+  'penta1':       { img: '06.Pentavalente.png',  nome: 'Pentavalente' },
+  'penta2':       { img: '06.Pentavalente.png',  nome: 'Pentavalente' },
+  'penta3':       { img: '06.Pentavalente.png',  nome: 'Pentavalente' },
+
+  // Hexavalente (DTPa + Hib + HepB + VIP)
+  'hexa':         { img: '07.Hexavalente.png',   nome: 'Hexavalente' },
+
+  // DTP 
+  'dtp1r':        { img: '08.DTP.png',           nome: 'DTP' },
+  'dtp2r':        { img: '08.DTP.png',           nome: 'DTP' },
+  
+  // dT
+  'dt7':          { img: '31.dT.png',           nome: 'dT' },
+
+  // Pneumococo
+  'pneumo1':      { img: '09.Pneumococo.png',    nome: 'Pneumococo' },
+  'pneumo2':      { img: '09.Pneumococo.png',    nome: 'Pneumococo' },
+  'pneumoR':      { img: '09.Pneumococo.png',    nome: 'Pneumococo' },
+
+  // Pneumo13
+  'pneumo13':     { img: '38.Pneumococo.png',    nome: 'Pneumococo 13' },
+
+  // Pneumo15
+  'pneumo15':     { img: '39.Pneumococo.png',    nome: 'Pneumococo 15' },
+
+  // Pneumo20
+  'pneumo20':     { img: '40.Pneumococo.png',    nome: 'Pneumococo 20' },
+
+  // Pneumo20 SUS (prematuros) — doses individuais
+  'pneumo20_sus_d1': { img: '40.Pneumococo.png',    nome: 'Pneumococo 20 (SUS)' },
+  'pneumo20_sus_d2': { img: '40.Pneumococo.png',    nome: 'Pneumococo 20 (SUS)' },
+  'pneumo20_sus_d3': { img: '40.Pneumococo.png',    nome: 'Pneumococo 20 (SUS)' },
+  'pneumo20_sus_r':  { img: '40.Pneumococo.png',    nome: 'Pneumococo 20 (SUS)' },
+
+  // Meningococo C
+  'meningC1':     { img: '10.MeningoC.png',      nome: 'Meningococo C' },
+  'meningC2':     { img: '10.MeningoC.png',      nome: 'Meningococo C' },
+
+  // Meningococo ACWY SUS
+  'meningACWY1':  { img: '91.MeningoACWY.png',   nome: 'Meningococo ACWY' },
+  'meningACWY2':  { img: '91.MeningoACWY.png',   nome: 'Meningococo ACWY' },
+
+  // ACWY 
+  'meningACWYp':  { img: '11.MeningoACWY.png',   nome: 'Meningococo ACWY' },
+
+  // Meningococo B
+  'menB':         { img: '12.MeningoB.png',      nome: 'Meningococo B' },
+
+  // COVID-19
+  'covid':        { img: '13.COVID19.png',       nome: 'COVID-19' },
+
+  // Gripe / Influenza
+  'gripe1':       { img: '14.Gripe.png',         nome: 'Gripe (Influenza)' },
+  'gripeAnual':   { img: '14.Gripe.png',         nome: 'Gripe (Influenza)' },
+
+  // Gripe anual campanha (por faixa etária)
+  'gripeAnual':   { img: '14.Gripe.png',         nome: 'Gripe (Campanha Anual)' },
+  'gripeAnual_2a':{ img: '14.Gripe.png',         nome: 'Gripe (Campanha Anual)' },
+  'gripeAnual_3a':{ img: '14.Gripe.png',         nome: 'Gripe (Campanha Anual)' },
+  'gripeAnual_4a':{ img: '14.Gripe.png',         nome: 'Gripe (Campanha Anual)' },
+  'gripeAnual_5a':{ img: '14.Gripe.png',         nome: 'Gripe (Campanha Anual)' },
+  'gripeAnual_6a':{ img: '14.Gripe.png',         nome: 'Gripe (Campanha Anual)' },
+
+  // Gripe tetra
+  'gripeQ':       { img: '41.Gripe.png',         nome: 'Gripe Quadrivalente' },
+
+  // Febre Amarela
+  'fa1':          { img: '15.FebreAmarela.png',  nome: 'Febre Amarela' },
+  'faR':          { img: '15.FebreAmarela.png',  nome: 'Febre Amarela' },
+
+  // Tríplice Viral (SCR) — sarampo, caxumba, rubéola
+  'scr1':         { img: '16.TripliceViral.png', nome: 'Tríplice Viral (SCR)' },
+
+  // Tetraviral (SCR + Varicela)
+  'tetraviral':   { img: '17.Tetraviral.png',    nome: 'Tetraviral (SCR+V)' },
+
+  // Varicela
+  'varicela2':    { img: '18.Varicela.png',      nome: 'Varicela' },
+
+  // Hepatite A
+  'hepA1':        { img: '19.HepatiteA.png',     nome: 'Hepatite A' },
+
+  // Hepatite A Ref
+  'hepAR':        { img: '69.HepatiteA.png',     nome: 'Hepatite A' },
+
+  // HPV
+  'hpv4':         { img: '20.HPV.png',           nome: 'HPV' },
+
+  // HPV Nona
+  'hpv9':         { img: '42.HPV.png',           nome: 'HPV Nonavalente' },
+
+  // Dengue SUS
+  'dengue':       { img: '21.Dengue.png',        nome: 'Dengue' },
+
+  // Dengue privada
+  'dengue_priv':  { img: '88.Dengue.png',        nome: 'Dengue' },
+};
+
+let state = {name:'', birth:'', parto:'normal', ig:'', peso:'', altura:'', done:{}, dates:{}, locals:{}};
+let pendingId = null;
+let pendingParentId = null;
+let susFilter = 'todos';
+let cfgInstagram = ''; // preenchido por aplicarConfig()
+
+function load(){
+  try { const s = localStorage.getItem('civ3'); if(s) state = JSON.parse(s); } catch(e){}
+}
+
+function save(){
+  try { localStorage.setItem('civ3', JSON.stringify(state)); } catch(e){}
+}
+
+function ageM(){
+  if(!state.birth) return -1;
+  const b = new Date(state.birth), n = new Date();
+  return (n.getFullYear()-b.getFullYear())*12 + (n.getMonth()-b.getMonth());
+}
+
+// Retorna true se todas as doses de uma vacina multi foram aplicadas
+function allDoneMulti(v){
+  return v.doses.every(d => state.done[d.id]);
+}
+
+// Retorna quantas doses de uma vacina multi já foram aplicadas
+function doneCountMulti(v){
+  return v.doses.filter(d => state.done[d.id]).length;
+}
+
+function status(v){
+  if(v.noStatus) return 'noStatus'; // vacinas de campanha — sem indicador
+  if(v.multi) return allDoneMulti(v) ? 'done' : (state.done[v.id] ? 'done' : 'pending');
+  if(state.done[v.id]) return 'done';
+  const a = ageM();
+  if(a < 0) return 'pending';
+  if(a >= v.age+2) return 'late';
+  if(a >= v.age-1) return 'due';
+  return 'pending';
+}
+
+function go(t){
+  ['inicio','registro','sus','priv','duvidas'].forEach((s,i)=>{
+    document.querySelectorAll('.tab')[i].classList.toggle('active', s===t);
+    document.getElementById('screen-'+s).classList.toggle('active', s===t);
+  });
+  if(t==='registro') renderReg();
+  if(t==='sus')      renderSus();
+  if(t==='priv')     renderPriv();
+  if(t==='duvidas')  renderFaq();
+}
+
+function renderReg(){
+  document.getElementById('cfgName').value   = state.name  || '';
+  document.getElementById('cfgBirth').value  = state.birth || '';
+  document.getElementById('cfgParto').value  = state.parto || 'normal';
+  document.getElementById('cfgIG').value     = state.ig    || '';
+  document.getElementById('cfgPeso').value   = state.peso  || '';
+  document.getElementById('cfgAltura').value = state.altura|| '';
+
+  if(state.name && state.birth){
+    const a = ageM();
+    let done=0, late=0, total=0;
+    SUS.forEach(v=>{
+      if(v.prem && !isPremature()) return; // não conta vacinas exclusivas de prematuros para não prematuros
+      if(v.notPrem && isPremature()) return; // não conta pneumo10 para prematuros (substituída pela pneumo20)
+      if(v.noStatus) return;               // não conta campanhas anuais
+      if(v.multi){
+        total += v.doses.length;
+        done  += doneCountMulti(v);
+      } else {
+        total++;
+        const s=status(v);
+        if(s==='done') done++;
+        else if(s==='late') late++;
+      }
+    });
+    const pct = total>0 ? Math.round(done/total*100) : 0;
+
+    document.getElementById('regResumo').style.display = 'block';
+    document.getElementById('regCard').innerHTML = `
+      <div class="reg-row"><span class="reg-lbl">Nome</span><span class="reg-val">${state.name}</span></div>
+      <div class="reg-row"><span class="reg-lbl">Nascimento</span><span class="reg-val">${new Date(state.birth+'T12:00').toLocaleDateString('pt-BR')}</span></div>
+      <div class="reg-row"><span class="reg-lbl">Idade</span><span class="reg-val">${a} ${a===1?'mês':'meses'}</span></div>
+      <div class="reg-row"><span class="reg-lbl">Parto</span><span class="reg-val">${state.parto==='cesarea'?'Cesárea':'Normal'}</span></div>
+      ${state.ig ? `<div class="reg-row"><span class="reg-lbl">Idade gestacional</span><span class="reg-val">${state.ig} semanas${parseInt(state.ig)<37?' <span style="background:#FDE8C8;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:20px;margin-left:6px;">Prematuro</span>':''}</span></div>` : ''}
+      ${state.peso  ? `<div class="reg-row"><span class="reg-lbl">Peso ao nascer</span><span class="reg-val">${state.peso} g</span></div>` : ''}
+      ${state.altura? `<div class="reg-row"><span class="reg-lbl">Estatura ao nascer</span><span class="reg-val">${state.altura} cm</span></div>` : ''}
+      <div class="reg-row"><span class="reg-lbl">Vacinas SUS aplicadas</span><span class="reg-val" style="color:#D4620A">${done} de ${total} doses</span></div>
+      ${late ? `<div class="reg-row"><span class="reg-lbl">Doses SUS atrasadas</span><span class="reg-val" style="color:#E24B4A">${late}</span></div>` : ''}
+    `;
+    document.getElementById('rProgLabel').textContent = pct+'%';
+    document.getElementById('rProgFill').style.width  = pct+'%';
+    document.getElementById('hSub').textContent = `${state.name} · ${a} ${a===1?'mês':'meses'}${cfgInstagram ? ' · ' + cfgInstagram : ''}`;
+  } else {
+    document.getElementById('regResumo').style.display = 'none';
+  }
+}
+
+function saveConfig(){
+  state.name   = document.getElementById('cfgName').value;
+  state.birth  = document.getElementById('cfgBirth').value;
+  state.parto  = document.getElementById('cfgParto').value;
+  state.ig     = document.getElementById('cfgIG').value;
+  state.peso   = document.getElementById('cfgPeso').value;
+  state.altura = document.getElementById('cfgAltura').value;
+  save(); renderReg();
+}
+
+function isPremature(){ return state.ig && parseInt(state.ig) < 37; }
+
+function renderSus(){
+  const ages = [...new Set(SUS.filter(v=>(!v.prem||isPremature()) && (!v.notPrem||!isPremature())).map(v=>v.lbl))];
+  document.getElementById('susFilters').innerHTML =
+    ['todos',...ages].map(a=>`<button class="fil-btn ${susFilter===a?'active':''}" onclick="setFilter('${a}')">${a==='todos'?'Todas as idades':a}</button>`).join('');
+
+  // Banner prematuro
+  const banner = document.getElementById('premBanner');
+  if(isPremature()){
+    banner.style.display = 'flex';
+    banner.querySelector('p').textContent = `Bebê prematuro (${state.ig}s) — Nirsevimabe e Pneumo 20 (VPC20) disponíveis gratuitamente no SUS`;
+  } else {
+    banner.style.display = 'none';
+  }
+
+  const groups = {};
+  SUS.filter(v=>{
+    if(v.prem && !isPremature()) return false;
+    if(v.notPrem && isPremature()) return false;
+    return susFilter==='todos' || v.lbl===susFilter;
+  }).forEach(v=>{
+    if(!groups[v.lbl]) groups[v.lbl]=[];
+    groups[v.lbl].push(v);
+  });
+
+  document.getElementById('susContent').innerHTML = Object.entries(groups).map(([lbl,vacs])=>`
+    <div class="age-group">
+      <div class="age-lbl"><span class="age-pill">${lbl}</span></div>
+      ${vacs.map(v=>{
+        if(v.multi){
+          // Cabeçalho do grupo de doses
+          const totalD = v.doses.length;
+          const doneD  = doneCountMulti(v);
+          const allD   = doneD === totalD;
+          return `<div class="vc-multi ${allD?'done-card':''}">
+            <div class="vcm-header">
+              <div class="vdot ${allD?'d-ok':'d-empty'}" style="flex-shrink:0"></div>
+              <div class="vinfo">
+                <div class="vname">${v.n}${v.prem?'<span class="prem-tag">Prematuro · SUS</span>':''}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+                <div class="vsub">${v.sub}</div>
+              </div>
+              <span class="dose-counter">${doneD}/${totalD}</span>
+            </div>
+            <div class="vcm-doses">
+              ${v.doses.map(d=>{
+                const done = !!state.done[d.id];
+                const ds   = state.dates[d.id] ? ' · '+state.dates[d.id] : '';
+                return `<div class="dose-row ${done?'dose-done':''}">
+                  <div class="vdot ${done?'d-ok':'d-empty'}" style="width:7px;height:7px;flex-shrink:0"></div>
+                  <span class="dose-lbl">${d.sub}${ds}</span>
+                  <div class="vcheck ${done?'done':''}" onclick="${done?`undoDose('${d.id}')`:`openModDose('${d.id}','${v.id}')`}">
+                    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+                  </div>
+                </div>`;
+              }).join('')}
+            </div>
+          </div>`;
+        }
+        // Vacina normal (não multi)
+        const s   = status(v);
+        if(s === 'noStatus'){
+          const ds = state.dates[v.id] ? ' · '+state.dates[v.id] : '';
+          return `<div class="vc ${state.done[v.id]?'done-card':''}">
+            <div class="vdot ${state.done[v.id]?'d-ok':'d-empty'}"></div>
+            <div class="vinfo">
+              <div class="vname">${v.n}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+              <div class="vsub">${v.sub}${ds}</div>
+            </div>
+            <div class="vcheck ${state.done[v.id]?'done':''}" onclick="${state.done[v.id]?`undo('${v.id}')`:`openMod('${v.id}')`}">
+              <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+            </div>
+          </div>`;
+        }
+        const dot = s==='done'?'d-ok': s==='late'?'d-late': s==='due'?'d-due':'d-empty';
+        const ds  = state.dates[v.id] ? ' · '+state.dates[v.id] : '';
+        return `<div class="vc ${s==='done'?'done-card':''}">
+          <div class="vdot ${dot}"></div>
+          <div class="vinfo">
+            <div class="vname">${v.n}${v.prem?'<span class="prem-tag">Prematuro · SUS</span>':''}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+            <div class="vsub">${v.sub}${ds}</div>
+          </div>
+          <div class="vcheck ${s==='done'?'done':''}" onclick="${s==='done'?`undo('${v.id}')`:`openMod('${v.id}')`}">
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
+
+function setFilter(f){ susFilter=f; renderSus(); }
+
+function renderPriv(){
+  const privList = isPremature()
+    ? PRIV.filter(v => !['pneumo13','pneumo15','pneumo20','nirsev'].includes(v.id))
+    : PRIV;
+  document.getElementById('privContent').innerHTML = privList.map(v=>{
+    if(v.multi){
+      const totalD = v.doses.length;
+      const doneD  = doneCountMulti(v);
+      const allD   = doneD === totalD;
+      return `<div class="vc-multi ${allD?'done-card':''}">
+        <div class="vcm-header">
+          <div class="vdot ${allD?'d-ok':'d-empty'}" style="flex-shrink:0"></div>
+          <div class="vinfo">
+            <div class="vname">${v.n}<span class="priv-tag">Privada</span><button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+            <div class="vsub">${v.sub} · ${v.lbl}</div>
+          </div>
+          <span class="dose-counter">${doneD}/${totalD}</span>
+        </div>
+        <div class="vcm-doses">
+          ${v.doses.map(d=>{
+            const done = !!state.done[d.id];
+            const ds   = state.dates[d.id] ? ' · '+state.dates[d.id] : '';
+            return `<div class="dose-row ${done?'dose-done':''}">
+              <div class="vdot ${done?'d-ok':'d-empty'}" style="width:7px;height:7px;flex-shrink:0"></div>
+              <span class="dose-lbl">${d.sub}${ds}</span>
+              <div class="vcheck ${done?'done':''}" onclick="${done?`undoDose('${d.id}')`:`openModDose('${d.id}','${v.id}')`}">
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+              </div>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+    }
+    const s  = state.done[v.id] ? 'done' : 'pending';
+    const ds = state.dates[v.id] ? ' · '+state.dates[v.id] : '';
+    return `<div class="vc ${s==='done'?'done-card':''}">
+      <div class="vdot ${s==='done'?'d-ok':'d-empty'}"></div>
+      <div class="vinfo">
+        <div class="vname">${v.n}<span class="priv-tag">Privada</span><button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+        <div class="vsub">${v.sub} · ${v.lbl}${ds}</div>
+      </div>
+      <div class="vcheck ${s==='done'?'done':''}" onclick="${s==='done'?`undo('${v.id}')`:`openMod('${v.id}')`}">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderFaq(){
+  document.getElementById('faqList').innerHTML = FAQ.map((f,i)=>`
+    <div class="faq-item" id="faq${i}" onclick="tgFaq(${i})">
+      <div class="faq-q">${f.q}<span class="faq-arr">⌄</span></div>
+      <div class="faq-a">${f.a}</div>
+    </div>`).join('');
+}
+
+function tgFaq(i){ document.getElementById('faq'+i).classList.toggle('open'); }
+
+// Abre modal para registrar uma dose individual (vacinas multi)
+function openModDose(doseId, parentId){
+  const all = [...SUS,...PRIV];
+  const parent = all.find(x=>x.id===parentId);
+  const dose   = parent ? parent.doses.find(d=>d.id===doseId) : null;
+  if(!parent) return;
+  pendingId = doseId;
+  pendingParentId = parentId;
+  document.getElementById('mTitle').textContent = parent.n;
+  document.getElementById('mBody').textContent  = dose ? dose.sub : '';
+  document.getElementById('mDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('modalReg').classList.add('open');
+}
+
+function undoDose(doseId){
+  delete state.done[doseId]; delete state.dates[doseId]; delete state.locals[doseId];
+  save(); renderSus(); renderPriv(); renderReg();
+}
+
+function openMod(id){
+  const all = [...SUS,...PRIV];
+  const v   = all.find(x=>x.id===id);
+  if(!v) return;
+  pendingId = id;
+  document.getElementById('mTitle').textContent = v.n;
+  document.getElementById('mBody').textContent  = (v.sub||'') + (v.lbl?' · '+v.lbl:'');
+  document.getElementById('mDate').value = new Date().toISOString().split('T')[0];
+  document.getElementById('modalReg').classList.add('open');
+}
+
+function closeModal(id){ document.getElementById(id).classList.remove('open'); pendingId=null; pendingParentId=null; }
+
+function confirmVac(){
+  if(!pendingId) return;
+
+  const vacId    = pendingId;
+  const parentId = pendingParentId;
+
+  state.done[vacId]   = true;
+  state.dates[vacId]  = document.getElementById('mDate').value;
+  state.locals[vacId] = document.getElementById('mLocal').value;
+  save(); closeModal('modalReg');
+  renderSus(); renderPriv(); renderReg();
+
+  // Para sticker: usa o parentId se for dose individual, senão o próprio vacId
+  const stickerId = parentId || vacId;
+  const sticker   = STICKERS[stickerId] || STICKERS[vacId];
+  const all       = [...SUS,...PRIV];
+  const v         = all.find(x=>x.id===stickerId) || all.find(x=>x.id===vacId);
+  const nomeVac   = sticker ? sticker.nome : (v ? v.n : '');
+
+  const img   = document.getElementById('celebraImg');
+  const emoji = document.getElementById('celebraEmoji');
+
+  if(sticker){
+    img.style.display   = 'block';
+    emoji.style.display = 'none';
+    img.src = 'img/' + sticker.img;
+  } else {
+    img.style.display   = 'none';
+    emoji.style.display = 'flex';
+  }
+
+  document.getElementById('celebraTitulo').textContent = nomeVac;
+  document.getElementById('celebraSub').textContent = '✅ Vacina registrada com sucesso!';
+  document.getElementById('modalCelebra').classList.add('open');
+}
+
+function undo(id){
+  delete state.done[id]; delete state.dates[id]; delete state.locals[id];
+  save(); renderSus(); renderPriv(); renderReg();
+}
+
+function resetAll(){
+  if(confirm('Limpar todos os registros de vacinas?')){
+    state.done={}; state.dates={}; state.locals={};
+    save(); renderReg(); renderSus(); renderPriv();
+  }
+}
+
+function openCompare(){
+  document.getElementById('cmpRows').innerHTML = CMP.map(r=>`
+    <div class="cmp-row">
+      <div class="cmp-cell cmp-sus">${r.sus.replace('\n','<br><span style="opacity:.75;font-size:11px">')}
+      </span></div>
+      <div class="cmp-cell cmp-priv">${r.priv.replace('\n','<br><span style="opacity:.75;font-size:11px">')}
+      </span></div>
+    </div>`).join('');
+  document.getElementById('modalCmp').classList.add('open');
+}
+
+// ─── DICIONÁRIO DE INFORMAÇÕES POR VACINA ────────────────────────────────────
+// infoKey = id canônico do agente (shared entre doses do mesmo agente)
+const INFO = {
+  bcg: {
+    nome: 'BCG',
+    org: 'Mycobacterium tuberculosis / M. leprae',
+    via: 'ID', // Intradérmica 
+    doenca: 'Tuberculose (formas graves) e hanseníase',
+    descricao: 'A BCG (Bacilo de Calmette-Guérin) é uma vacina viva atenuada derivada do Mycobacterium bovis. Protege principalmente contra as formas graves de tuberculose na infância (meningite tuberculosa e tuberculose miliar) e contra a hanseníase.',
+    esquema: 'Dose única ao nascer, preferencialmente na maternidade. Adiar a vacinação em recém-nascidos com peso inferior a 2kg',
+    adversos: 'Nódulo local que evolui para pústula e cicatriz em 4–12 semanas — isso é esperado e normal. Não coloque curativos ou pomadas, lave apenas com água e sabão. Raramente: "gânglios (ínguas) na axila". A ausência de cicatriz não indica falha vacinal.',
+    extra: 'A vacina sempre será aplicada no braço direito.<br> Desde 2019 não está mais indicada a revacinação em caso de ausência de cicatriz.',
+  },
+  hepB: {
+    nome: 'Hepatite B',
+    org: 'Vírus da Hepatite B (HBV)',
+    via: 'IM',
+    doenca: 'Hepatite B — protege o fígado contra infecções que podem causar cirrose e câncer no futuro.',
+    descricao: 'Vacina recombinante (não contém vírus vivo) que estimula a produção de anticorpos anti-HBsAg. A infecção pelo HBV pode evoluir para cirrose e carcinoma hepatocelular na vida adulta.',
+    esquema: '1ª dose ao nascer (idealmente nas primeiras 12h). Doses seguintes integradas à Pentavalente aos 2, 4 e 6 meses.',
+    adversos: 'Dor e vermelhidão no local. Febre baixa ocasional. Reações graves são raras.',
+    extra: 'Bebês nascidos de mães HBsAg positivo devem receber também a imunoglobulina anti-hepatite B (HBIG) nas primeiras 12 horas de vida.Prematuros extremos ou abaixo de 2kg precisam de 4 doses no total para garantir a imunidade.',
+  },
+  nirsev: {
+    nome: 'Nirsevimabe (VSR)',
+    org: 'Vírus Sincicial Respiratório (VSR)',
+    via: 'IM',
+    doenca: 'Bronquiolite e pneumonia causadas pelo VSR (Vírus Sincicial Respiratório), o maior responsável por internações de bebês no inverno.',
+    descricao: 'Nirsevimabe (Beyfortus®) é um anticorpo monoclonal. Diferente das vacinas comuns, aqui o bebê recebe o "escudo" (anticorpos) pronto contra o VSR. A proteção é imediata e dura por meses, cobrindo todo o período de maior circulação do vírus.',
+    esquema: 'Dose única ao nascer ou antes do primeiro outono/inverno (sazonalidade).<br> No SUS: disponível para prematuros <37 semanas e grupos de risco (cardiopatas graves e bebês com problemas crônicos no pulmão).',
+    adversos: 'Reações locais leves (dor, enduração). Muito bem tolerado. Não é uma vacina viva, portanto não causa infecção.',
+    extra: 'Não substitui outras vacinas. Pode ser administrado junto com as demais vacinas do calendário.',
+  },
+  rota: {
+    nome: 'Rotavírus',
+    org: 'Rotavírus (família Reoviridae)',
+    via: 'VO',
+    doenca: 'Diarreia grave e desidratação causadas pelo Rotavírus',
+    descricao: 'Vacina oral, viva e atenuada. O rotavírus é a principal causa de diarreia grave em crianças menores de 5 anos no mundo. A vacinação reduziu significativamente as internações por diarreia no Brasil.',
+    esquema: 'SUS (monovalente): 2 doses — 2 e 4 meses.<br>Privada (pentavalente): 3 doses — 2, 4 e 6 meses.<br>Atenção: há limite máximo de idade para início do esquema.',
+    adversos: 'Irritabilidade, diarreia leve e vômitos ocasionais.<br> Raro: fezes com sangue e intussuscepção intestinal (mais descrita nas primeiras versões da vacina).',
+    extra: 'A 1ª dose deve ser feita até 11 meses e 29 dias.<br> A última dose não pode passar de 23 meses e 29 dias.<br> Se o bebê vomitar após a vacina, não repita a dose. A absorção é rápida e o esquema segue normalmente',
+  },
+  vip: {
+    nome: 'VIP — Pólio',
+    org: 'Poliovírus tipos 1, 2 e 3',
+    via: 'IM',
+    doenca: 'Poliomielite (paralisia infantil)',
+    descricao: 'Vacina Inativada (VIP). Ela é composta por vírus "mortos", por isso é extremamente segura e não tem como causar a doença. É a tecnologia padrão ouro no mundo todo. O Brasil está livre da pólio desde 1989, mas a vacinação é essencial para manter essa conquista.',
+    esquema: 'O Brasil agora utiliza apenas a versão injetável: doses aos 2, 4 e 6 meses, com reforço aos 15 meses.',
+    adversos: 'Dor local e vermelhidão discretas. Muito bem tolerada.',
+    extra: 'Embora não tenhamos casos no Brasil há décadas, o vírus ainda circula em alguns países. Vacinar é a única forma de garantir que ele não volte para nossas crianças.',
+  },
+  penta: {
+    nome: 'Pentavalente',
+    org: 'Bordetella pertussis · Clostridium tetani · Corynebacterium diphtheriae · Haemophilus influenzae b · HBV',
+    via: 'IM',
+    doenca: 'Coqueluche, tétano, difteria, infecções pelo Hib e hepatite B',
+    descricao: 'A Pentavalente combina cinco componentes em uma única injeção: DTP (coqueluche célula inteira, tétano, difteria) + Hib + Hepatite B. Protege contra cinco doenças graves com menor número de picadas.',
+    esquema: '3 doses: 2, 4 e 6 meses.',
+    adversos: 'Febre, irritabilidade, choro prolongado, dor e enduração no local — mais comuns do que com vacinas acelulares.<br> Raramente: convulsão febril. Esses efeitos são mais associados ao componente pertussis célula inteira.',
+    extra: 'O componente pertussis célula inteira é mais reatogênico que o acelular (DTPa da Hexavalente). O benefício supera amplamente o risco.',
+  },
+  hexa: {
+    nome: 'Hexavalente',
+    org: 'Bordetella pertussis · Clostridium tetani · Corynebacterium diphtheriae · Haemophilus influenzae b · HBV · Poliovírus',
+    via: 'IM',
+    doenca: 'Coqueluche, tétano, difteria, Hib, hepatite B e pólio',
+    descricao: 'A Hexavalente (DTPa-Hib-HepB-VIP) é disponível apenas na rede privada. Usa componente pertussis acelular (DTPa), o que a torna menos reatogênica que a Pentavalente + VIP do SUS — ou seja, menos febre e desconforto.',
+    esquema: '3 doses: 2, 4 e 6 meses. Substitui a Pentavalente e a VIP do SUS, reduzindo uma picada por visita.',
+    adversos: 'Febre e reações locais mais leves que a Pentavalente, graças ao componente acelular.',
+    extra: 'Opção de conforto para a criança: mesma proteção com uma injeção a menos por consulta e menor incidência de febre alta.',
+  },
+  dtp: {
+    nome: 'DTP',
+    org: 'Bordetella pertussis · Clostridium tetani · Corynebacterium diphtheriae',
+    via: 'IM',
+    doenca: 'Coqueluche, tétano e difteria (reforços)',
+    descricao: 'DTP de célula inteira usada nos reforços do calendário SUS. Reforça a imunidade contra coqueluche, tétano e difteria adquirida nas doses primárias pela Pentavalente.',
+    esquema: '1º reforço aos 15 meses · 2º reforço aos 4 anos.',
+    adversos: 'Dor, vermelhidão e enduração no local. Febre nas primeiras 24–48h. Pode ocorrer nódulo persistente.',
+    extra: 'A coqueluche (tosse comprida) pode ser grave em bebês pequenos. Manter os reforços em dia é essencial.',
+  },
+  dt: {
+    nome: 'dT — Difteria e Tétano adulto',
+    org: 'Clostridium tetani · Corynebacterium diphtheriae',
+    via: 'IM',
+    doenca: 'Tétano e difteria (reforço na infância tardia)',
+    descricao: 'Versão com dose reduzida de toxoide diftérico (d), indicada a partir dos 7 anos. <br> Reforça a proteção contra tétano e difteria.',
+    esquema: 'Dose única aos 7 anos.<br> Reforços a cada 10 anos na vida adulta.',
+    adversos: 'Dor local, febre baixa, mal-estar leve.',
+    extra: 'A vacinação da gestante com dTpa (adulto com coqueluche) em cada gestação protege o recém-nascido antes de ele poder ser vacinado.',
+  },
+  pneumo: {
+    nome: 'Pneumococo',
+    org: 'Streptococcus pneumoniae',
+    via: 'IM',
+    doenca: 'Pneumonia, sinusite, meningite e infecções de ouvido (otites) causadas pela bactéria Pneumococo.',
+    descricao: 'Vacinas conjugadas contra Streptococcus pneumoniae. Quanto maior o número no nome da vacina, mais variantes da bactéria ela cobre.<br> No SUS: A antiga vacina VPC10 foi substituída pela VPC20 (20 sorotipos), trazendo a tecnologia mais avançada da rede privada direto para o calendário público de forma gratuita.<br> Na rede privada: Seguem disponíveis as opções da VPC13, VPC15 e VPC20.',
+    esquema: 'Esquema geral: 2 doses (2 e 4 meses) + reforço aos 12 meses.<br>Prematuros: 3 doses (2, 4 e 6 meses) + reforço aos 12 meses.<br><br>Nota: A transição da VPC10 para a VPC20 nas UBS ocorre de forma gradual desde junho/26, conforme os estoques regionais.',
+    adversos: 'Febre, dor e vermelhidão no local. Irritabilidade nas primeiras 24–48h.',
+    extra: 'O pneumococo é a bactéria que mais frequentemente causa pneumonias e meningite bacteriana em crianças. Vacinas com mais sorotipos oferecem proteção mais ampla.',
+  },
+  meningC: {
+    nome: 'Meningococo C',
+    org: 'Neisseria meningitidis sorogrupo C',
+    via: 'IM',
+    doenca: 'Meningite e meningococcemia — infecções gravíssimas no cérebro e no sangue que podem evoluir muito rápido.',
+    descricao: 'Vacina conjugada contra o sorogrupo C do meningococo. A doença meningocócica tem alta letalidade e sequelas graves (amputações, surdez). O sorogrupo C é um dos mais prevalente no Brasil.',
+    esquema: 'SUS: 2 doses primárias (3 e 5 meses) + reforço aos 12 meses (ACWY) + reforço aos 11-14 anos (ACWY).',
+    adversos: 'Dor local, febre baixa, irritabilidade. Bem tolerada.',
+    extra: 'O sorogrupo B não está coberto pela MenC — para proteção contra o sorogrupo B, é necessária a MenB (disponível apenas na rede privada).',
+  },
+  meningACWY: {
+    nome: 'Meningococo ACWY',
+    org: 'Neisseria meningitidis sorogrupos A, C, W e Y',
+    via: 'IM',
+    doenca: 'Meningite e meningococcemia — infecções gravíssimas no cérebro e no sangue que podem evoluir muito rápido.',
+    descricao: 'Vacina conjugada quadrivalente contra os sorogrupos A, C, W e Y do meningococo. Amplia a proteção além do sorogrupo C coberto pelo SUS. Os sorogrupos W e Y têm crescido em prevalência no Brasil.',
+    esquema: 'SUS (reforços): 12 meses e adolescência (11–14 anos). Privada (primário): 3 doses a partir de 3 meses + reforços.',
+    adversos: 'Dor local, febre discreta. Rara: reação alérgica.',
+    extra: 'A combinação MenACWY + MenB na rede privada oferece a proteção mais completa disponível contra doença meningocócica.',
+  },
+  menB: {
+    nome: 'Meningococo B',
+    org: 'Neisseria meningitidis sorogrupo B',
+    via: 'IM',
+    doenca: 'Meningite e meningococcemia pelo sorogrupo B.',
+    descricao: 'Vacina proteica contra o sorogrupo B do meningococo, disponível apenas na rede privada.<br> O sorogrupo B é o mais frequente em bebês pequenos e tem altíssima mortalidade.',
+    esquema: '3 doses: 3, 5 e 12–15 meses.<br> O número exato pode variar conforme marca e idade de início do esquema.',
+    adversos: 'Dor local intensa.<br> Febre significativa nas primeiras 24h (mais frequente que outras vacinas) — é a única vacina em que é recomendada medicação preventiva, conforme orientação pediátrica.',
+    extra: 'É considerada por muitos pediatras a vacina privada de maior prioridade nos primeiros meses de vida, dada a gravidade da doença por sorogrupo B em lactentes. <br> Infelizmente é uma das vacinas que mais gera efeitos adversos.',
+  },
+  covid: {
+    nome: 'COVID-19',
+    org: 'SARS-CoV-2',
+    via: 'IM',
+    doenca: 'Formas graves da COVID-19, internações e a Síndrome Inflamatória Multissistêmica (uma complicação grave que pode ocorrer após a infecção).',
+    descricao: 'As vacinas disponíveis para crianças no SUS são a Spikevax (mRNA, Moderna) e a Comirnaty (mRNA, Pfizer).',
+    esquema: 'Spikevax: 2 doses.<br> Comirnaty: 3 doses.',
+    adversos: 'Dor local, febre, fadiga, irritabilidade nas 24–48h após.<br> Raramente: miocardite (mais descrita em adolescentes do sexo masculino com mRNA — risco muito menor que a miocardite pela infecção pelo COVID).',
+    extra: 'Infelizmente existe muita desinformação sobre essa vacina. As vacinas de mRNA não alteram o DNA.<br> As vacinas são periodicamente atualizadas para proteger contra as novas variantes do vírus que surgem',
+  },
+  gripe: {
+    nome: 'Gripe (Influenza)',
+    org: 'Vírus Influenza A e B',
+    via: 'IM',
+    doenca: 'Influenza — gripe sazonal',
+    descricao: 'Vacina inativada contra os vírus Influenza.<br> O SUS oferece a versão trivalente (3 tipos).<br> A rede privada oferece versão quadrivalente (4 tipos — inclui um segundo vírus B).<br> A composição muda anualmente conforme a vigilância epidemiológica da OMS.',
+    esquema: 'A partir de 6 meses.<br> Na 1ª vez: 2 doses com intervalo de pelo menos 1 mês. Depois: dose anual em campanhas (preferencialmente antes do outono).',
+    adversos: 'Dor local, febre baixa e mal-estar nas primeiras 24h. Não causa gripe — a vacina é inativada.',
+    extra: 'Crianças < 2 anos têm alto risco de complicações graves por Influenza. A vacinação anual é especialmente importante nessa faixa etária.',
+  },
+  fa: {
+    nome: 'Febre Amarela',
+    org: 'Vírus da Febre Amarela (Flavivirus)',
+    via: 'SC',
+    doenca: 'Febre Amarela',
+    descricao: 'Vacina viva atenuada altamente eficaz. Uma única dose confere imunidade por toda a vida para a maioria das pessoas. A febre amarela silvestre circula em áreas de mata e pode ser transmitida por mosquitos Haemagogus e Sabethes.',
+    esquema: '1ª dose aos 9 meses + reforço aos 4 anos.<br> Apenas 1 reforço ao longo da vida.',
+    adversos: 'Febre, dor de cabeça e mal-estar leve em 3–5% dos vacinados.<br> Raramente: doença neurológica ou visceral associada à vacina (DENV/DAENV) — risco muito menor que a doença natural.',
+    extra: 'Contraindicada em imunocomprometidos, gestantes e bebês menores de 6 meses. Em caso de viagem para áreas endêmicas, verificar necessidade de dose adicional.',
+  },
+  scr: {
+    nome: 'Tríplice Viral (SCR)',
+    org: 'Vírus do Sarampo · Vírus da Caxumba · Vírus da Rubéola',
+    via: 'SC',
+    doenca: 'Sarampo, Caxumba e Rubéola — três doenças altamente contagiosas que podem causar complicações graves em pulmões e ouvidos.',
+    descricao: 'Vacina viva contra sarampo, caxumba e rubéola. O sarampo é altamente contagioso e teve surtos recentes no Brasil por queda na cobertura vacinal. A rubéola congênita pode causar malformações graves no feto.',
+    esquema: '1ª dose aos 12 meses.<br> 2ª dose integrada na Tetraviral aos 15 meses.',
+    adversos: 'Febre e exantema leve 5–12 dias após. Parotidite e artralgia transitória (componente rubéola).<br> Raramente: trombocitopenia transitória.',
+    extra: 'O Brasil luta para recuperar o status de país livre do sarampo, o que só é possível com a cobertura vacinal acima de 95%.',
+  },
+  tetraviral: {
+    nome: 'Tetraviral (SCR + Varicela)',
+    org: 'Vírus do Sarampo · Vírus da Caxumba · Vírus da Rubéola · Varicela-Zoster',
+    via: 'SC',
+    doenca: 'Quatro proteções em uma só dose: Sarampo, Caxumba, Rubéola e Varicela (Catapora).',
+    descricao: 'Combina os quatro componentes em uma única injeção. Aplicada aos 15 meses como reforço do SCR e primeira dose de varicela. Praticidade de uma picada a menos.',
+    esquema: 'Dose única aos 15 meses.<br> Segunda dose de varicela aos 4 anos (Varicela isolada).',
+    adversos: 'Febre e exantema. O componente varicela pode causar varicela atenuada em ~5% dos vacinados (poucos elementos, sem complicações). Risco de convulsão febril ligeiramente maior que SCR isolada.',
+    extra: 'Não administrar junto com outras vacinas vivas (intervalo de 30 dias). Contraindicada em imunocomprometidos.',
+  },
+  varicela: {
+    nome: 'Varicela',
+    org: 'Vírus Varicela-Zoster (VZV)',
+    via: 'SC',
+    doenca: 'Varicela (catapora) e herpes-zóster',
+    descricao: 'Vacina viva atenuada contra o vírus varicela-zóster. A varicela pode ter complicações graves em crianças como infecção bacteriana secundária da pele, pneumonia e encefalite. Além disso, o vírus permanece latente e pode reativar como herpes-zóster na vida adulta.',
+    esquema: '1ª dose integrada na Tetraviral (15 meses).<br>2ª dose isolada aos 4 anos.',
+    adversos: 'Febre, exantema varicela-like leve (5%). Dor no local.',
+    extra: 'Pessoas vacinadas que desenvolvem varicela têm forma muito mais branda. Duas doses conferem ~98% de proteção.',
+  },
+  hepA: {
+    nome: 'Hepatite A',
+    org: 'Vírus da Hepatite A (HAV)',
+    via: 'IM',
+    doenca: 'Hepatite A',
+    descricao: 'Vacina inativada contra o HAV. A hepatite A é transmitida por água e alimentos contaminados. Em crianças pequenas costuma ser assintomática ou leve.',
+    esquema: 'SUS: 1 dose aos 15 meses. O esquema recomendado por bula é de 2 doses - que pode ser aplicada em clínicas privadas.<br> Privada: 2 doses para esquema completo (a partir de 12 meses, com intervalo de 6–18 meses).',
+    adversos: 'Dor local, febre baixa, mal-estar leve. Bem tolerada.',
+    extra: 'O Brasil incluiu a hepatite A no calendário em 2014. Duas doses garantem imunidade por décadas ou por toda a vida.',
+  },
+  hpv: {
+    nome: 'HPV',
+    org: 'Papilomavírus Humano (HPV)',
+    via: 'IM',
+    doenca: 'Câncer do colo do útero, ânus, orofaringe, pênis e verrugas genitais',
+    descricao: 'Vacina recombinante que protege contra os sorotipos mais oncogênicos do HPV. O SUS oferece a quadrivalente (tipos 6, 11, 16 e 18). A privada oferece a nonavalente (tipos 6, 11, 16, 18, 31, 33, 45, 52 e 58) — proteção contra ~90% dos cânceres de colo uterino.',
+    esquema: 'SUS (9–14 anos): 1 dose.',
+    adversos: 'Dor e vermelhidão local. <br>Síncope vasovagal (desmaio) por ansiedade — recomenda-se observação sentado por 15 min.',
+    extra: 'Mais eficaz quando administrada antes do início da atividade sexual. Não trata infecção prévia, mas protege contra outros sorotipos não adquiridos.',
+  },
+  dengue: {
+    nome: 'Dengue',
+    org: 'Vírus Dengue sorotipos 1–4 (Flavivirus)',
+    via: 'SC',
+    doenca: 'Dengue',
+    descricao: 'A vacina é viva atenuada, protegendo contra os 4 sorotipos do vírus da dengue. Reduz significativamente dengue grave e hospitalizações. Pode ser usada independentemente de exposição prévia ao vírus.',
+    esquema: 'SUS: 2 doses (10–14 anos).<br> Privada: 2 doses a partir de 4 anos (intervalo de 3 meses).',
+    adversos: 'Dor local, cefaleia, mialgia e eventualmente febre leve. Bem tolerada.',
+    extra: 'O Brasil é o país com maior número de casos de dengue no mundo. A vacinação é especialmente recomendada em áreas endêmicas. Não requer sorologia prévia.',
+  },
+  rota3: {
+    nome: 'Rotavírus Pentavalente',
+    org: 'Rotavírus (5 cepas: G1, G2, G3, G4 e P[8])',
+    via: 'VO',
+    doenca: 'Gastroenterite grave por rotavírus',
+    descricao: 'Versão pentavalente protege contra 5 cepas do rotavírus em 3 doses, versus 1 cepa do monovalente do SUS em 2 doses. Maior cobertura contra as variantes circulantes.',
+    esquema: '3 doses: 2, 4 e 6 meses.<br> Não ultrapassar limite máximo de idade (consultar bula/pediatra).',
+    adversos: 'Irritabilidade e diarreia leve. Risco de intussuscepção muito baixo.',
+    extra: 'O rotavírus pentavalente está associado a menor taxa de falha vacinal em alguns estudos. A escolha entre mono e pentavalente deve ser feita com o pediatra.',
+  },
+  gripeQ: {
+    nome: 'Gripe Quadrivalente',
+    org: 'Vírus Influenza A (H1N1, H3N2) e B (duas linhagens)',
+    via: 'IM',
+    doenca: 'Influenza — gripe sazonal',
+    descricao: 'A vacina quadrivalente adiciona uma segunda linhagem do vírus Influenza B em relação à trivalente do SUS, ampliando a cobertura. A linhagem B adicional pode ser responsável por surtos em anos alternados.',
+    esquema: 'Mesma que a trivalente: a partir de 6 meses, 2 doses na 1ª vez, depois anual.',
+    adversos: 'Dor local, febre baixa. Idênticos à trivalente.',
+    extra: 'A escolha entre tri e quadrivalente depende da vigilância epidemiológica do ano em curso.',
+  },
+  hpv9: {
+    nome: 'HPV Nonavalente',
+    org: 'Papilomavírus Humano — 9 sorotipos',
+    via: 'IM',
+    doenca: 'Cânceres relacionados ao HPV e verrugas genitais',
+    descricao: 'A vacina nonavalente cobre 9 sorotipos do HPV (6, 11, 16, 18, 31, 33, 45, 52 e 58), contra 4 sorotipos da quadrivalente do SUS. Estima-se proteção contra ~90% dos cânceres de colo uterino.',
+    esquema: '< 20 anos: 2 doses (intervalo de 6 meses).',
+    adversos: 'Dor local, febre, cefaleia.<br> Síncope vasovagal — observar por 15 min após.',
+    extra: 'Ideal administrar antes do início da atividade sexual. Benefício em meninos: prevenção de câncer anal, peniano e orofaríngeo por HPV.',
+  },
+};
+
+// Mapeamento: id da vacina → chave no INFO
+const INFO_MAP = {
+  bcg:'bcg', hepB0:'hepB',
+  nirsev_sus:'nirsev', nirsev:'nirsev',
+  rota1:'rota', rota2:'rota', rota3:'rota3',
+  vip1:'vip', vip2:'vip', vip3:'vip', vipR:'vip',
+  penta1:'penta', penta2:'penta', penta3:'penta',
+  hexa:'hexa',
+  dtp1r:'dtp', dtp2r:'dtp', dt7:'dt',
+  pneumo1:'pneumo', pneumo2:'pneumo', pneumoR:'pneumo',
+  pneumo13:'pneumo', pneumo15:'pneumo', pneumo20:'pneumo',
+  pneumo20_sus_d1:'pneumo', pneumo20_sus_d2:'pneumo', pneumo20_sus_d3:'pneumo', pneumo20_sus_r:'pneumo',
+  meningC1:'meningC', meningC2:'meningC',
+  meningACWY1:'meningACWY', meningACWY2:'meningACWY', meningACWYp:'meningACWY',
+  menB:'menB',
+  covid:'covid',
+  gripe1:'gripe', gripeAnual:'gripe', gripeQ:'gripeQ',
+  fa1:'fa', faR:'fa',
+  scr1:'scr', tetraviral:'tetraviral',
+  varicela2:'varicela',
+  hepA1:'hepA', hepAR:'hepA',
+  hpv4:'hpv', hpv9:'hpv9',
+  dengue:'dengue', dengue_priv:'dengue',
+};
+
+function openInfo(vacId){
+  const key  = INFO_MAP[vacId];
+  const info = key ? INFO[key] : null;
+  const stk  = STICKERS[vacId];
+
+  // header
+  const img = document.getElementById('miImg');
+  img.style.display = stk ? 'block' : 'none';
+  if(stk) img.src = 'img/' + stk.img;
+
+  const all = [...SUS,...PRIV];
+  const v   = all.find(x=>x.id===vacId);
+  document.getElementById('miTitle').textContent = info ? info.nome : (v ? v.n : vacId);
+  document.getElementById('miSub').textContent   = info ? info.org  : '';
+
+  // body
+  const via = { IM:'Intramuscular (IM)', SC:'Subcutânea (SC)', ID:'Intradérmica (ID)', VO:'Via Oral (VO)' };
+  document.getElementById('miBody').innerHTML = info ? `
+    <div class="mi-section">
+      <div class="mi-label">O que previne</div>
+      <div class="mi-text">${info.doenca}</div>
+    </div>
+    <div class="mi-divider"></div>
+    <div class="mi-section">
+      <div class="mi-label">Como funciona</div>
+      <div class="mi-text">${info.descricao}</div>
+    </div>
+    <div class="mi-divider"></div>
+    <div class="mi-section">
+      <div class="mi-label">Esquema de doses</div>
+      <div class="mi-text">${info.esquema}</div>
+    </div>
+    <div class="mi-divider"></div>
+    <div class="mi-section">
+      <div class="mi-label">Via de administração</div>
+      <div class="mi-chips"><span class="mi-chip ok">${via[info.via]||info.via}</span></div>
+    </div>
+    <div class="mi-divider"></div>
+    <div class="mi-section mi-adverse">
+      <div class="mi-label">⚠️ Possíveis efeitos adversos</div>
+      <div class="mi-text">${info.adversos}</div>
+    </div>
+    ${info.extra ? `<div class="mi-divider"></div>
+    <div class="mi-section">
+      <div class="mi-label">💡 Saiba mais</div>
+      <div class="mi-text">${info.extra}</div>
+    </div>` : ''}
+  ` : '<p style="color:#666;font-size:13px;">Informações detalhadas em breve.</p>';
+
+  document.getElementById('modalInfo').classList.add('open');
+}
+
+// ─── PWA: Service Worker ─────────────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+
+// ─── CONFIG: carrega config.json e personaliza o app ─────────────────────────
+
+// Utilitário: escurece/clareia uma cor hex
+function shadeColor(hex, pct) {
+  hex = hex.replace('#','');
+  const num = parseInt(hex,16);
+  const r = Math.min(255,Math.max(0,((num>>16)&0xff)+Math.round(255*pct/100)));
+  const g = Math.min(255,Math.max(0,((num>>8)&0xff)+Math.round(255*pct/100)));
+  const b = Math.min(255,Math.max(0,(num&0xff)+Math.round(255*pct/100)));
+  return '#'+(r<<16|g<<8|b).toString(16).padStart(6,'0');
+}
+
+async function aplicarConfig() {
+  let cfg = {};
+  try {
+    // cache-bust para garantir versão mais recente
+    const res = await fetch('./config.json?v=' + Date.now());
+    if (res.ok) cfg = await res.json();
+  } catch(e) {
+    console.warn('[Config] config.json não encontrado — usando defaults.');
+  }
+
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  const setText = (id, val) => {
+    if (!val && val !== 0) return;
+    const el = document.getElementById(id);
+    if (el) el.textContent = String(val);
+  };
+  const setHTML = (id, val) => {
+    if (!val) return;
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = val;
+  };
+  const setSrc = (id, val) => {
+    if (!val) return;
+    const el = document.getElementById(id);
+    if (el) el.src = val;
+  };
+
+  // ── Leitura dos campos (estrutura flat, exatamente como está no config.json)
+  const appTitulo   = cfg.app_titulo    || 'Carteirinha Digital de Vacinas';
+  const appSlug     = cfg.app_subtitulo || '';
+  const logo        = cfg.logo          || 'icons/icon-192.png';
+  const medNome     = cfg.medico_nome   || '';
+  const medCargo    = cfg.medico_cargo  || 'Médico(a) pediatra';
+  const medCRM      = cfg.medico_crm    || '';
+  const medInsta    = cfg.medico_instagram || '';
+  const medFoto     = cfg.medico_foto   || 'icons/icon-192.png';
+  const badges      = Array.isArray(cfg.medico_badges) ? cfg.medico_badges : [];
+  const bio         = Array.isArray(cfg.medico_bio)    ? cfg.medico_bio    : [];
+  const quote       = cfg.quote         || '"A vacinação é um pacto coletivo de erradicação das doenças."';
+  const accent      = cfg.cor_principal  || '#D4620A';
+  const accentLight = cfg.cor_fundo_leve || '#FEF0E4';
+  const accentMid   = cfg.cor_borda      || '#F5C49A';
+  const accentDark  = shadeColor(accent, -20);
+
+  // ── Cores ──────────────────────────────────────────────────────────────────
+  const root = document.documentElement;
+  root.style.setProperty('--color-accent',              accent);
+  root.style.setProperty('--color-accent-light',        accentLight);
+  root.style.setProperty('--color-accent-mid',          accentMid);
+  root.style.setProperty('--color-background-secondary', accentLight);
+  root.style.setProperty('--color-border-tertiary',      accentMid + '66');
+  root.style.setProperty('--color-border-secondary',     accentMid + 'aa');
+
+  // SVG de fundo com cor personalizada
+  const hex = accent.replace('#', '%23');
+  const bgSVG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' opacity='0.045'%3E%3Ccircle cx='40' cy='40' r='10' fill='none' stroke='${hex}' stroke-width='1.5'/%3E%3Cline x1='40' y1='26' x2='40' y2='22' stroke='${hex}' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='40' cy='21' r='2' fill='${hex}'/%3E%3Cline x1='40' y1='54' x2='40' y2='58' stroke='${hex}' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='40' cy='59' r='2' fill='${hex}'/%3E%3Cline x1='26' y1='40' x2='22' y2='40' stroke='${hex}' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='21' cy='40' r='2' fill='${hex}'/%3E%3Cline x1='54' y1='40' x2='58' y2='40' stroke='${hex}' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='59' cy='40' r='2' fill='${hex}'/%3E%3Cellipse cx='160' cy='55' rx='10' ry='16' fill='none' stroke='${hex}' stroke-width='1.5'/%3E%3Cline x1='156' y1='45' x2='154' y2='34' stroke='${hex}' stroke-width='1' stroke-linecap='round' stroke-dasharray='2 2'/%3E%3Cline x1='164' y1='65' x2='166' y2='76' stroke='${hex}' stroke-width='1' stroke-linecap='round' stroke-dasharray='2 2'/%3E%3Crect x='255' y='25' width='8' height='22' rx='2' fill='none' stroke='${hex}' stroke-width='1.5'/%3E%3Cline x1='259' y1='47' x2='259' y2='55' stroke='${hex}' stroke-width='1.5' stroke-linecap='round'/%3E%3Ccircle cx='260' cy='190' r='9' fill='none' stroke='${hex}' stroke-width='1.5'/%3E%3Cpath d='M269 190 Q280 178 275 165' fill='none' stroke='${hex}' stroke-width='1' stroke-linecap='round'/%3E%3Ccircle cx='200' cy='265' r='8' fill='none' stroke='${hex}' stroke-width='1.2'/%3E%3C/svg%3E")`;
+
+  // Injeta num <style> auxiliar sem tocar no CSS principal
+  let dynStyle = document.getElementById('dynTheme');
+  if (!dynStyle) { dynStyle = document.createElement('style'); dynStyle.id = 'dynTheme'; document.head.appendChild(dynStyle); }
+  dynStyle.textContent = `
+    body { background-color: ${accentLight} !important; background-image: ${bgSVG} !important; background-repeat:repeat; background-size:320px 320px; }
+    .btn-p { background: linear-gradient(135deg,${accentDark},${accent}) !important; box-shadow:0 2px 8px ${accent}44 !important; }
+    .mk    { background: linear-gradient(135deg,${accentDark},${accent}) !important; }
+    .prog-fill { background: linear-gradient(90deg,${accentDark},${accent}) !important; }
+  `;
+
+  // theme-color da barra do navegador
+  const metaTC = document.getElementById('metaThemeColor');
+  if (metaTC) metaTC.content = accent;
+
+  // ── Identidade ─────────────────────────────────────────────────────────────
+  document.title = appTitulo;
+  setText('headerTitle',  appTitulo);
+  setSrc ('headerLogo',   logo);
+
+  const metaAT = document.getElementById('metaAppTitle');
+  if (metaAT) metaAT.content = appTitulo;
+
+  // hSub inicial (antes de cadastrar bebê)
+  const hSub = document.getElementById('hSub');
+  if (hSub) hSub.textContent = appSlug || (medNome ? medInsta || medNome : '@Pediatra');
+
+  // ── Perfil ─────────────────────────────────────────────────────────────────
+  setSrc ('profilePhoto', medFoto);
+  setText('profileName',  medNome  || 'Médico(a)');
+  setText('profileRole',  medCargo);
+
+  // Badges
+  const badgesEl = document.getElementById('profileBadges');
+  if (badgesEl) badgesEl.innerHTML = badges.map(b => `<span class="bdg">${b}</span>`).join('');
+
+  // Bio (até 3 parágrafos)
+  ['profileBio1','profileBio2','profileBio3'].forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (bio[i]) { el.textContent = bio[i]; el.style.display = 'block'; }
+    else          { el.style.display = 'none'; }
+  });
+
+  // Citação
+  setText('profileQuote', quote);
+
+  // ── Rodapés ────────────────────────────────────────────────────────────────
+  const ano = new Date().getFullYear();
+  setHTML('inicioFooter',
+    `${appTitulo}${medNome ? ' · ' + medNome : ''} · ${ano}<br>Sem conflito de interesses com fabricantes de vacinas.`);
+
+  let duvidasHTML = 'Para mais informações, consulte seu pediatra.';
+  if (medInsta) duvidasHTML += `<br>Siga <strong>${medInsta}</strong> no Instagram`;
+  if (medNome)  duvidasHTML += `<br>${medNome}`;
+  if (medCRM)   duvidasHTML += ` · ${medCRM}`;
+  setHTML('duvidasFooter', duvidasHTML);
+}
+
+// ─── SERVICE WORKER (PWA offline) ────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(r => console.log('[SW] ok, scope:', r.scope))
+      .catch(e => console.warn('[SW] erro:', e));
+  });
+}
+
+// ─── INICIALIZAÇÃO ────────────────────────────────────────────────────────────
+aplicarConfig().then(() => { load(); });
+</script>
+</body>
+</html>
