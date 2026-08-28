@@ -1773,7 +1773,7 @@ function go(t){
   if(t==='duvidas')  renderFaq();
 }
 
-// Chamado pelos botões "Apenas SUS" / "Recomendações do Dr." na tela de início.
+// Chamado pelos botões "Apenas SUS" / "Sugestão do Dr." na tela de início.
 function escolherCalendario(valor){
   state.calendario = valor;
   buildCalendarioAtivo();
@@ -1812,9 +1812,9 @@ function atualizarNavCalendario(){
   const usaProtocolo = !!protocolo;              // true se "medico" ou "sbim"
   const nomeProtocolo = protocolo ? protocolo.nome : '';
 
-  // Botão "Recomendações do Dr." só aparece se houver um protocolo de médico carregado
+  // Botão "Sugestão do Dr." só aparece se houver um protocolo de médico carregado
   if(optMedico) optMedico.style.display = cfgCalendario ? '' : 'none';
-  if(optMedicoTit && cfgCalendario) optMedicoTit.textContent = `Recomendações de ${cfgCalendario.nome}`;
+  if(optMedicoTit && cfgCalendario) optMedicoTit.textContent = `Sugestão de ${cfgCalendario.nome}`;
 
   if(optSus)   optSus.classList.toggle('selected', state.calendario === 'sus');
   if(optSbim)  optSbim.classList.toggle('selected', state.calendario === 'sbim');
