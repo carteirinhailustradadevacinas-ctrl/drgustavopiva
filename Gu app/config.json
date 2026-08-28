@@ -1,20 +1,56 @@
 {
   "app_titulo": "Carteirinha Digital de Vacinas",
-  "app_subtitulo": "Gustavo Piva Vicentini",
-
-  "cor_principal":  "#D4620A",
-  "cor_fundo_leve": "#FEF0E4",
-  "cor_borda":      "#F5C49A",
-
+  "app_subtitulo": "Acompanhe as vacinas do seu bebê",
   "logo": "icons/icon-192.png",
-
-  "medico_nome":       "Gustavo Piva Vicentini",
-  "medico_cargo":      "Médico pediatra",
-  "medico_crm":        "CRM 184184/SP · RQE 84911",
-  "medico_instagram":  "@pediatra.nerd",
-  "medico_foto":       "gu.foto.jpg",
-  "medico_badges":     ["UNIFESP","EPM","CRM 184184/SP","RQE 84911"],
-  "medico_bio": ["O que é que há, papais e mamães? Este aplicativo foi criado com muito carinho para ajudar vocês a acompanhar o calendário vacinal dos seus filhos de forma simples e organizada. As vacinas são a ferramenta mais eficaz da medicina preventiva. Vamos juntos proteger nossas crianças!"],
-
-  "quote": "A vacinação é um pacto coletivo de erradicação de doenças."
+  "medico_nome": "Gustavo Piva Vicentini",
+  "medico_cargo": "Pediatria",
+  "medico_crm": "184184/84911",
+  "medico_instagram": "@Pediatra.nerd",
+  "medico_foto": "gu.foto.jpg",
+  "medico_badges": [
+    "CRM 184184",
+    "RQE 84911",
+    "UNIFESP",
+    "EPM"
+  ],
+  "medico_bio": [
+    "O que é que há, papais e mamães? Este aplicativo foi criado com muito carinho para ajudar vocês a acompanhar o calendário vacinal dos seus filhos de forma simples e organizada. As vacinas são a ferramenta mais eficaz da medicina preventiva. Vamos juntos proteger nossas crianças!"
+  ],
+  "quote": "\"Vacinas salvam vidas, cuidado com as fake news\"",
+  "cor_principal": "#5B7A8C",
+  "cor_fundo_leve": "#FAFAF8",
+  "cor_borda": "#DDD8CE",
+  "calendario": {
+    "nome": "Gustavo Piva Vicentini",
+    "overrides": {
+      "nirsev": 0,
+      "menB_d1": 3,
+      "menB_d2": 5,
+      "menB_d3": 12,
+      "meningACWYp_d2": 5,
+      "meningACWYp_d1": 3,
+      "meningACWYp_d3": 12,
+      "meningACWYp_r2": 48,
+      "pneumo20_d2": 4,
+      "pneumo20_d3": 6,
+      "pneumo20_r": 12,
+      "hepAR": 12,
+      "dengue_priv_d1": 48,
+      "dengue_priv_d2": 51
+    },
+    "incluir_privadas": [
+      "nirsev",
+      "menB",
+      "meningACWYp",
+      "pneumo20",
+      "hepAR",
+      "dengue"
+    ],
+    "agruparComoMulti": [
+      "dengue"
+    ],
+    "subOverrides": {
+      "hepAR": "1ª dose"
+    }
+  }
 }
