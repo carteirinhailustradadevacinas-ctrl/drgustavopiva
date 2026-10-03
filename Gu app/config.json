@@ -36,8 +36,12 @@
       "pneumo20_r": 12,
       "hepAR": 21,
       "dengue_priv_d1": 48,
-      "dengue_priv_d2": 51
+      "dengue_priv_d2": 51,
+      "dt_7a": null
     },
+    "ocultar": [
+      "dt_7a"
+    ],
     "incluir_privadas": [
       "nirsev",
       "menB",
