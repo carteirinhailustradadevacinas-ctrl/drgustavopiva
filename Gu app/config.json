@@ -34,7 +34,7 @@
       "pneumo20_d2": 4,
       "pneumo20_d3": 6,
       "pneumo20_r": 12,
-      "hepAR": 12,
+      "hepAR": 21,
       "dengue_priv_d1": 48,
       "dengue_priv_d2": 51
     },
@@ -50,7 +50,7 @@
       "dengue"
     ],
     "subOverrides": {
-      "hepAR": "1ª dose"
+      "hepAR": "Reforço (2ª dose)"
     }
   }
 }
