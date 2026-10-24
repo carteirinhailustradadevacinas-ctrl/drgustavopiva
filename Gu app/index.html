@@ -100,9 +100,9 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       gap: 0;
-      padding: 9px 2px;
+      padding: 8px 2px 4px;
       border: none;
       background: transparent;
       cursor: pointer;
@@ -121,17 +121,19 @@
       color: var(--color-text-secondary);
       transition: all .22s cubic-bezier(.34,1.56,.64,1);
     }
+    /* Nome da aba: sempre visível (cinza nas inativas, cor de destaque na ativa) */
     .tab .tab-label {
       display: block;
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: all .18s ease;
+      font-size: 10px;
+      line-height: 12px;
+      font-weight: 600;
+      margin-top: 3px;
+      color: var(--color-text-secondary);
+      transition: color .18s ease, margin .22s ease;
     }
 
-    /* Aba ativa: sobe acima da pílula e vira um botão circular em destaque */
+    /* Aba ativa: o ícone sobe acima da pílula e vira um botão circular em destaque */
     .tab.active {
-      margin-top: -26px;
       padding-top: 0;
     }
     .tab.active .tab-icon-wrap {
@@ -142,9 +144,9 @@
       position: relative;
     }
     .tab.active .tab-label {
-      max-height: 16px;
-      opacity: 1;
-      margin-top: 5px;
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-top: 6px;
     }
     .tab-home .notif-dot {
       position: absolute; top: -1px; right: -1px;
@@ -574,6 +576,24 @@
     .next-vac-list { font-size: 12px; color: var(--color-text-secondary); line-height: 1.5; }
     .next-vac-empty { font-size: 12px; color: var(--color-text-secondary); }
 
+    /* AGENDAMENTO */
+    .btn-agendar {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 14px; padding: 12px 16px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--color-accent-dark), var(--color-accent));
+      color: #fff; font-size: 14px; font-weight: 700; text-decoration: none;
+      box-shadow: 0 2px 8px rgba(var(--color-accent-rgb), 0.3);
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn-agendar:active { transform: scale(.98); }
+    a.bdg-link { text-decoration: none; cursor: pointer; color: var(--color-accent-dark); border-color: var(--color-accent-mid); font-weight: 600; }
+    a.bdg-link:active { background: var(--color-accent-light); }
+    .next-vac-link {
+      display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 700;
+      color: var(--color-accent-dark); text-decoration: none;
+      border-bottom: 1.5px solid var(--color-accent-mid); padding-bottom: 1px;
+    }
+
     /* STATUS QUALITATIVO */
     .qual-status {
       display: flex; align-items: center; gap: 12px;
@@ -628,6 +648,29 @@
     .child-chip-add {
       color: var(--color-accent, #D4620A); border-style: dashed;
     }
+
+    /* CALENDÁRIO SELECIONADO (abas de vacinas) */
+    .cal-sel { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 12px; margin:0 0 12px; border-radius:12px; background:var(--color-accent-light); border:0.5px solid var(--color-accent-mid); font-size:12.5px; line-height:1.4; color:var(--color-text-primary); }
+    .cal-sel small { display:block; font-size:11px; color:var(--color-text-secondary); margin-top:1px; }
+    .cal-sel button { flex:0 0 auto; width:auto; border:none; background:none; box-shadow:none; padding:4px 2px; font-family:inherit; font-size:12px; font-weight:600; color:var(--color-accent-dark, var(--color-accent)); text-decoration:underline; cursor:pointer; }
+
+    /* CONDIÇÕES DE SAÚDE */
+    .aviso-vac { margin-top:6px; padding:8px 11px; border-radius:8px; background:var(--color-accent-dark, #8a4a1c); border:1px solid var(--color-accent, #D4620A); color:#fff; font-size:11.5px; line-height:1.45; }
+    .aviso-vac strong { color:#fff; }
+    .crie-tag { font-size:10px; padding:2px 7px; border-radius:20px; background:var(--color-accent-dark, #8a4a1c); color:#fff; margin-left:6px; white-space:nowrap; }
+    .cond-crit { margin-top:12px; padding:10px 12px; border:1px solid var(--color-accent-mid, #e2e2e2); border-radius:10px; background:#fff; }
+    .cond-crit-tit { font-size:12px; margin-bottom:6px; }
+    .cond-crit-item { display:flex; gap:8px; align-items:flex-start; font-size:12px; line-height:1.4; padding:5px 0; cursor:pointer; }
+    .cond-crit-item { width:100%; box-sizing:border-box; }
+    .cond-crit-item > span { flex:1 1 auto; min-width:0; }
+    /* o estilo global de input (largura total, borda, arredondado) não pode valer para a caixa de seleção */
+    .cond-crit-item input[type=checkbox] { -webkit-appearance:checkbox; appearance:auto; width:20px; height:20px; min-width:20px; flex:0 0 20px; padding:0; margin:1px 0 0; border:none; border-radius:0; box-shadow:none; accent-color:var(--color-accent-dark, var(--color-accent)); cursor:pointer; }
+    .cond-crit-item small { display:block; font-size:10.5px; color:var(--color-text-secondary, #777); margin-top:2px; }
+    .cond-sug { display:flex; flex-direction:column; gap:6px; }
+    .cond-sug button { text-align:left; padding:10px 12px; border-radius:10px; border:1.5px solid var(--color-accent-mid, #e2e2e2); background:#fff; font-family:inherit; font-size:13px; color:var(--color-text-primary, #222); cursor:pointer; }
+    .cond-sug .cond-vazio { font-size:12px; color:var(--color-text-secondary); padding:2px 2px; }
+    .cond-chip { cursor:default; }
+    .cond-chip b { margin-left:8px; cursor:pointer; opacity:.85; }
 
     /* BACKUP / IMPRESSÃO */
     .backup-actions { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
@@ -710,6 +753,10 @@
       <p id="profileBio1"></p>
       <p id="profileBio2" style="display:none"></p>
       <p id="profileBio3" style="display:none"></p>
+      <a id="profileAgendar" class="btn-agendar" href="#" style="display:none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <span id="profileAgendarTxt">Agendar consulta</span>
+      </a>
     </div>
 
     <div class="quote">
@@ -723,18 +770,14 @@
         <div class="how-num">1.</div>
         <div class="how-text">
           <h3>Escolha o calendário vacinal</h3>
-          <p>Vocês podem seguir apenas o <strong>SUS</strong> (rede pública), o <strong>SBIm/SBP</strong> (SUS + vacinas privadas recomendadas pelas sociedades de imunizações e de pediatria) ou, quando disponível, a <strong>sugestão personalizada do médico</strong>. É possível trocar a qualquer momento.</p>
+          <p>Vocês podem seguir apenas o <strong>SUS</strong> (rede pública) ou, quando disponível, a <strong>Sugestão para você</strong>, o calendário personalizado pelo médico. É possível trocar a qualquer momento.</p>
           <div class="calendario-choice">
             <button class="calendario-opt" id="optChoiceSus" onclick="escolherCalendario('sus')">
               <span class="calendario-opt-title">Apenas SUS</span>
               <span class="calendario-opt-sub">Rede Pública</span>
             </button>
-            <button class="calendario-opt" id="optChoiceSbim" onclick="escolherCalendario('sbim')">
-              <span class="calendario-opt-title">SBIm/SBP</span>
-              <span class="calendario-opt-sub">SUS e privadas</span>
-            </button>
             <button class="calendario-opt" id="optChoiceMedico" style="display:none" onclick="escolherCalendario('medico')">
-              <span class="calendario-opt-title" id="optChoiceMedicoTitle">Sugestão do Dr.</span>
+              <span class="calendario-opt-title" id="optChoiceMedicoTitle">Sugestão para você</span>
               <span class="calendario-opt-sub">Personalizado</span>
             </button>
           </div>
@@ -829,6 +872,19 @@
     <button class="btn-p" onclick="saveConfig()">Salvar dados do bebê</button>
   </div>
 
+  <div class="card" id="cardCondicoes" style="display:none">
+    <div class="sec" style="margin-top:0">Condições de saúde</div>
+    <p class="calendario-hint" style="margin:0 0 10px">Se o bebê tem alguma condição que muda as vacinas recomendadas (ex: Cardiopatia), pesquise e selecione. Se não tem, é só deixar em branco.</p>
+    <div class="ig" style="margin-bottom:8px">
+      <input type="text" id="condBusca" placeholder="Pesquisar condição (ex: Cardiopatia)" autocomplete="off" oninput="buscarCondicao(this.value)">
+    </div>
+    <div id="condSugestoes" class="cond-sug"></div>
+    <div id="condSelecionadas" class="child-switcher" style="flex-wrap:wrap; overflow:visible; margin-top:8px"></div>
+    <div id="condCriterios"></div>
+    <div id="condNotasReg"></div>
+    <p class="calendario-hint" style="margin:10px 0 0; font-size:11px">Este aplicativo é informativo e não substitui a avaliação do pediatra. Indicações especiais dependem de critérios clínicos, do histórico de vacinas e de laudo médico; o CRIE/RIE valida cada caso.</p>
+  </div>
+
   <div class="card">
     <div class="sec" style="margin-top:0">Família</div>
     <div class="child-switcher" id="childSwitcherReg"></div>
@@ -875,17 +931,20 @@
       <p>Quer entender as diferenças entre o SUS e a rede privada?</p>
       <button onclick="openCompare()">Comparar</button>
     </div>
+    <div id="calSelSus"></div>
     <div id="premBanner" style="display:none; background:var(--color-accent-light); border:0.5px solid var(--color-accent-mid); border-radius:8px; padding:10px 14px; margin-bottom:14px; align-items:center; gap:10px;">
       <span style="font-size:18px;">⭐</span>
       <p style="font-size:12px; color:#1A1A1A; flex:1;"></p>
     </div>
     <div class="status-fil-wrap" id="susStatusFilters"></div>
     <div class="cal-filter" id="susFilters"></div>
+    <div id="condNotas"></div>
     <div id="susContent"></div>
   </div>
 
   <!-- VACINAS PRIVADAS -->
   <div id="screen-priv" class="screen">
+    <div id="calSelPriv"></div>
     <div id="privContent"></div>
   </div>
 
@@ -1067,7 +1126,7 @@
 const SUS=[
   {id:'bcg',n:'BCG',sub:'Dose única',age:0,lbl:'Ao nascer'},
   {id:'hepB0',n:'Hepatite B',sub:'Dose ao nascer',age:0,lbl:'Ao nascer'},
-  {id:'nirsev_sus',n:'Nirsevimabe (VSR)',sub:'Direito SUS (Prematuros <37s)',age:0,lbl:'Ao nascer', prem:true},
+  {id:'nirsev_sus',n:'Nirsevimabe (VSR)',sub:'Direito SUS: prematuro (≤36s6d) com menos de 6 meses, o ano todo — preferencialmente ainda na maternidade',age:0,lbl:'Ao nascer', prem:true},
   {id:'rota1',n:'Rotavírus',sub:'1ª dose (oral): pode ser dada até, no máximo, 11 meses e 29 dias',age:2,lbl:'2 meses'},
   {id:'vip1',n:'VIP - Pólio',sub:'1ª dose',age:2,lbl:'2 meses'},
   {id:'penta1',n:'Pentavalente',sub:'1ª dose (DTP+Hib+HepB)',age:2,lbl:'2 meses'},
@@ -1099,7 +1158,6 @@ const SUS=[
   {id:'vip2r',n:'VIP - Pólio',sub:'2º Reforço (4 anos)',age:48,lbl:'4 anos'},
   {id:'varicela2',n:'Varicela',sub:'2ª dose',age:48,lbl:'4 anos'},
   {id:'faR',n:'Febre Amarela (FA)',sub:'Reforço',age:48,lbl:'4 anos'},
-  {id:'dt7',n:'dT',sub:'Reforço — difteria e tétano',age:84,lbl:'7 anos'},
   {id:'hpv4',n:'HPV4',sub:'Dose única (9–14 anos)',age:108,lbl:'Adolescência'},
   {id:'dengue',n:'Dengue (Qdenga®)',sub:'2 doses (10–14 anos) — intervalo de 3 meses',age:132,lbl:'Adolescência', multi:true, doses:[{id:'dengue_d1',sub:'1ª dose'},{id:'dengue_d2',sub:'2ª dose (3 meses após)'}]},
   {id:'meningACWY2',n:'Meningo ACWY (MenACWY)',sub:'Reforço (11–14 anos)',age:132,lbl:'Adolescência'},
@@ -1113,32 +1171,35 @@ const SUS=[
 ];
 
 const PRIV=[
-  {id:'nirsev',n:'Nirsevimabe (Beyfortus®)',sub:'Anticorpo contra VSR — bronquiolite',lbl:'Dose ao nascer / 1º inverno',cmp:'Não existe no SUS (exceto grupos de risco)'},
+  {id:'nirsev',n:'Nirsevimabe (Beyfortus®)',sub:'Anticorpo contra VSR — bronquiolite',lbl:'Dose ao nascer / 1º inverno',cmp:'No SUS: prematuros ≤36s6d com menos de 6 meses (o ano todo) e crianças <24 meses com comorbidade elegível (fev–ago, com laudo na RIE/CRIE). Fora desses critérios, só na rede privada.'},
   {id:'menB',n:'Meningo B (MenB)',sub:'Esquema primário (3,5 meses + reforço aos 12–15 meses)',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'Não está no SUS', multi:true, doses:[{id:'menB_d1',sub:'1ª dose'},{id:'menB_d2',sub:'2ª dose'},{id:'menB_d3',sub:'3ª dose (reforço)'}]},
   {id:'meningACWYp',n:'Meningo ACWY (MenACWY)',sub:'Esquema primário (3,5 meses + reforços: 12 meses, 4 anos e 11–14 anos)',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'SUS oferece apenas reforços (1 ano e adolescência)', multi:true, doses:[{id:'meningACWYp_d1',sub:'1ª dose'},{id:'meningACWYp_d2',sub:'2ª dose'},{id:'meningACWYp_d3',sub:'3ª dose (reforço)'},{id:'meningACWYp_r2',sub:'4ª dose (reforço)'},{id:'meningACWYp_r3',sub:'5ª dose (reforço) — disponível também no SUS'}]},
-  {id:'pneumo13',n:'Pneumo 13 (VPC13)',sub:'Substitui ou complementa a VPC10/VPC20',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'Desde jun/2026 o SUS está em transição de VPC10 para VPC20 (2 e 12 meses já em VPC20); a rede privada garante o esquema completo sem depender do estoque público', multi:true, doses:[{id:'pneumo13_d1',sub:'1ª dose'},{id:'pneumo13_d2',sub:'2ª dose'},{id:'pneumo13_d3',sub:'3ª dose'},{id:'pneumo13_r',sub:'Reforço'}]},
-  {id:'pneumo15',n:'Pneumo 15 (VPC15)',sub:'Substitui VPC10, VPC13 e VPC20',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'Desde jun/2026 o SUS está em transição de VPC10 para VPC20 (2 e 12 meses já em VPC20); a Pneumo 15 protege contra sorotipos adicionais não cobertos por nenhuma das duas', multi:true, doses:[{id:'pneumo15_d1',sub:'1ª dose'},{id:'pneumo15_d2',sub:'2ª dose'},{id:'pneumo15_d3',sub:'3ª dose'},{id:'pneumo15_r',sub:'Reforço'}]},
-  {id:'pneumo20',n:'Pneumo 20 (VPC20)',sub:'Maior cobertura disponível',lbl:'O nº doses pode variar a depender da idade do início do esquema',cmp:'Desde jun/2026 o SUS já oferece VPC20 aos 2 e 12 meses (dose de 4 meses ainda em transição, podendo sair VPC10); a rede privada garante VPC20 em todas as doses (2, 4, 6 e 12 meses), sem depender do estoque público', multi:true, doses:[{id:'pneumo20_d1',sub:'1ª dose'},{id:'pneumo20_d2',sub:'2ª dose'},{id:'pneumo20_d3',sub:'3ª dose'},{id:'pneumo20_r',sub:'Reforço'}]},
-  {id:'hexa',n:'Hexavalente',sub:'DTPa + Hib + HepB + VIP',lbl:'2, 4 e 6 meses + reforço aos 15 meses',cmp:'Substitui Pentavalente + VIP do SUS (menos reatogênica)', multi:true, doses:[{id:'hexa_d1',sub:'1ª dose (2 meses)'},{id:'hexa_d2',sub:'2ª dose (4 meses)'},{id:'hexa_d3',sub:'3ª dose (6 meses)'},{id:'hexa_r',sub:'Reforço (15 meses)'}]},
+  {id:'pneumo13',n:'Pneumo 13 (VPC13)',sub:'Alternativa da rede privada (VPC13)',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'Rotina do SUS desde jun/2026: VPC20 aos 2 e 12 meses; aos 4 meses ainda pode ser VPC10 enquanto houver estoque. A VPC13 é opção privada; o esquema deve ser definido pelo pediatra.', multi:true, doses:[{id:'pneumo13_d1',sub:'1ª dose'},{id:'pneumo13_d2',sub:'2ª dose'},{id:'pneumo13_d3',sub:'3ª dose'},{id:'pneumo13_r',sub:'Reforço'}]},
+  {id:'pneumo15',n:'Pneumo 15 (VPC15)',sub:'Alternativa da rede privada (VPC15)',lbl:'O nº doses pode variar a depender da marca e da idade do início do esquema',cmp:'Rotina do SUS desde jun/2026: VPC20 aos 2 e 12 meses; aos 4 meses ainda pode ser VPC10 enquanto houver estoque. A VPC15 é opção privada; o esquema deve ser definido pelo pediatra.', multi:true, doses:[{id:'pneumo15_d1',sub:'1ª dose'},{id:'pneumo15_d2',sub:'2ª dose'},{id:'pneumo15_d3',sub:'3ª dose'},{id:'pneumo15_r',sub:'Reforço'}]},
+  {id:'pneumo20',n:'Pneumo 20 (VPC20)',sub:'VPC20 na rede privada',lbl:'O nº doses pode variar a depender da idade do início do esquema',cmp:'Rotina do SUS desde jun/2026: VPC20 aos 2 e 12 meses; aos 4 meses ainda pode ser VPC10 enquanto houver estoque. Na rede privada o esquema segue a bula e a orientação do pediatra.', multi:true, doses:[{id:'pneumo20_d1',sub:'1ª dose'},{id:'pneumo20_d2',sub:'2ª dose'},{id:'pneumo20_d3',sub:'3ª dose'},{id:'pneumo20_r',sub:'Reforço'}]},
+  {id:'hexa',n:'Hexavalente',sub:'DTPa + Hib + HepB + VIP',lbl:'2, 4 e 6 meses + reforço aos 15 meses',cmp:'Substitui Pentavalente + VIP do SUS. No SUS, Hexa/Penta acelular são oferecidas no CRIE apenas para indicações específicas.', multi:true, doses:[{id:'hexa_d1',sub:'1ª dose (2 meses)'},{id:'hexa_d2',sub:'2ª dose (4 meses)'},{id:'hexa_d3',sub:'3ª dose (6 meses)'},{id:'hexa_r',sub:'Reforço (15 meses)'}]},
+  {id:'pentaA',n:'Pentavalente acelular',sub:'DTPa + Hib + VIP',lbl:'2, 4 e 6 meses + reforço aos 15 meses',cmp:'Alternativa da rede privada à Pentavalente + VIP do SUS (pertussis acelular). Não inclui hepatite B. No SUS, a Penta acelular é oferecida no CRIE apenas para indicações específicas.', multi:true, doses:[{id:'pentaA_d1',sub:'1ª dose (2 meses)'},{id:'pentaA_d2',sub:'2ª dose (4 meses)'},{id:'pentaA_d3',sub:'3ª dose (6 meses)'},{id:'pentaA_r',sub:'Reforço (15 meses)'}]},
   {id:'rota3',n:'Rotavírus Pentavalente',sub:'3 doses — 5 cepas (G1,G2,G3,G4,P[8])',lbl:'2, 4 e 6 meses',cmp:'SUS oferece monovalente (1 cepa) em 2 doses', multi:true, doses:[{id:'rota3_d1',sub:'1ª dose (2 meses)'},{id:'rota3_d2',sub:'2ª dose (4 meses)'},{id:'rota3_d3',sub:'3ª dose (6 meses)'}]},
   {id:'gripeQ',n:'Gripe Quadrivalente (Influenza Tetra)',sub:'1ª vez: 2 doses com intervalo de 1 mês · Depois: dose anual em Campanhas',lbl:'A partir de 6 meses',cmp:'SUS oferece trivalente (3 tipos)', multi:true, doses:[{id:'gripeQ_d1',sub:'1ª dose'},{id:'gripeQ_d2',sub:'2ª dose (reforço, 1 mês após)'}]},
   {id:'hpv9',n:'HPV Nonavalente (HPV9)',sub:'9 sorotipos — maior proteção',lbl:'Adolescência (2 doses)',cmp:'SUS oferece quadrivalente (4 sorotipos)', multi:true, doses:[{id:'hpv9_d1',sub:'1ª dose'},{id:'hpv9_d2',sub:'2ª dose (6 meses após)'}]},
   {id:'hepAR',n:'Hepatite A',sub:'2ª dose (reforço)',lbl:'1ª dose disponível no SUS',cmp:'SUS oferece apenas 1 dose aos 15 meses'},
   {id:'dengue',n:'Dengue (Qdenga®)',sub:'2 doses',lbl:'A partir de 4 anos',cmp:'SUS oferece apenas para 10–14 anos', multi:true, doses:[{id:'dengue_priv_d1',sub:'1ª dose'},{id:'dengue_priv_d2',sub:'2ª dose (3 meses após a 1ª dose)'}]},
-  {id:'dtpa4',n:'DTPa',sub:'2º reforço (componente pertussis acelular)',lbl:'4 anos',cmp:'Substitui o 2º reforço de DTP do SUS (menos reatogênica)'},
-  {id:'dtpa9',n:'dTpa',sub:'Reforço com componente pertussis acelular',lbl:'9 anos',cmp:'SUS oferece apenas dT (sem proteção para coqueluche) aos 7 anos'},
+  {id:'dtpa4',n:'DTPa',sub:'2º reforço (componente pertussis acelular)',lbl:'4 anos',cmp:'Opção da rede privada. No SUS, a DTPa é oferecida no CRIE apenas para indicações específicas.'},
+  {id:'dtpa9',n:'dTpa',sub:'Reforço com componente pertussis acelular',lbl:'9 anos',cmp:'Recomendação de sociedades científicas (SBIm/SBP) — este reforço não consta no Calendário Nacional da criança (último reforço de DTP aos 4 anos).'},
+  {id:'varicela_priv',n:'Varicela',sub:'1ª dose (particular)',lbl:'12 meses',cmp:'No SUS, a 1ª dose de varicela vem na Tetraviral (15 meses) e a 2ª dose aos 4 anos. Na rede privada é possível antecipar a 1ª dose para os 12 meses.'},
+  {id:'dtpa13',n:'dT/dTpa',sub:'Reforço do adolescente (particular)',lbl:'13 a 15 anos',cmp:'No SUS, o reforço é a dT a cada 10 anos. O reforço com dTpa (com componente de coqueluche) na adolescência é opção da rede privada.'},
 ];
 
 const CMP=[
   {
     titulo: 'Vacina 6 em 1 (Hexavalente)',
     sus:  { nome: 'Pentavalente + VIP', desc: 'Proteção essencial contra difteria, tétano, coqueluche, Hib, Hepatite B e pólio — aplicadas em 2 picadas na mesma visita.' },
-    priv: { nome: 'Hexavalente (acelular)', desc: 'As mesmas 6 proteções da Pentavalente + VIP, reunidas em uma única aplicação — com uma tecnologia de coqueluche mais purificada.', tags: ['Menos picadas','Menos reações'], custo: 3 },
+    priv: { nome: 'Hexavalente (acelular)', desc: 'As mesmas 6 proteções da Pentavalente + VIP, reunidas em uma única aplicação — com componente de coqueluche acelular.', tags: ['Menos picadas','Pertussis acelular'], custo: 3 },
   },
   {
     titulo: 'Pneumocócica',
-    sus:  { nome: 'Pneumo 20 (VPC20)', desc: 'Já disponível gratuitamente na rede pública, com proteção contra 20 sorotipos — inclusive como opção de resgate para quem está atualizando o esquema.' },
-    priv: { nome: 'Pneumo 13 / 15 / 20', desc: 'Alternativa para doses de reforço ou para completar o esquema fora do calendário público, conforme orientação do pediatra.', tags: [], custo: 2 },
+    sus:  { nome: 'Pneumo 20 (VPC20)', desc: 'Desde jun/2026 o SUS está em transição de VPC10 para VPC20: VPC20 aos 2 e 12 meses e, aos 4 meses, VPC10 enquanto houver estoque. Grupos de risco têm esquema especial no CRIE/RIE, com indicação médica.' },
+    priv: { nome: 'Pneumo 13 / 15 / 20', desc: 'Alternativa da rede privada (VPC13, VPC15 ou VPC20), conforme bula e orientação do pediatra.', tags: [], custo: 2 },
   },
   {
     titulo: 'Meningocócica',
@@ -1147,13 +1208,13 @@ const CMP=[
   },
   {
     titulo: 'Rotavírus',
-    sus:  { nome: 'Monovalente (VRH1)', desc: '2 doses, com boa proteção contra a cepa mais comum. Atenção: os prazos para aplicar são rígidos e não podem ser atrasados.' },
-    priv: { nome: 'Pentavalente (VRH5)', desc: '3 doses, ampliando a proteção para mais cepas do vírus.', tags: ['Proteção ampliada'], custo: 2 },
+    sus:  { nome: 'Monovalente (VRH1)', desc: '2 doses. Atenção: a 1ª dose só pode ser aplicada até 11 meses e 29 dias e a 2ª até 23 meses e 29 dias.' },
+    priv: { nome: 'Pentavalente (VRH5)', desc: '3 doses. O SUS oferece a monovalente em 2 doses; ambas são aprovadas pela Anvisa e a escolha deve ser conversada com o pediatra.', tags: [], custo: 2 },
   },
   {
     titulo: 'Nirsevimabe (proteção contra VSR)',
-    sus:  { nome: 'Para grupos de risco', desc: 'Disponível gratuitamente para bebês prematuros e grupos de risco (cardiopatas graves e pneumopatas).' },
-    priv: { nome: 'Para todos os bebês', desc: 'Pode ser aplicada em qualquer bebê no primeiro inverno de vida, mesmo fora dos grupos de risco do SUS.', tags: [], custo: 3 },
+    sus:  { nome: 'Para grupos de risco', desc: 'Prematuros (≤36s6d) com menos de 6 meses, o ano todo; crianças <24 meses com comorbidade elegível (cardiopatia congênita com repercussão hemodinâmica, doença pulmonar crônica da prematuridade, imunocomprometimento grave, fibrose cística, doença neuromuscular grave, síndrome de Down, anomalias das vias aéreas) de fevereiro a agosto, com laudo na RIE/CRIE. Cardiopatia ou pneumopatia sem esses critérios não garante o direito.' },
+    priv: { nome: 'Para todos os bebês', desc: 'Aprovada pela Anvisa para recém-nascidos e lactentes na primeira sazonalidade do VSR e para crianças vulneráveis até 24 meses na segunda; fora dos critérios do SUS, é adquirida na rede privada.', tags: [], custo: 3 },
   },
   {
     titulo: 'Hepatite A',
@@ -1163,7 +1224,7 @@ const CMP=[
   {
     titulo: 'Influenza (Gripe)',
     sus:  { nome: 'Gripe trivalente', desc: 'Proteção contra 3 tipos do vírus Influenza, com dose anual oferecida gratuitamente em campanhas (disponível até os 6 anos pelo SUS).' },
-    priv: { nome: 'Gripe quadrivalente', desc: 'Amplia a proteção para 4 tipos do vírus Influenza, disponível em qualquer época do ano e sem limite de idade.', tags: ['Proteção ampliada'], custo: 1 },
+    priv: { nome: 'Gripe quadrivalente', desc: 'Disponível na rede privada em 2026; a Anvisa prevê descontinuar as quadrivalentes a partir de 2027. Faixa etária conforme a bula.', tags: [], custo: 1 },
   },
   {
     titulo: 'HPV',
@@ -1221,6 +1282,8 @@ const STICKERS = {
 
   // Hexavalente (DTPa + Hib + HepB + VIP)
   'hexa':         { img: '07.Hexavalente.png',   nome: 'Hexavalente' },
+  'pentaA':       { img: '06b.PentavalenteAcelular.png', nome: 'Pentavalente acelular' },
+  'pali':         { img: '03b.Palivizumabe.png',         nome: 'VSR (Palivizumabe)' },
 
   // DTP 
   'dtp1r':        { img: '08.DTP.png',           nome: 'DTP' },
@@ -1230,6 +1293,8 @@ const STICKERS = {
   // dT
   'dt7':          { img: '31.dT.png',           nome: 'dT' },
   'dtpa9':        { img: '31.dT.png',           nome: 'dTpa' },
+  'dtpa13':       { img: '31.dT.png',           nome: 'dT/dTpa' },   // TROCAR pela figurinha nova em img/
+  'varicela_priv':{ img: '18.Varicela.png',      nome: 'Varicela' },  // TROCAR pela figurinha nova em img/
 
   // Pneumococo
   'pneumo1':      { img: '09.Pneumococo.png',    nome: 'Pneumococo' },
@@ -1330,7 +1395,7 @@ const FAMILIA_KEY = 'civ3_familia';
 let familia = null; // { activeId, order: [ids], children: { id: state-like } }
 
 function estadoVazio(){
-  return {name:'', birth:'', ig:'', peso:'', altura:'', calendario:'sus', done:{}, dates:{}, locals:{}, brands:{}};
+  return {name:'', birth:'', ig:'', peso:'', altura:'', calendario:'sus', condicoes:[], criterios:{}, done:{}, dates:{}, locals:{}, brands:{}};
 }
 
 function idNovoFilho(){
@@ -1408,7 +1473,7 @@ function confirmarNovoFilho(){
   novo.ig     = ig;
   novo.peso   = peso;
   novo.altura = altura;
-  novo.calendario = cfgCalendario ? 'medico' : (protocoloAtivo() ? state.calendario : 'sbim');
+  novo.calendario = cfgCalendario ? 'medico' : 'sus';
 
   const id = idNovoFilho();
   familia.order.push(id);
@@ -1461,6 +1526,8 @@ let cfgInstagram = ''; // preenchido por aplicarConfig()
 //   "incluir_privadas": ["menB"]
 // }
 let cfgCalendario = null;     // objeto { nome, overrides, incluir_privadas }
+let cfgPacotes = {};          // blocos de regras reutilizáveis (ex: esquema pneumocócico especial do CRIE)
+let cfgCondicoes = [];        // lista de condições de saúde (ex: Cardiopatia) vinda do JSON do médico
 let calendarioAtivo = SUS;    // array efetivamente usado p/ render + cálculo de atraso
 
 // Vacinas privadas que podem substituir/cobrir uma dose do calendário SUS
@@ -1564,15 +1631,131 @@ function lblParaIdade(ageMeses){
 // Retorna o protocolo ativo (objeto {nome, overrides, incluir_privadas}) de
 // acordo com o calendário escolhido, ou null se for o SUS puro.
 function protocoloAtivo(){
+  // A opção SBIm/SBP foi retirada: quem tinha escolhido passa para a sugestão
+  // personalizada (se existir) ou para o SUS.
+  if(state.calendario === 'sbim') state.calendario = cfgCalendario ? 'medico' : 'sus';
   if(state.calendario === 'medico' && cfgCalendario) return cfgCalendario;
-  if(state.calendario === 'sbim') return SBIM;
   return null;
+}
+
+// ── Condições de saúde (ex: Cardiopatia) ────────────────────────────────────
+// Cada condição vem do JSON do médico, em "condicoes": [ {id, nome, busca:[...],
+// overrides, incluir_privadas, excluir, subOverrides, lblOverrides, adicionar:[...]} ].
+// Ela funciona como uma CAMADA sobre o calendário escolhido (SUS, SBIm ou médico):
+// só acrescenta/ajusta o que é específico. Quem não marca nenhuma condição continua
+// exatamente com o calendário de antes.
+function condicoesAtivas(){
+  const ids = (state && Array.isArray(state.condicoes)) ? [...state.condicoes] : [];
+  // Idade gestacional < 37 semanas ativa automaticamente a condição marcada com
+  // "prematuro": true no JSON (assim o cadastro de IG e a condição nunca divergem)
+  if(state && state.ig && parseInt(state.ig) < 37){
+    cfgCondicoes.filter(c => c.prematuro).forEach(c => { if(!ids.includes(c.id)) ids.push(c.id); });
+  }
+  return ids.map(id => cfgCondicoes.find(c => c.id === id)).filter(Boolean);
+}
+
+function renomearOk(q){
+  if(!q) return true;
+  const peso = parseInt(state.peso), ig = parseInt(state.ig);
+  return !!((q.peso_menor_que && peso && peso < q.peso_menor_que) || (q.ig_menor_que && ig && ig < q.ig_menor_que));
+}
+
+// Critérios clínicos marcados pela família para uma condição. Nenhuma recomendação especial
+// além das observações gerais é aplicada sem o critério correspondente estar marcado.
+function criteriosMarcados(c){
+  const marcados = (state && state.criterios && state.criterios[c.id]) || [];
+  return (c.criterios || []).filter(k => marcados.includes(k.id));
+}
+
+// Lista "plana" de regras ativas: a condição, os critérios marcados e os pacotes (blocos
+// reutilizáveis) que cada um referencia em "usar". Cada item mantém o nome da condição de origem.
+function condicoesExpandidas(){
+  const out = [];
+  condicoesAtivas().forEach(c=>{
+    [c, ...criteriosMarcados(c)].forEach(parte=>{
+      const sufixo = parte === c ? '' : ':' + parte.id;
+      out.push({ ...parte, nome: c.nome, id: c.id + sufixo, _origem: c.id });
+      (parte.usar || []).forEach(nomePacote=>{
+        const pk = cfgPacotes[nomePacote];
+        if(pk) out.push({ ...pk, nome: c.nome, id: c.id + sufixo + '#' + nomePacote, _origem: c.id });
+      });
+    });
+  });
+  return out;
+}
+
+function toggleCriterio(condId, critId){
+  if(!state.criterios) state.criterios = {};
+  const lista = state.criterios[condId] || (state.criterios[condId] = []);
+  const i = lista.indexOf(critId);
+  if(i >= 0){ lista.splice(i, 1); }
+  else {
+    lista.push(critId);
+    // critérios que não podem valer juntos (ex: palivizumabe e nirsevimabe na mesma sazonalidade)
+    const cond = cfgCondicoes.find(c => c.id === condId);
+    const crit = cond && (cond.criterios || []).find(k => k.id === critId);
+    ((crit && crit.exclusivo_com) || []).forEach(outro => { const j = lista.indexOf(outro); if(j >= 0) lista.splice(j, 1); });
+  }
+  aplicarMudancaCondicoes();
+}
+
+function mesclarProtocolos(base, conds){
+  const uniao = (a, b) => [...new Set([...(a||[]), ...(b||[])])];
+  const r = {
+    nome: base.nome,
+    overrides:        { ...(base.overrides||{}) },
+    incluir_privadas: [...(base.incluir_privadas||[])],
+    excluir:          [...(base.excluir||[])],
+    lblOverrides:     { ...(base.lblOverrides||{}) },
+    subOverrides:     { ...(base.subOverrides||{}) },
+    agruparComoMulti: [...(base.agruparComoMulti||[])],
+    adicionar:        [...(base.adicionar||[])],
+    avisos:           [...(base.avisos||[])],
+    liberar_sus:      [...(base.liberar_sus||[])],
+    renomear:         { ...(base.renomear||{}) },
+  };
+  r.observacoes = [];
+  const retirar = new Set();
+  const idadesCond = {};
+  conds.forEach(c=>{
+    // se duas condições mexem na mesma vacina, vale a idade mais precoce
+    Object.entries(c.overrides||{}).forEach(([k,v])=>{
+      if(idadesCond[k] === undefined || v < idadesCond[k]) idadesCond[k] = v;
+    });
+    r.incluir_privadas = uniao(r.incluir_privadas, c.incluir_privadas);
+    r.excluir          = uniao(r.excluir, c.excluir);
+    r.agruparComoMulti = uniao(r.agruparComoMulti, c.agruparComoMulti);
+    r.liberar_sus      = uniao(r.liberar_sus, c.liberar_sus);
+    // troca de vacina por causa da condição (ex: DTP -> DTPa). "renomear_quando" limita a
+    // troca a prematuros extremos: { peso_menor_que, ig_menor_que } (vale um OU o outro)
+    if(c.renomear && renomearOk(c.renomear_quando)) Object.assign(r.renomear, c.renomear);
+    Object.assign(r.lblOverrides, c.lblOverrides||{});
+    Object.assign(r.subOverrides, c.subOverrides||{});
+    (c.adicionar||[]).forEach(a => r.adicionar.push({ ...a, condicao: c.nome }));
+    (c.avisos||[]).forEach(a => r.avisos.push({ ...a, condicao: c.nome }));
+    (c.retirar_privadas||[]).forEach(id => retirar.add(id));
+  });
+  // vacinas particulares que a condição tira do calendário (ex: no prematuro, o
+  // Nirsevimabe e a Pneumo 20 passam a vir do SUS)
+  r.incluir_privadas = r.incluir_privadas.filter(id => !retirar.has(id));
+  Object.assign(r.overrides, idadesCond); // a condição prevalece sobre o calendário-base
+  return r;
+}
+
+// Protocolo usado de fato para montar o calendário: o escolhido pela família +
+// as condições de saúde marcadas (se houver). protocoloAtivo() continua sendo só o
+// calendário-base, que controla abas e textos da interface.
+function protocoloEfetivo(){
+  const conds = condicoesExpandidas();
+  const base  = protocoloAtivo();
+  if(!conds.length) return base;
+  return mesclarProtocolos(base || { nome:'SUS', overrides:{}, incluir_privadas:[] }, conds);
 }
 
 // Nome amigável do calendário atualmente selecionado (usado no resumo da aba Registro)
 function nomeCalendarioAtual(){
   const p = protocoloAtivo();
-  if(p) return `Protocolo ${p.nome}`;
+  if(p) return 'Sugestão para você';
   if(state.calendario === 'misto') return 'Misto (SUS + particular)';
   return 'Apenas SUS (público)';
 }
@@ -1591,6 +1774,7 @@ function calendarioParaProtocolo(protocolo){
   const lblOverrides    = protocolo.lblOverrides || {};
   const subOverrides    = protocolo.subOverrides || {};
   const agruparComoMulti= new Set(protocolo.agruparComoMulti || []);
+  const liberarSus      = new Set(protocolo.liberar_sus || []);
 
   // 1) ids de vacinas SUS que somem do calendário porque uma particular equivalente
   //    (indicada no protocolo) já cobre a mesma proteção (ex: hexa cobre penta+vip).
@@ -1621,6 +1805,9 @@ function calendarioParaProtocolo(protocolo){
       return true;
     })
     .map(v=>{
+      // itens do SUS marcados "prem" (ex: Nirsevimabe) que a condição libera: passam a valer
+      // para a criança mesmo sem ser prematura (campo "liberar_sus" do protocolo)
+      if(liberarSus.has(v.id)){ v.prem = false; v.categoria = 'crie'; }
       if(overrides[v.id] !== undefined){
         v.age = overrides[v.id];
         // recalcula o rótulo de idade pra acompanhar a nova idade (evita, por
@@ -1628,6 +1815,7 @@ function calendarioParaProtocolo(protocolo){
         // card "15 meses" só porque esse era o rótulo original do SUS)
         v.lbl = lblOverrides[v.id] || lblParaIdade(v.age);
       }
+      if(overrides[v.id] === undefined && lblOverrides[v.id]) v.lbl = lblOverrides[v.id];
       if(subOverrides[v.id] !== undefined) v.sub = subOverrides[v.id];
       if(v.multi && Array.isArray(v.doses)){
         v.doses.forEach(d=>{ if(overrides[d.id] !== undefined) d.age = overrides[d.id]; });
@@ -1689,6 +1877,64 @@ function calendarioParaProtocolo(protocolo){
     }
   });
 
+  // 3b) vacinas/doses extras definidas direto no protocolo (campo "adicionar"),
+  //     usadas pelas condições de saúde — ex: 2ª dose de Nirsevimabe para cardiopatas.
+  //     Cada item: { id, n, sub, age, lbl?, infoId?, particular? } (particular = true por padrão)
+  (protocolo.adicionar || []).forEach(a=>{
+    if(!a || !a.id || a.age === undefined) return;
+    const jaExiste = ativo.find(v => v.id === a.id);
+    if(jaExiste){
+      // duas condições pedem a mesma dose: mantém um único cartão e junta os textos
+      if(jaExiste.condicao && a.condicao && !jaExiste.condicao.split(', ').includes(a.condicao)) jaExiste.condicao += ', ' + a.condicao;
+      if(a.sub && !jaExiste.sub.includes(a.sub)){
+        if(a.sub.includes(jaExiste.sub)) jaExiste.sub = a.sub; else jaExiste.sub += ' · ' + a.sub;
+      }
+      return;
+    }
+    ativo.push({
+      id: a.id,
+      n: a.n || a.id,
+      sub: a.sub || '',
+      age: a.age,
+      lbl: a.lbl || lblParaIdade(a.age),
+      particular: a.sem_etiqueta_origem ? false : a.particular !== false,
+      infoId: a.infoId,       // reaproveita figurinha/texto informativo da vacina "mãe"
+      categoria: a.categoria, // 'crie' = recomendação especial (CRIE/RIE)
+      condicao: a.condicao,   // nome da condição que originou o item (vira etiqueta)
+      semOrigem: !!a.sem_etiqueta_origem, // não mostra "Particular"/"SUS" (quando a origem não foi definida)
+    });
+  });
+
+  // 3c) avisos por vacina (campo "avisos": [{vacinas:[ids], texto, peso_menor_que?}]).
+  //     Casa pelo id do item, pelo id da vacina "mãe" (infoId) ou por qualquer dose do grupo.
+  (protocolo.avisos || []).forEach(a=>{
+    const ids = new Set(a.vacinas || []);
+    if(!a.texto || !ids.size) return;
+    ativo.forEach(v=>{
+      if(ids.has(v.id) || ids.has(v.infoId) || (v.doses||[]).some(d => ids.has(d.id))){
+        if(!(v.avisos || []).some(x => x.texto === a.texto))
+          (v.avisos = v.avisos || []).push({ texto: a.texto, peso_menor_que: a.peso_menor_que, ig_menor_que: a.ig_menor_que });
+      }
+    });
+  });
+
+  // 3d) troca de vacina por condição de saúde (campo "renomear": { idDoItem: {n, sub, figurinha} }).
+  //     O id da dose NÃO muda (os registros já feitos continuam valendo); só o nome, o
+  //     subtítulo e a figurinha. Sem "figurinha", mantém a imagem da vacina original com o nome novo.
+  Object.entries(protocolo.renomear || {}).forEach(([id, r])=>{
+    ativo.filter(v => v.id === id).forEach(v=>{
+      if(r.n){ v.nomeOriginal = v.n; v.n = r.n; }
+      if(r.sub) v.sub = r.sub;
+      if(r.categoria) v.categoria = r.categoria;
+      if(r.extra && typeof r.extra === 'object') Object.assign(v, r.extra);
+      if(r.n || r.figurinha){
+        const stkOrig = STICKERS[v.id];
+        const img = r.figurinha || (stkOrig && stkOrig.img);
+        if(img) v.sticker = { img, nome: r.n || v.n };
+      }
+    });
+  });
+
   // 4) Pares de doses onde o SUS e a rede particular oferecem a MESMA vacina
   //    de forma isolada (não é uma "substituição" via PRIV_SUBSTITUTOS — os
   //    dois convivem no calendário), mas cujo texto "1ª dose"/"reforço"
@@ -1713,7 +1959,7 @@ function calendarioParaProtocolo(protocolo){
 // Wrapper "oficial": monta calendarioAtivo a partir do protocolo atualmente
 // selecionado pela família (usado em toda a renderização/status do app).
 function buildCalendarioAtivo(){
-  calendarioAtivo = calendarioParaProtocolo(protocoloAtivo());
+  calendarioAtivo = calendarioParaProtocolo(protocoloEfetivo());
   return calendarioAtivo;
 }
 
@@ -1869,7 +2115,6 @@ function atualizarNavCalendario(){
   const tabPriv      = document.getElementById('tabPriv');
   const tabSusLabel  = document.getElementById('tabSusLabel');
   const optSus       = document.getElementById('optChoiceSus');
-  const optSbim      = document.getElementById('optChoiceSbim');
   const optMedico    = document.getElementById('optChoiceMedico');
   const optMedicoTit = document.getElementById('optChoiceMedicoTitle');
   const hintInicio   = document.getElementById('calendarioHintInicio');
@@ -1881,19 +2126,21 @@ function atualizarNavCalendario(){
   // recomendada — protocolo do médico (se houver) ou, senão, SBIm/SBP.
   const primeiroAcesso = !localStorage.getItem(FAMILIA_KEY) && !localStorage.getItem('civ3');
   if(!state.calendario || (state.calendario === 'sus' && primeiroAcesso)){
-    state.calendario = cfgCalendario ? 'medico' : 'sbim';
+    state.calendario = cfgCalendario ? 'medico' : 'sus';
   }
 
   const protocolo = protocoloAtivo();           // objeto ativo (médico ou SBIM) ou null
   const usaProtocolo = !!protocolo;              // true se "medico" ou "sbim"
-  const nomeProtocolo = protocolo ? protocolo.nome : '';
+  const nomeProtocolo = protocolo ? 'Sugestão para você' : '';
 
   // Botão "Sugestão do Dr." só aparece se houver um protocolo de médico carregado
   if(optMedico) optMedico.style.display = cfgCalendario ? '' : 'none';
-  if(optMedicoTit && cfgCalendario) optMedicoTit.textContent = `Sugestão de ${(cfgCalendario.nome || '').split(' ')[0]}`;
+  if(optMedicoTit && cfgCalendario) optMedicoTit.textContent = 'Sugestão para você';
+  // Sem calendário personalizado só existe o SUS: não há o que escolher, então esconde o seletor
+  const boxEscolha = document.querySelector('#cardEscolhaCalendario .calendario-choice');
+  if(boxEscolha) boxEscolha.style.display = cfgCalendario ? '' : 'none';
 
   if(optSus)   optSus.classList.toggle('selected', state.calendario === 'sus');
-  if(optSbim)  optSbim.classList.toggle('selected', state.calendario === 'sbim');
   if(optMedico) optMedico.classList.toggle('selected', state.calendario === 'medico');
 
   if(tabSusLabel) tabSusLabel.textContent = usaProtocolo ? 'Minhas Vacinas' : 'SUS';
@@ -1901,7 +2148,7 @@ function atualizarNavCalendario(){
   if(howItemPriv) howItemPriv.style.display = usaProtocolo ? 'none' : '';
 
   if(hintInicio) hintInicio.textContent = usaProtocolo
-    ? `Vocês vão acompanhar o calendário ${nomeProtocolo}, com as vacinas e idades recomendadas — tudo reunido na aba "Minhas Vacinas". Vacinas particulares aparecem com a etiqueta "Particular".`
+    ? `Vocês vão acompanhar a "${nomeProtocolo}", com as vacinas e idades recomendadas — tudo reunido na aba "Minhas Vacinas". Vacinas particulares aparecem com a etiqueta "Particular".`
     : 'Vocês vão acompanhar apenas o calendário oficial do SUS. É possível trocar de calendário a qualquer momento.';
 
   if(howAba2) howAba2.innerHTML = usaProtocolo
@@ -1948,6 +2195,32 @@ function statusGeral(){
   return {cls:'q-due', icon:'🗓️', title:'Calendário em dia', sub:'Fique atento à data da próxima vacina prevista.'};
 }
 
+// ── Link de agendamento de consulta (vem do JSON do médico: medico_agendamento) ──
+var agendamento = { url: '', texto: 'Agendar consulta' };
+function urlSegura(u){
+  if(typeof u !== 'string') return '';
+  u = u.trim();
+  // Aceita também endereço sem "https://" (ex.: "maps.app.goo.gl/abc" ou "www.site.com.br")
+  if(/^[\w.-]+\.[a-z]{2,}(\/|\?|#|$)/i.test(u)) u = 'https://' + u;
+  return /^(https?:\/\/|tel:|mailto:)/i.test(u) ? u : '';   // bloqueia javascript: etc.
+}
+function escAttr(t){ return String(t).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+function attrsLink(url){
+  return /^https?:/i.test(url) ? ` href="${escAttr(url)}" target="_blank" rel="noopener noreferrer"` : ` href="${escAttr(url)}"`;
+}
+// Monta o link do WhatsApp a partir do número (aceita "(11) 99999-9999", "+55 11 99999-9999", etc.)
+function whatsappURL(numero, mensagem){
+  let d = String(numero || '').replace(/\D/g, '');
+  if(d.length < 10) return '';
+  if(d.length <= 11) d = '55' + d;            // sem código do país → assume Brasil
+  const txt = mensagem ? '?text=' + encodeURIComponent(mensagem) : '';
+  return 'https://wa.me/' + d + txt;
+}
+function agendarLinkHTML(cls){
+  if(!agendamento.url) return '';
+  return `<a class="${cls}"${attrsLink(agendamento.url)}>${agendamento.texto} →</a>`;
+}
+
 function nextVacHTML(){
   const prox = proximaVacina();
   if(!prox){
@@ -1977,6 +2250,7 @@ function renderInicio(){
 
 function renderReg(){
   renderChildSwitcher();
+  renderCondicoes();
   document.getElementById('cfgName').value       = state.name  || '';
   document.getElementById('cfgBirth').value      = state.birth || '';
   document.getElementById('cfgIG').value         = state.ig    || '';
@@ -1993,6 +2267,7 @@ function renderReg(){
       <div class="reg-row"><span class="reg-lbl">Nascimento</span><span class="reg-val">${new Date(state.birth+'T12:00').toLocaleDateString('pt-BR')}</span></div>
       <div class="reg-row"><span class="reg-lbl">Idade exata</span><span class="reg-val">${idadeExataTxt}</span></div>
       <div class="reg-row"><span class="reg-lbl">Calendário</span><span class="reg-val">${nomeCalendarioAtual()}</span></div>
+      ${condicoesAtivas().length ? `<div class="reg-row"><span class="reg-lbl">Condições</span><span class="reg-val">${condicoesAtivas().map(c=>escAttr(c.nome)).join(', ')}</span></div>` : ''}
       ${state.ig ? `<div class="reg-row"><span class="reg-lbl">Idade gestacional</span><span class="reg-val">${state.ig} semanas${parseInt(state.ig)<37?' <span style="background:#FDE8C8;color:#854F0B;font-size:10px;padding:2px 7px;border-radius:20px;margin-left:6px;">Prematuro</span>':''}</span></div>` : ''}
       ${state.peso  ? `<div class="reg-row"><span class="reg-lbl">Peso ao nascer</span><span class="reg-val">${state.peso} g</span></div>` : ''}
       ${state.altura? `<div class="reg-row"><span class="reg-lbl">Estatura ao nascer</span><span class="reg-val">${state.altura} cm</span></div>` : ''}
@@ -2019,18 +2294,122 @@ function renderReg(){
   }
 }
 
+// ── Condições de saúde: busca, seleção e remoção ────────────────────────────
+function renderCondicoes(){
+  const card = document.getElementById('cardCondicoes');
+  if(!card) return;
+  card.style.display = cfgCondicoes.length ? '' : 'none';
+  const critBox = document.getElementById('condCriterios');
+  if(critBox) critBox.innerHTML = condicoesAtivas().filter(c => (c.criterios || []).length).map(c => {
+    const marcados = (state.criterios && state.criterios[c.id]) || [];
+    return `<div class="cond-crit"><div class="cond-crit-tit"><strong>${escAttr(c.nome)}</strong> — marque o que se aplica:</div>` +
+      c.criterios.map(k => `<label class="cond-crit-item"><input type="checkbox" ${marcados.includes(k.id) ? 'checked' : ''} onchange="toggleCriterio('${escAttr(c.id)}','${escAttr(k.id)}')"><span>${escAttr(k.texto)}${k.fonte ? `<small>Fonte: ${escAttr(k.fonte)}</small>` : ''}</span></label>`).join('') +
+      `</div>`;
+  }).join('');
+  const notasReg = document.getElementById('condNotasReg');
+  if(notasReg) notasReg.innerHTML = condicoesNotasHTML();
+  const sel = document.getElementById('condSelecionadas');
+  if(sel) sel.innerHTML = condicoesAtivas().map(c => (state.condicoes || []).includes(c.id)
+    ? `<span class="child-chip active cond-chip">🩺 ${escAttr(c.nome)}<b onclick="removerCondicao('${escAttr(c.id)}')" title="Remover">✕</b></span>`
+    : `<span class="child-chip active cond-chip">🩺 ${escAttr(c.nome)} · pela idade gestacional</span>`
+  ).join('');
+}
+
+function buscarCondicao(q){
+  const box = document.getElementById('condSugestoes');
+  if(!box) return;
+  const termo = normalizarBusca(q);
+  if(!termo){ box.innerHTML = ''; return; }
+  const jaMarcadas = new Set(condicoesAtivas().map(c => c.id));
+  const achadas = cfgCondicoes.filter(c => !jaMarcadas.has(c.id) &&
+    [c.nome, ...(c.busca || [])].some(t => normalizarBusca(t).includes(termo)));
+  box.innerHTML = achadas.length
+    ? achadas.map(c => `<button onclick="adicionarCondicao('${escAttr(c.id)}')">${escAttr(c.nome)}${c.descricao ? `<br><span style="font-size:11px;color:var(--color-text-secondary)">${escAttr(c.descricao)}</span>` : ''}</button>`).join('')
+    : `<div class="cond-vazio">Nenhuma condição encontrada. Pergunte ao seu pediatra.</div>`;
+}
+
+function aplicarMudancaCondicoes(){
+  save();
+  buildCalendarioAtivo();
+  renderReg(); renderSus(); renderPriv(); renderInicio();
+}
+
+function adicionarCondicao(id){
+  if(!Array.isArray(state.condicoes)) state.condicoes = [];
+  if(!state.condicoes.includes(id)) state.condicoes.push(id);
+  const campo = document.getElementById('condBusca'); if(campo) campo.value = '';
+  const box = document.getElementById('condSugestoes'); if(box) box.innerHTML = '';
+  aplicarMudancaCondicoes();
+}
+
+function removerCondicao(id){
+  state.condicoes = (state.condicoes || []).filter(x => x !== id);
+  if(state.criterios) delete state.criterios[id];
+  aplicarMudancaCondicoes();
+}
+
 function saveConfig(){
   state.name       = document.getElementById('cfgName').value;
   state.birth      = document.getElementById('cfgBirth').value;
   state.ig         = document.getElementById('cfgIG').value;
   state.peso       = document.getElementById('cfgPeso').value;
   state.altura     = document.getElementById('cfgAltura').value;
-  save(); renderReg(); renderSus(); renderInicio();
+  save(); buildCalendarioAtivo(); renderReg(); renderSus(); renderPriv(); renderInicio();
 }
 
-function isPremature(){ return state.ig && parseInt(state.ig) < 37; }
+function isPremature(){ return !!((state.ig && parseInt(state.ig) < 37) || condicoesAtivas().some(c => c.prematuro)); }
+
+// Observações gerais das condições marcadas (campo "observacoes" no JSON): textos que
+// não pertencem a uma vacina específica (ex: avaliação imunológica prévia, esquemas ampliados no CRIE).
+function condicoesNotasHTML(){
+  const grupos = {};
+  condicoesExpandidas().forEach(c => (c.observacoes || []).forEach(t => {
+    const g = grupos[c.nome] || (grupos[c.nome] = []);
+    if(!g.includes(t)) g.push(t);
+  }));
+  return Object.entries(grupos).map(([nome, textos]) =>
+    `<div class="aviso-vac"><strong>${escAttr(nome)}</strong>${textos.map(t => `<br>• ${escAttr(t)}`).join('')}</div>`).join('');
+}
+
+// A escolha do calendário fica na tela Início: abre a tela e rola até o cartão de escolha.
+function irParaEscolhaCalendario(){
+  go('inicio');
+  setTimeout(()=>{
+    const c = document.getElementById('cardEscolhaCalendario');
+    if(c) c.scrollIntoView({ behavior:'smooth', block:'center' });
+  }, 80);
+}
+
+// Faixa no topo das abas de vacinas: mostra qual calendário está selecionado (e as condições
+// marcadas) para a família não precisar voltar à aba Registro só para conferir.
+function renderCalSel(){
+  const conds = condicoesAtivas().map(c => escAttr(c.nome)).join(', ');
+  const html = `<div class="cal-sel"><div><span>📋 Calendário: <strong>${escAttr(nomeCalendarioAtual())}</strong></span>${conds ? `<small>Condições: ${conds}</small>` : ''}</div>${cfgCalendario ? `<button type="button" onclick="irParaEscolhaCalendario()">Alterar</button>` : ''}</div>`;
+  ['calSelSus','calSelPriv'].forEach(id => { const el = document.getElementById(id); if(el) el.innerHTML = html; });
+}
+
+// Avisos clínicos de uma vacina (vindos das condições de saúde). Os que têm
+// "peso_menor_que" só aparecem se o peso ao nascer não foi informado ou é menor.
+// Um aviso com "peso_menor_que" e/ou "ig_menor_que" aparece se UM dos critérios for atendido
+// ou se o dado correspondente ainda não foi informado (o texto do aviso já é condicional).
+function avisoVisivel(a){
+  const dims = [];
+  if(a.peso_menor_que) dims.push(['peso', a.peso_menor_que]);
+  if(a.ig_menor_que)   dims.push(['ig', a.ig_menor_que]);
+  if(!dims.length) return true;
+  const val = { peso: parseInt(state.peso), ig: parseInt(state.ig) };
+  return dims.some(([k, lim]) => !val[k] || val[k] < lim);
+}
+
+function avisosHTML(v){
+  return (v.avisos || []).filter(avisoVisivel)
+    .map(a => `<div class="aviso-vac">⚠️ ${escAttr(a.texto)}</div>`).join('');
+}
 
 function renderSus(){
+  renderCalSel();
+  const elNotas = document.getElementById('condNotas');
+  if(elNotas) elNotas.innerHTML = condicoesNotasHTML();
   const itensVisiveis = calendarioAtivo.filter(v=>(!v.prem||isPremature()) && (!v.notPrem||!isPremature()));
 
   // Ordem cronológica dos cartões por idade (não alfabética): calcula a menor
@@ -2050,7 +2429,7 @@ function renderSus(){
   const banner = document.getElementById('premBanner');
   if(isPremature()){
     banner.style.display = 'flex';
-    banner.querySelector('p').textContent = `Bebê prematuro (${state.ig}s) — Nirsevimabe e Pneumo 20 (VPC20) disponíveis gratuitamente no SUS`;
+    banner.querySelector('p').textContent = `Bebê prematuro${state.ig ? ` (${state.ig}s)` : ''} — nirsevimabe (≤36s6d, menos de 6 meses) e esquema especial de Pneumo 20 pelo CRIE/RIE, com indicação médica`;
   } else {
     banner.style.display = 'none';
   }
@@ -2093,8 +2472,9 @@ function renderSus(){
             <div class="vcm-header">
               <div class="vdot ${dotMulti}" style="flex-shrink:0"></div>
               <div class="vinfo">
-                <div class="vname">${v.n}${v.prem?'<span class="prem-tag">Prematuro · SUS</span>':''}${v.particular?'<span class="priv-tag">Particular</span>':''}${(!v.particular && protocoloAtivo())?'<span class="sus-tag">SUS</span>':''}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+                <div class="vname">${v.n}${v.prem?'<span class="prem-tag">Prematuro · SUS</span>':''}${v.particular?'<span class="priv-tag">Particular</span>':''}${v.categoria==='crie'?'<span class="crie-tag">Especial CRIE/RIE</span>':''}${v.condicao?`<span class="priv-tag">${escAttr(v.condicao)}</span>`:''}${(!v.particular && !v.semOrigem && protocoloAtivo())?'<span class="sus-tag">SUS</span>':''}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
                 <div class="vsub">${v.sub}${sMulti==='late'?' · <span style="color:#C0392B;font-weight:600">Atrasada</span>':''}</div>
+                ${avisosHTML(v)}
               </div>
               <span class="dose-counter">${doneD}/${totalD}</span>
             </div>
@@ -2122,6 +2502,7 @@ function renderSus(){
             <div class="vinfo">
               <div class="vname">${v.n}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
               <div class="vsub">${v.sub}${ds}</div>
+              ${avisosHTML(v)}
             </div>
             <div class="vcheck ${state.done[v.id]?'done':''}" onclick="${state.done[v.id]?`undo('${v.id}')`:`openMod('${v.id}')`}">
               <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
@@ -2138,10 +2519,11 @@ function renderSus(){
         return `<div class="vc ${s==='done'?'done-card':''}">
           <div class="vdot ${dot}"></div>
           <div class="vinfo">
-            <div class="vname">${v.n}${v.prem?'<span class="prem-tag">Prematuro · SUS</span>':''}${v.particular?'<span class="priv-tag">Particular</span>':''}${(!v.particular && protocoloAtivo())?'<span class="sus-tag">SUS</span>':''}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
+            <div class="vname">${v.n}${v.prem?'<span class="prem-tag">Prematuro · SUS</span>':''}${v.particular?'<span class="priv-tag">Particular</span>':''}${v.categoria==='crie'?'<span class="crie-tag">Especial CRIE/RIE</span>':''}${v.condicao?`<span class="priv-tag">${escAttr(v.condicao)}</span>`:''}${(!v.particular && !v.semOrigem && protocoloAtivo())?'<span class="sus-tag">SUS</span>':''}<button class="vinfo-btn" onclick="event.stopPropagation();openInfo('${v.id}')">i</button></div>
             <div class="vsub">${v.sub}${ds}${lateNote}</div>
             ${pneumoNote}
             ${coverNote}
+            ${avisosHTML(v)}
           </div>
           <div class="vcheck ${state.done[v.id]?'done':''}" onclick="${state.done[v.id]?`undo('${v.id}')`:`openMod('${v.id}')`}">
             <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="2,6 5,9 10,3"/></svg>
@@ -2156,6 +2538,7 @@ function setFilter(f){ susFilter=f; renderSus(); }
 function setStatusFilter(f){ susStatusFilter=f; renderSus(); }
 
 function renderPriv(){
+  renderCalSel();
   const privList = isPremature()
     ? PRIV.filter(v => !['pneumo13','pneumo15','pneumo20','nirsev'].includes(v.id))
     : PRIV;
@@ -2271,7 +2654,7 @@ function confirmVac(){
   const all       = [...calendarioAtivo,...SUS,...PRIV];
   const vAtual    = all.find(x=>x.id===vacId);
   const stickerId = parentId || (vAtual && vAtual.infoId) || vacId;
-  const sticker   = STICKERS[stickerId] || STICKERS[vacId];
+  const sticker   = (vAtual && vAtual.sticker) || STICKERS[stickerId] || STICKERS[vacId];
   const v         = all.find(x=>x.id===stickerId) || vAtual;
   const nomeVac   = sticker ? sticker.nome : (v ? v.n : '');
 
@@ -2305,9 +2688,9 @@ function resetVaccines(){
 }
 
 function resetProfile(){
-  if(confirm('Limpar os dados do bebê (nome, nascimento, peso, altura, calendário)? As vacinas já registradas serão mantidas.')){
-    const calendarioPadrao = cfgCalendario ? 'medico' : 'sbim';
-    state.name=''; state.birth=''; state.ig=''; state.peso=''; state.altura=''; state.calendario=calendarioPadrao;
+  if(confirm('Limpar os dados do bebê (nome, nascimento, peso, altura, calendário, condições de saúde)? As vacinas já registradas serão mantidas.')){
+    const calendarioPadrao = cfgCalendario ? 'medico' : 'sus';
+    state.name=''; state.birth=''; state.ig=''; state.peso=''; state.altura=''; state.calendario=calendarioPadrao; state.condicoes=[]; state.criterios={};
     buildCalendarioAtivo();
     save();
     document.getElementById('cfgName').value='';
@@ -2448,6 +2831,7 @@ function exportarPDF(){
   }
   y += 1;
   texto('Calendário: ' + nomeCalendarioAtual(), { bold:true });
+  if(condicoesAtivas().length) texto('Condições de saúde: ' + condicoesAtivas().map(c=>c.nome).join(', '));
   y += 2;
 
   // Status atual + próxima vacina
@@ -2527,9 +2911,9 @@ const INFO = {
     via: 'ID', // Intradérmica 
     doenca: 'Tuberculose (formas graves) e hanseníase',
     descricao: 'A BCG (Bacilo de Calmette-Guérin) é uma vacina viva atenuada derivada do Mycobacterium bovis. Protege principalmente contra as formas graves de tuberculose na infância (meningite tuberculosa e tuberculose miliar) e contra a hanseníase.',
-    esquema: 'Dose única ao nascer, preferencialmente na maternidade. Adiar a vacinação em recém-nascidos com peso inferior a 2kg',
+    esquema: 'Dose única ao nascer, preferencialmente na maternidade, ou na primeira visita ao serviço de saúde, até 30 dias de vida (a criança não vacinada pode receber até 4 anos, 11 meses e 29 dias). Adiar a vacinação em recém-nascido com peso inferior a 2 kg (escassez de tecido cutâneo).',
     adversos: 'Nódulo local que evolui para pústula e cicatriz em 4–12 semanas — isso é esperado e normal. Não coloque curativos ou pomadas, lave apenas com água e sabão. Raramente: "gânglios (ínguas) na axila". A ausência de cicatriz não indica falha vacinal.',
-    extra: 'A vacina sempre será aplicada no braço direito.<br> Desde 2019 não está mais indicada a revacinação em caso de ausência de cicatriz.',
+    extra: 'A vacina sempre será aplicada no braço direito.<br> Desde 2019 não está mais indicada a revacinação em caso de ausência de cicatriz.<br>Contraindicada para portadores de imunodeficiência primária ou adquirida; adiar após tratamento com imunodepressores ou corticoide em dose elevada, em internação com comprometimento do estado geral e em lesões graves de pele. Criança exposta ao HIV, ainda não vacinada, recebe a BCG se estiver assintomática e sem sinais de imunodepressão. Algumas situações especiais exigem revacinação (ver Manual CRIE).',
   },
   hepB: {
     nome: 'Hepatite B',
@@ -2537,17 +2921,17 @@ const INFO = {
     via: 'IM',
     doenca: 'Hepatite B — protege o fígado contra infecções que podem causar cirrose e câncer no futuro.',
     descricao: 'Vacina recombinante (não contém vírus vivo) que estimula a produção de anticorpos anti-HBsAg. A infecção pelo HBV pode evoluir para cirrose e carcinoma hepatocelular na vida adulta.',
-    esquema: '1ª dose ao nascer (idealmente nas primeiras 12h). Doses seguintes integradas à Pentavalente aos 2, 4 e 6 meses.',
+    esquema: '1ª dose ao nascer (idealmente nas primeiras 12 h; até 30 dias de vida). Doses seguintes integradas à Pentavalente aos 2, 4 e 6 meses. Se a dose ao nascer não foi dada nos primeiros 30 dias, o esquema começa com a Pentavalente aos 2 meses (idade mínima: 6 semanas), com intervalo mínimo de 4 meses entre a 1ª e a 3ª dose da Penta.',
     adversos: 'Dor e vermelhidão no local. Febre baixa ocasional. Reações graves são raras.',
-    extra: 'Bebês nascidos de mães HBsAg positivo devem receber também a imunoglobulina anti-hepatite B (HBIG) nas primeiras 12 horas de vida.Prematuros extremos ou abaixo de 2kg precisam de 4 doses no total para garantir a imunidade.',
+    extra: 'Recém-nascidos de mães HBsAg positivo recebem a vacina e a imunoglobulina anti-hepatite B (HBIG) ao nascer, em locais musculares diferentes; se não for possível na sala de parto, aplicar o mais cedo possível, de preferência nas primeiras 12 horas (a imunoglobulina pode ser aplicada em até 7 dias).Em recém-nascidos com menos de 2.000 g ou menos de 33 semanas são necessárias pelo menos 4 doses; o calendário atual já prevê 4 doses para todas as crianças (1 dose de hepatite B ao nascer + 3 nas combinadas), sem necessidade de doses extras (Manual CRIE, 6ª ed.).',
   },
   nirsev: {
     nome: 'Nirsevimabe (VSR)',
     org: 'Vírus Sincicial Respiratório (VSR)',
     via: 'IM',
     doenca: 'Bronquiolite e pneumonia causadas pelo VSR (Vírus Sincicial Respiratório), o maior responsável por internações de bebês no inverno.',
-    descricao: 'Nirsevimabe (Beyfortus®) é um anticorpo monoclonal. Diferente das vacinas comuns, aqui o bebê recebe o "escudo" (anticorpos) pronto contra o VSR. A proteção é imediata e dura por meses, cobrindo todo o período de maior circulação do vírus.',
-    esquema: 'Dose única ao nascer ou antes do primeiro outono/inverno (sazonalidade).<br> No SUS: disponível para prematuros <37 semanas e grupos de risco (cardiopatas graves e bebês com problemas crônicos no pulmão).',
+    descricao: 'Nirsevimabe (Beyfortus®) é um anticorpo monoclonal. Diferente das vacinas comuns, aqui o bebê recebe o "escudo" (anticorpos) pronto contra o VSR. A proteção é imediata e dura cerca de seis meses. No SUS é indicado para prematuros (≤36s6d) com menos de 6 meses e, na sazonalidade (fev–ago), para crianças <24 meses com comorbidade elegível, com laudo na RIE/CRIE.',
+    esquema: 'Dose única ao nascer ou antes da sazonalidade do VSR (fevereiro a agosto).<br> No SUS: prematuros ≤36s6d com menos de 6 meses (o ano todo) e crianças com menos de 24 meses com comorbidade elegível (critérios do Guia do MS), com laudo na RIE/CRIE.',
     adversos: 'Reações locais leves (dor, enduração). Muito bem tolerado. Não é uma vacina viva, portanto não causa infecção.',
     extra: 'Não substitui outras vacinas. Pode ser administrado junto com as demais vacinas do calendário.',
   },
@@ -2557,9 +2941,9 @@ const INFO = {
     via: 'VO',
     doenca: 'Diarreia grave e desidratação causadas pelo Rotavírus',
     descricao: 'Vacina oral, viva e atenuada. O rotavírus é a principal causa de diarreia grave em crianças menores de 5 anos no mundo. A vacinação reduziu significativamente as internações por diarreia no Brasil.',
-    esquema: 'SUS (monovalente): 2 doses — 2 e 4 meses.<br>Privada (pentavalente): 3 doses — 2, 4 e 6 meses.<br>Atenção: há limite máximo de idade para início do esquema.',
+    esquema: 'SUS (monovalente): 2 doses — 2 e 4 meses, com intervalo recomendado de 60 dias e mínimo de 30 dias.<br>Privada (pentavalente): 3 doses — 2, 4 e 6 meses.<br>Atenção: há limite de idade para cada dose.',
     adversos: 'Irritabilidade, diarreia leve e vômitos ocasionais.<br> Raro: fezes com sangue e intussuscepção intestinal (mais descrita nas primeiras versões da vacina).',
-    extra: 'A 1ª dose deve ser feita até 11 meses e 29 dias.<br> A última dose não pode passar de 23 meses e 29 dias.<br> Se o bebê vomitar após a vacina, não repita a dose. A absorção é rápida e o esquema segue normalmente',
+    extra: 'A 1ª dose deve ser feita entre 1 mês e 15 dias e 11 meses e 29 dias de idade. Se a 1ª dose não for dada nessa faixa, a criança perde a oportunidade da 2ª dose.<br> A 2ª dose só pode ser dada entre 3 meses e 15 dias e 23 meses e 29 dias de idade.<br> Se o bebê vomitar após a vacina, não repita a dose. A absorção é rápida e o esquema segue normalmente',
   },
   vip: {
     nome: 'VIP — Pólio',
@@ -2567,7 +2951,7 @@ const INFO = {
     via: 'IM',
     doenca: 'Poliomielite (paralisia infantil)',
     descricao: 'Vacina Inativada (VIP). Ela é composta por vírus "mortos", por isso é extremamente segura e não tem como causar a doença. É a tecnologia padrão ouro no mundo todo. O Brasil substituiu definitivamente a vacina oral (VOP — a antiga "gotinha") pela VIP injetável no calendário do SUS. O Brasil está livre da pólio desde 1989, mas a vacinação é essencial para manter essa conquista.',
-    esquema: 'Esquema com 3 doses (2, 4 e 6 meses) + 2 reforços: aos 15 meses e aos 4 anos.',
+    esquema: 'Esquema com 3 doses (2, 4 e 6 meses) + 2 reforços: aos 15 meses e aos 4 anos (o 2º reforço entrou no calendário em 3 de agosto de 2026). Idade: a partir de 2 meses.<br>Esquema básico: intervalo recomendado de 60 dias, mínimo de 30 dias. Reforço dos 15 meses: recomendado 9 meses após a 3ª dose, mínimo de 6 meses.',
     adversos: 'Dor local e vermelhidão discretas. Muito bem tolerada.',
     extra: 'Embora não tenhamos casos no Brasil há décadas, o vírus ainda circula em alguns países. Vacinar é a única forma de garantir que ele não volte para nossas crianças.',
   },
@@ -2577,19 +2961,39 @@ const INFO = {
     via: 'IM',
     doenca: 'Coqueluche, tétano, difteria, infecções pelo Hib e hepatite B',
     descricao: 'A Pentavalente combina cinco componentes em uma única injeção: DTP (coqueluche célula inteira, tétano, difteria) + Hib + Hepatite B. Protege contra cinco doenças graves com menor número de picadas.',
-    esquema: '3 doses: 2, 4 e 6 meses.',
+    esquema: '3 doses: 2, 4 e 6 meses (idade mínima: 6 semanas; pode ser dada até 6 anos, 11 meses e 29 dias).<br>Intervalo recomendado: 60 dias; intervalo mínimo: 30 dias.',
     adversos: 'Febre, irritabilidade, choro prolongado, dor e enduração no local — mais comuns do que com vacinas acelulares.<br> Raramente: convulsão febril. Esses efeitos são mais associados ao componente pertussis célula inteira.',
-    extra: 'O componente pertussis célula inteira é mais reatogênico que o acelular (DTPa da Hexavalente). O benefício supera amplamente o risco.',
+    extra: 'O componente pertussis célula inteira é mais reatogênico que o acelular (DTPa da Hexavalente). O benefício supera amplamente o risco.<br>Algumas crianças com condições clínicas especiais usam a vacina tríplice bacteriana acelular infantil ou a DT no lugar da Penta ou da DTP (ver CRIE).',
+  },
+  pali: {
+    nome: 'Palivizumabe',
+    org: 'Anticorpo monoclonal contra o vírus sincicial respiratório (VSR)',
+    via: 'IM',
+    doenca: 'Infecção grave do trato respiratório inferior pelo VSR (bronquiolite e pneumonia)',
+    descricao: 'O palivizumabe é um anticorpo monoclonal contra o VSR, como o nirsevimabe. A diferença está na posologia: o palivizumabe exige até cinco doses mensais durante a sazonalidade (fevereiro a agosto), com dose calculada pelo peso da criança, enquanto o nirsevimabe é uma dose única. No SUS, o palivizumabe era indicado para prematuros de até 28 semanas e 6 dias com menos de 1 ano e para crianças com menos de 2 anos com doença pulmonar crônica da prematuridade ou cardiopatia congênita com repercussão hemodinâmica demonstrada. O nirsevimabe cobre todos os prematuros (≤36s6d) e outras comorbidades.',
+    esquema: 'Até 5 doses mensais (intervalo de cerca de 30 dias) dentro da sazonalidade, de fevereiro a agosto; o número de doses depende do mês de início. Aplicação na RIE/CRIE, com laudo médico.',
+    adversos: 'Consulte a equipe que aplica a dose: o perfil de segurança do palivizumabe e do nirsevimabe foi comparável nos estudos citados pelo Ministério da Saúde.',
+    extra: 'Transição 2026 (Guia do Ministério da Saúde): continuam com palivizumabe as crianças que o receberam na sazonalidade de 2025 e permanecem elegíveis; quem iniciou o palivizumabe deve concluir as 5 doses com ele, sem trocar por nirsevimabe na mesma sazonalidade. Se faltar palivizumabe, o SUS aplica nirsevimabe. Crianças nascidas depois do fim da sazonalidade de 2025 usam nirsevimabe. Para a próxima sazonalidade, confirme com a RIE/CRIE.',
+  },
+  pentaA: {
+    nome: 'Pentavalente acelular',
+    org: 'Bordetella pertussis · Clostridium tetani · Corynebacterium diphtheriae · Haemophilus influenzae b · Poliovírus',
+    via: 'IM',
+    doenca: 'Coqueluche, tétano, difteria, Hib e pólio',
+    descricao: 'A diferença para a Pentavalente do SUS está no componente da coqueluche. A Pentavalente do SUS (chamada de celular ou de células inteiras) usa a bactéria da coqueluche inteira e inativada, junto com tétano, difteria, Hib e hepatite B. A Pentavalente acelular usa apenas partes purificadas dessa bactéria (por isso "DTPa") e combina tétano, difteria, Hib e pólio inativada (VIP), sem hepatite B. As duas protegem contra a coqueluche. A acelular costuma causar menos febre e reações no local; por isso o CRIE a oferece no SUS para crianças em que a de células inteiras traz risco, como prematuros com menos de 33 semanas ou 1.500 g, cardiopatia ou pneumopatia crônica com risco de descompensação em febre e doença neurológica incapacitante.',
+    esquema: 'Esquema habitual: 2, 4 e 6 meses, com reforço aos 15 meses (confirme na bula e com o pediatra). Como já inclui a VIP, ela substitui a Pentavalente e a dose de VIP da mesma idade. Como não tem hepatite B, o esquema dessa vacina precisa ser completado com a vacina isolada: combine com o pediatra.',
+    adversos: 'Em geral, febre e reações locais menos frequentes do que com a Pentavalente de células inteiras.',
+    extra: 'Não aplicar junto com a Pentavalente nem com a VIP do SUS na mesma idade: a acelular substitui as duas. Confirme a composição e a faixa etária na bula do produto.',
   },
   hexa: {
     nome: 'Hexavalente',
     org: 'Bordetella pertussis · Clostridium tetani · Corynebacterium diphtheriae · Haemophilus influenzae b · HBV · Poliovírus',
     via: 'IM',
     doenca: 'Coqueluche, tétano, difteria, Hib, hepatite B e pólio',
-    descricao: 'A Hexavalente (DTPa-Hib-HepB-VIP) é disponível apenas na rede privada. Usa componente pertussis acelular (DTPa), o que a torna menos reatogênica que a Pentavalente + VIP do SUS — ou seja, menos febre e desconforto.',
+    descricao: 'A Hexavalente (DTPa-Hib-HepB-VIP) é opção da rede privada. Usa componente pertussis acelular (DTPa). No SUS, Hexa e Penta acelular são oferecidas pelo CRIE apenas para indicações específicas (ex.: prematuros com menos de 33 semanas ou 1.500 g; cardiopatia ou pneumopatia crônica com risco de descompensação em febre).',
     esquema: '3 doses: 2, 4 e 6 meses. Substitui a Pentavalente e a VIP do SUS, reduzindo uma picada por visita.',
     adversos: 'Febre e reações locais mais leves que a Pentavalente, graças ao componente acelular.',
-    extra: 'Opção de conforto para a criança: mesma proteção com uma injeção a menos por consulta e menor incidência de febre alta.',
+    extra: 'Reúne seis proteções em uma única aplicação (uma injeção a menos por consulta).',
   },
   dtp: {
     nome: 'DTP',
@@ -2597,9 +3001,9 @@ const INFO = {
     via: 'IM',
     doenca: 'Coqueluche, tétano e difteria (reforços)',
     descricao: 'DTP de célula inteira usada nos reforços do calendário SUS. Reforça a imunidade contra coqueluche, tétano e difteria adquirida nas doses primárias pela Pentavalente.',
-    esquema: '1º reforço aos 15 meses · 2º reforço aos 4 anos.',
+    esquema: '1º reforço aos 15 meses · 2º reforço aos 4 anos (pode ser dado até 6 anos, 11 meses e 29 dias).<br>1º reforço: recomendado de 6 a 12 meses após a 3ª dose da Penta, mínimo de 6 meses. 2º reforço: recomendado 2 anos e 9 meses após o 1º, mínimo de 6 meses. Depois, dT a cada 10 anos.',
     adversos: 'Dor, vermelhidão e enduração no local. Febre nas primeiras 24–48h. Pode ocorrer nódulo persistente.',
-    extra: 'A coqueluche (tosse comprida) pode ser grave em bebês pequenos. Manter os reforços em dia é essencial.',
+    extra: 'A coqueluche (tosse comprida) pode ser grave em bebês pequenos. Manter os reforços em dia é essencial.<br>Criança de 6 anos sem nenhum reforço recebe o 1º reforço; se não der para manter 6 meses até o 2º, agenda-se a dT para 10 anos após o 1º e a criança fica liberada do 2º reforço da DTP. Algumas crianças com condições clínicas especiais usam a tríplice bacteriana acelular infantil ou a DT (ver CRIE).',
   },
   dt: {
     nome: 'dT — Difteria e Tétano adulto',
@@ -2607,7 +3011,7 @@ const INFO = {
     via: 'IM',
     doenca: 'Tétano e difteria (reforço na infância tardia)',
     descricao: 'Versão com dose reduzida de toxoide diftérico (d), indicada a partir dos 7 anos. <br> Reforça a proteção contra tétano e difteria.',
-    esquema: 'Dose única aos 7 anos.<br> Reforços a cada 10 anos na vida adulta.',
+    esquema: 'A partir de 7 anos de idade, a dT é usada para os reforços (1 dose a cada 10 anos após a última dose do esquema básico; 5 anos se houver risco de tétano ou difteria), para completar esquemas incompletos ou para iniciar esquema em não vacinados (3 doses, intervalo recomendado de 60 dias e mínimo de 30 dias). Nunca reiniciar o esquema.',
     adversos: 'Dor local, febre baixa, mal-estar leve.',
     extra: 'A vacinação da gestante com dTpa (adulto com coqueluche) em cada gestação protege o recém-nascido antes de ele poder ser vacinado.',
   },
@@ -2616,8 +3020,8 @@ const INFO = {
     org: 'Streptococcus pneumoniae',
     via: 'IM',
     doenca: 'Pneumonia, sinusite, meningite e infecções de ouvido (otites) causadas pela bactéria Pneumococo.',
-    descricao: 'Vacinas conjugadas contra Streptococcus pneumoniae. Quanto maior o número no nome da vacina, mais variantes da bactéria ela cobre.<br> No SUS: A antiga vacina VPC10 foi substituída pela VPC20 (20 sorotipos), trazendo a tecnologia mais avançada da rede privada direto para o calendário público de forma gratuita.<br> Na rede privada: Seguem disponíveis as opções da VPC13, VPC15 e VPC20.',
-    esquema: 'Esquema geral: 2 doses (2 e 4 meses) + reforço aos 12 meses.<br>Prematuros: 3 doses (2, 4 e 6 meses) + reforço aos 12 meses.<br><br>Nota: A transição da VPC10 para a VPC20 nas UBS ocorre de forma gradual desde junho/26, conforme os estoques regionais.',
+    descricao: 'Vacinas conjugadas contra Streptococcus pneumoniae. Quanto maior o número no nome da vacina, mais variantes da bactéria ela cobre.<br> No SUS: desde jun/2026 a VPC10 está sendo substituída pela VPC20 (20 sorotipos) em transição — VPC20 aos 2 e 12 meses e, aos 4 meses, VPC10 enquanto houver estoque. Grupos de risco têm esquema especial no CRIE/RIE (VPC20 em 3+1), com indicação médica.<br> Na rede privada: opções de VPC13, VPC15 e VPC20.',
+    esquema: 'Esquema geral: 2 doses (2 e 4 meses) + reforço aos 12 meses.<br>Prematuros: 3 doses (2, 4 e 6 meses) + reforço aos 12 meses.<br><br>Nota: A transição da VPC10 para a VPC20 nas UBS ocorre de forma gradual desde junho/26, conforme os estoques regionais.<br>Regras do Calendário Nacional de jan/2026 (VPC10): intervalo recomendado de 60 dias e mínimo de 30 dias no esquema básico; reforço recomendado 8 meses após a 2ª dose, mínimo de 60 dias. Confirme com a UBS as regras da VPC20 em transição.',
     adversos: 'Febre, dor e vermelhidão no local. Irritabilidade nas primeiras 24–48h.',
     extra: 'O pneumococo é a bactéria que mais frequentemente causa pneumonias e meningite bacteriana em crianças. Vacinas com mais sorotipos oferecem proteção mais ampla.',
   },
@@ -2627,7 +3031,7 @@ const INFO = {
     via: 'IM',
     doenca: 'Meningite e meningococcemia — infecções gravíssimas no cérebro e no sangue que podem evoluir muito rápido.',
     descricao: 'Vacina conjugada contra o sorogrupo C do meningococo. A doença meningocócica tem alta letalidade e sequelas graves (amputações, surdez). O sorogrupo C é um dos mais prevalente no Brasil.',
-    esquema: 'SUS: 2 doses primárias (3 e 5 meses) + reforço aos 12 meses (ACWY) + reforço aos 11-14 anos (ACWY).',
+    esquema: 'SUS: 2 doses primárias (3 e 5 meses) + reforço aos 12 meses (ACWY) + reforço aos 11-14 anos (ACWY).<br>Intervalo recomendado de 60 dias e mínimo de 30 dias no esquema básico; reforço recomendado 7 meses após a 2ª dose, mínimo de 60 dias. Quem começa depois dos 5 meses completa o esquema até 11 meses; de 12 meses a 4 anos, 11 meses e 29 dias sem esquema completo, recebe dose única de ACWY.',
     adversos: 'Dor local, febre baixa, irritabilidade. Bem tolerada.',
     extra: 'O sorogrupo B não está coberto pela MenC — para proteção contra o sorogrupo B, é necessária a MenB (disponível apenas na rede privada).',
   },
@@ -2637,9 +3041,9 @@ const INFO = {
     via: 'IM',
     doenca: 'Meningite e meningococcemia — infecções gravíssimas no cérebro e no sangue que podem evoluir muito rápido.',
     descricao: 'Vacina conjugada quadrivalente contra os sorogrupos A, C, W e Y do meningococo. Amplia a proteção além do sorogrupo C coberto pelo SUS. Os sorogrupos W e Y têm crescido em prevalência no Brasil.',
-    esquema: 'SUS (reforços): 12 meses e adolescência (11–14 anos). Privada (primário): 3 doses a partir de 3 meses + reforços.',
+    esquema: 'SUS (reforços): 12 meses e adolescência (11–14 anos). Privada (primário): 3 doses a partir de 3 meses + reforços.<br>No calendário da criança: 1 dose a partir dos 12 meses (até 4 anos, 11 meses e 29 dias), com ou sem esquema básico de MenC; recomendado 7 meses após a 2ª dose do esquema básico, mínimo de 60 dias.',
     adversos: 'Dor local, febre discreta. Rara: reação alérgica.',
-    extra: 'A combinação MenACWY + MenB na rede privada oferece a proteção mais completa disponível contra doença meningocócica.',
+    extra: 'MenACWY e MenB na rede privada ampliam os sorogrupos cobertos; a MenB não faz parte do PNI nem do CRIE.',
   },
   menB: {
     nome: 'Meningococo B',
@@ -2649,7 +3053,7 @@ const INFO = {
     descricao: 'Vacina proteica contra o sorogrupo B do meningococo, disponível apenas na rede privada.<br> O sorogrupo B é o mais frequente em bebês pequenos e tem altíssima mortalidade.',
     esquema: '3 doses: 3, 5 e 12–15 meses.<br> O número exato pode variar conforme marca e idade de início do esquema.',
     adversos: 'Dor local intensa.<br> Febre significativa nas primeiras 24h (mais frequente que outras vacinas) — é a única vacina em que é recomendada medicação preventiva, conforme orientação pediátrica.',
-    extra: 'É considerada por muitos pediatras a vacina privada de maior prioridade nos primeiros meses de vida, dada a gravidade da doença por sorogrupo B em lactentes. <br> Infelizmente é uma das vacinas que mais gera efeitos adversos.',
+    extra: 'Recomendada por sociedades científicas (ex.: SBIm); não faz parte do PNI nem do CRIE.',
   },
   covid: {
     nome: 'COVID-19',
@@ -2657,7 +3061,7 @@ const INFO = {
     via: 'IM',
     doenca: 'Formas graves da COVID-19, internações e a Síndrome Inflamatória Multissistêmica (uma complicação grave que pode ocorrer após a infecção).',
     descricao: 'As vacinas disponíveis para crianças no SUS são a Spikevax (mRNA, Moderna) e a Comirnaty (mRNA, Pfizer).',
-    esquema: 'Spikevax: 2 doses.<br> Comirnaty: 3 doses.',
+    esquema: 'Comirnaty (Pfizer): 3 doses, aos 6, 7 e 9 meses — intervalo mínimo de 4 semanas entre a 1ª e a 2ª e de 8 semanas entre a 2ª e a 3ª.<br> Spikevax (Moderna), usada se faltar a Comirnaty: 2 doses, aos 6 e 7 meses — intervalo mínimo de 4 semanas.<br>Crianças imunocomprometidas ou com comorbidades: 1 dose por ano depois do esquema básico, até 4 anos, 11 meses e 29 dias.',
     adversos: 'Dor local, febre, fadiga, irritabilidade nas 24–48h após.<br> Raramente: miocardite (mais descrita em adolescentes do sexo masculino com mRNA — risco muito menor que a miocardite pela infecção pelo COVID).',
     extra: 'Infelizmente existe muita desinformação sobre essa vacina. As vacinas de mRNA não alteram o DNA.<br> As vacinas são periodicamente atualizadas para proteger contra as novas variantes do vírus que surgem',
   },
@@ -2667,7 +3071,7 @@ const INFO = {
     via: 'IM',
     doenca: 'Influenza — gripe sazonal',
     descricao: 'Vacina inativada contra os vírus Influenza.<br> O SUS oferece a versão trivalente (3 tipos).<br> A rede privada oferece versão quadrivalente (4 tipos — inclui um segundo vírus B).<br> A composição muda anualmente conforme a vigilância epidemiológica da OMS.',
-    esquema: 'A partir de 6 meses.<br> Na 1ª vez: 2 doses com intervalo de pelo menos 1 mês. Depois: dose anual em campanhas (preferencialmente antes do outono).',
+    esquema: 'A partir de 6 meses (rotina do SUS até 5 anos, 11 meses e 29 dias).<br> Na 1ª vez: 2 doses com intervalo mínimo de 4 semanas. Depois: dose anual em campanhas (preferencialmente antes do outono).<br>Crianças indígenas e com comorbidades: esquema vale até 8 anos, 11 meses e 29 dias, com 1 dose a cada temporada depois do esquema básico.',
     adversos: 'Dor local, febre baixa e mal-estar nas primeiras 24h. Não causa gripe — a vacina é inativada.',
     extra: 'Crianças < 2 anos têm alto risco de complicações graves por Influenza. A vacinação anual é especialmente importante nessa faixa etária.',
   },
@@ -2677,17 +3081,17 @@ const INFO = {
     via: 'SC',
     doenca: 'Febre Amarela',
     descricao: 'Vacina viva atenuada altamente eficaz. Uma única dose confere imunidade por toda a vida para a maioria das pessoas. A febre amarela silvestre circula em áreas de mata e pode ser transmitida por mosquitos Haemagogus e Sabethes.',
-    esquema: '1ª dose aos 9 meses + reforço aos 4 anos.<br> Apenas 1 reforço ao longo da vida.',
+    esquema: '1ª dose aos 9 meses + reforço aos 4 anos (intervalo mínimo de 30 dias entre as doses).<br> Apenas 1 reforço ao longo da vida.',
     adversos: 'Febre, dor de cabeça e mal-estar leve em 3–5% dos vacinados.<br> Raramente: doença neurológica ou visceral associada à vacina (DENV/DAENV) — risco muito menor que a doença natural.',
-    extra: 'Contraindicada em imunocomprometidos, gestantes e bebês menores de 6 meses. Em caso de viagem para áreas endêmicas, verificar necessidade de dose adicional.',
+    extra: 'Contraindicada em imunocomprometidos, gestantes e bebês menores de 6 meses. Em caso de viagem para áreas endêmicas, verificar necessidade de dose adicional. Em menores de 2 anos, não aplicar no mesmo dia da tríplice viral ou tetraviral: respeitar 30 dias de intervalo (mínimo de 15 dias). Para bebês de 6 a 8 meses que moram ou vão viajar para área com transmissão ativa, a equipe de saúde avalia risco e benefício; se vacinados, a dose conta como dose zero e a agenda dos 9 meses é mantida.',
   },
   scr: {
     nome: 'Tríplice Viral (SCR)',
     org: 'Vírus do Sarampo · Vírus da Caxumba · Vírus da Rubéola',
     via: 'SC',
     doenca: 'Sarampo, Caxumba e Rubéola — três doenças altamente contagiosas que podem causar complicações graves em pulmões e ouvidos.',
-    descricao: 'Vacina viva contra sarampo, caxumba e rubéola. O sarampo é altamente contagioso e teve surtos recentes no Brasil por queda na cobertura vacinal. A rubéola congênita pode causar malformações graves no feto.',
-    esquema: '1ª dose aos 12 meses.<br> 2ª dose integrada na Tetraviral aos 15 meses.',
+    descricao: 'Vacina viva contra sarampo, caxumba e rubéola. Em alergia à proteína do leite de vaca (APLV) a tríplice viral do Serum Institute não deve ser usada (NT 49/2025 do MS): informe a equipe de saúde. O sarampo é altamente contagioso e teve surtos recentes no Brasil por queda na cobertura vacinal. A rubéola congênita pode causar malformações graves no feto.',
+    esquema: '1ª dose aos 12 meses.<br> 2ª dose integrada na Tetraviral aos 15 meses.<br>2 doses, aos 12 e aos 15 meses: intervalo recomendado de 30 dias e mínimo de 15 dias. Diminuir esse intervalo só em viagem programada ou exposição a risco epidemiológico, após avaliação de risco e benefício.',
     adversos: 'Febre e exantema leve 5–12 dias após. Parotidite e artralgia transitória (componente rubéola).<br> Raramente: trombocitopenia transitória.',
     extra: 'O Brasil luta para recuperar o status de país livre do sarampo, o que só é possível com a cobertura vacinal acima de 95%.',
   },
@@ -2697,7 +3101,7 @@ const INFO = {
     via: 'SC',
     doenca: 'Bloqueio temporário contra o sarampo (e também caxumba e rubéola) em situações de risco aumentado, antes da idade de rotina.',
     descricao: 'A "dose zero" é uma dose extra e epidemiológica da Tríplice Viral, indicada apenas para bebês de 6 a 11 meses em contextos especiais: surtos ativos de sarampo na região ou viagens para locais com circulação confirmada do vírus. Como a resposta imune nessa idade ainda é parcial (por causa dos anticorpos maternos residuais), ela oferece apenas proteção temporária.',
-    esquema: 'Dose única, entre 6 e 11 meses, indicada somente em áreas de surto ou viagem para locais com circulação do vírus. Não substitui e não conta como a 1ª dose do esquema de rotina — a criança deve tomar normalmente a 1ª dose aos 12 meses e a 2ª dose (Tetraviral) aos 15 meses.',
+    esquema: 'Dose única, entre 6 e 11 meses, indicada somente em áreas de surto ou viagem para locais com circulação do vírus. Não substitui e não conta como a 1ª dose do esquema de rotina — a criança deve tomar normalmente a 1ª dose aos 12 meses e a 2ª dose (Tetraviral) aos 15 meses.<br>Depois da dose zero, a dose dos 12 meses deve respeitar pelo menos 30 dias de intervalo.',
     adversos: 'Semelhantes à Tríplice Viral de rotina: febre e exantema leve entre 5 e 12 dias após a aplicação.',
     extra: 'Converse com o pediatra antes de optar pela dose zero — ela é indicada apenas em cenários específicos definidos pela vigilância epidemiológica local e não substitui o esquema vacinal de rotina.',
   },
@@ -2709,7 +3113,7 @@ const INFO = {
     descricao: 'Combina os quatro componentes em uma única injeção. Aplicada aos 15 meses como reforço do SCR e primeira dose de varicela. Praticidade de uma picada a menos.',
     esquema: 'Dose única aos 15 meses.<br> Segunda dose de varicela aos 4 anos (Varicela isolada).',
     adversos: 'Febre e exantema. O componente varicela pode causar varicela atenuada em ~5% dos vacinados (poucos elementos, sem complicações). Risco de convulsão febril ligeiramente maior que SCR isolada.',
-    extra: 'Não administrar junto com outras vacinas vivas (intervalo de 30 dias). Contraindicada em imunocomprometidos.',
+    extra: 'Em menores de 2 anos, não aplicar no mesmo dia da febre amarela: respeitar 30 dias de intervalo (mínimo de 15 dias). Pode ser aplicada junto com outras vacinas. Na falta da varicela isolada, a tetraviral pode ser usada a partir de 12 meses. Contraindicada em imunocomprometidos.',
   },
   varicela: {
     nome: 'Varicela',
@@ -2717,7 +3121,7 @@ const INFO = {
     via: 'SC',
     doenca: 'Varicela (catapora) e herpes-zóster',
     descricao: 'Vacina viva atenuada contra o vírus varicela-zóster. A varicela pode ter complicações graves em crianças como infecção bacteriana secundária da pele, pneumonia e encefalite. Além disso, o vírus permanece latente e pode reativar como herpes-zóster na vida adulta.',
-    esquema: '1ª dose integrada na Tetraviral (15 meses).<br>2ª dose isolada aos 4 anos.',
+    esquema: '1ª dose integrada na Tetraviral (15 meses).<br>2ª dose isolada aos 4 anos.<br>Intervalo entre as doses até 12 anos de idade: 3 meses. Pode ser aplicada no mesmo dia da febre amarela, em locais diferentes, ou com 30 dias de intervalo (mínimo de 15 dias).',
     adversos: 'Febre, exantema varicela-like leve (5%). Dor no local.',
     extra: 'Pessoas vacinadas que desenvolvem varicela têm forma muito mais branda. Duas doses conferem ~98% de proteção.',
   },
@@ -2756,20 +3160,20 @@ const INFO = {
     org: 'Rotavírus (5 cepas: G1, G2, G3, G4 e P[8])',
     via: 'VO',
     doenca: 'Gastroenterite grave por rotavírus',
-    descricao: 'Versão pentavalente protege contra 5 cepas do rotavírus em 3 doses, versus 1 cepa do monovalente do SUS em 2 doses. Maior cobertura contra as variantes circulantes.',
+    descricao: 'Versão pentavalente (5 cepas) em 3 doses, disponível na rede privada. O SUS oferece a monovalente (1 cepa) em 2 doses.',
     esquema: '3 doses: 2, 4 e 6 meses.<br> Não ultrapassar limite máximo de idade (consultar bula/pediatra).',
     adversos: 'Irritabilidade e diarreia leve. Risco de intussuscepção muito baixo.',
-    extra: 'O rotavírus pentavalente está associado a menor taxa de falha vacinal em alguns estudos. A escolha entre mono e pentavalente deve ser feita com o pediatra.',
+    extra: 'As duas vacinas são aprovadas pela Anvisa; as fontes oficiais consultadas não estabelecem superioridade de uma sobre a outra. A escolha deve ser feita com o pediatra.',
   },
   gripeQ: {
     nome: 'Gripe Quadrivalente',
     org: 'Vírus Influenza A (H1N1, H3N2) e B (duas linhagens)',
     via: 'IM',
     doenca: 'Influenza — gripe sazonal',
-    descricao: 'A vacina quadrivalente adiciona uma segunda linhagem do vírus Influenza B em relação à trivalente do SUS, ampliando a cobertura. A linhagem B adicional pode ser responsável por surtos em anos alternados.',
+    descricao: 'A vacina quadrivalente inclui as duas linhagens do vírus Influenza B; a trivalente (SUS) inclui uma. A Anvisa mantém as quadrivalentes em 2026 e prevê descontinuá-las a partir de 2027, porque a linhagem B/Yamagata não circula desde 2020.',
     esquema: 'Mesma que a trivalente: a partir de 6 meses, 2 doses na 1ª vez, depois anual.',
     adversos: 'Dor local, febre baixa. Idênticos à trivalente.',
-    extra: 'A escolha entre tri e quadrivalente depende da vigilância epidemiológica do ano em curso.',
+    extra: 'A escolha entre tri e quadrivalente deve ser feita com o pediatra, conforme a disponibilidade.',
   },
   hpv9: {
     nome: 'HPV Nonavalente',
@@ -2790,8 +3194,8 @@ const INFO_MAP = {
   rota1:'rota', rota2:'rota', rota3:'rota3',
   vip1:'vip', vip2:'vip', vip3:'vip', vipR:'vip', vip2r:'vip',
   penta1:'penta', penta2:'penta', penta3:'penta',
-  hexa:'hexa',
-  dtp1r:'dtp', dtp2r:'dtp', dt7:'dt', dtpa4:'dtp', dtpa9:'dt',
+  hexa:'hexa', pentaA:'pentaA', pali:'pali',
+  dtp1r:'dtp', dtp2r:'dtp', dt7:'dt', dtpa4:'dtp', dtpa9:'dt', dtpa13:'dt',
   pneumo1:'pneumo', pneumo2:'pneumo', pneumoR:'pneumo',
   pneumo13:'pneumo', pneumo15:'pneumo', pneumo20:'pneumo',
   pneumo20_sus_d1:'pneumo', pneumo20_sus_d2:'pneumo', pneumo20_sus_d3:'pneumo', pneumo20_sus_r:'pneumo',
@@ -2803,6 +3207,7 @@ const INFO_MAP = {
   fa1:'fa', faR:'fa',
   scr1:'scr', scr0:'scr0', tetraviral:'tetraviral',
   varicela2:'varicela',
+  varicela_priv:'varicela',
   hepA1:'hepA', hepAR:'hepA',
   hpv4:'hpv', hpv9:'hpv9',
   dengue:'dengue', dengue_priv:'dengue',
@@ -2904,9 +3309,8 @@ function abrirDisponibilidade(key){
 
   const colunas = [
     { titulo: 'SUS', dados: disp.sus, cls: 'sus' },
-    { titulo: 'SBIm/SBP', dados: disp.sbim, cls: 'priv' },
   ];
-  if(disp.medico) colunas.push({ titulo: cfgCalendario.nome || 'Protocolo do médico', dados: disp.medico, cls: 'priv' });
+  if(disp.medico) colunas.push({ titulo: 'Sugestão para você', dados: disp.medico, cls: 'priv' });
 
   document.getElementById('dispBody').innerHTML = colunas.map(c => `
     <div class="disp-col">
@@ -2928,14 +3332,14 @@ function openInfo(vacId){
   const lookupId = (v && v.infoId) || vacId; // doses "filhas" reaproveitam a info da vacina "mãe"
   const key  = INFO_MAP[lookupId];
   const info = key ? INFO[key] : null;
-  const stk  = STICKERS[lookupId];
+  const stk  = (v && v.sticker) || STICKERS[lookupId];
 
   // header
   const img = document.getElementById('miImg');
   img.style.display = stk ? 'block' : 'none';
   if(stk) img.src = 'img/' + stk.img;
 
-  document.getElementById('miTitle').textContent = info ? info.nome : (v ? v.n : vacId);
+  document.getElementById('miTitle').textContent = (v && v.nomeOriginal) ? v.n : (info ? info.nome : (v ? v.n : vacId));
   document.getElementById('miSub').textContent   = info ? info.org  : '';
 
   // body
@@ -3061,6 +3465,8 @@ async function aplicarConfig() {
 
   // ── Protocolo vacinal do médico (se presente no JSON) ───────────────────────
   cfgCalendario = cfg.calendario || null;
+  cfgCondicoes  = Array.isArray(cfg.condicoes) ? cfg.condicoes.filter(c => c && c.id && c.nome) : [];
+  cfgPacotes    = (cfg.pacotes && typeof cfg.pacotes === 'object') ? cfg.pacotes : {};
 
   // ── Helpers ────────────────────────────────────────────────────────────────
   const setText = (id, val) => {
@@ -3088,6 +3494,14 @@ async function aplicarConfig() {
   const medCRM      = cfg.medico_crm    || '';
   const medInsta    = cfg.medico_instagram || '';
   const medFoto     = cfg.medico_foto   || 'icons/icon-192.png';
+  // Prioridade: medico_whatsapp (só o número) → medico_agendamento (qualquer link)
+  const msgZap = cfg.medico_whatsapp_mensagem !== undefined
+    ? cfg.medico_whatsapp_mensagem
+    : 'Olá! Gostaria de agendar uma consulta.';
+  const zapURL = whatsappURL(cfg.medico_whatsapp, msgZap);
+  agendamento.url   = zapURL || urlSegura(cfg.medico_agendamento || '');
+  agendamento.texto = cfg.medico_agendamento_texto || 'Agendar consulta';
+  agendamento.ehZap = !!zapURL;
   const badges      = Array.isArray(cfg.medico_badges) ? cfg.medico_badges : [];
   const bio         = Array.isArray(cfg.medico_bio)    ? cfg.medico_bio    : [];
   const quote       = cfg.quote         || '"A vacinação é um pacto coletivo de erradicação das doenças."';
@@ -3147,7 +3561,32 @@ async function aplicarConfig() {
 
   // Badges
   const badgesEl = document.getElementById('profileBadges');
-  if (badgesEl) badgesEl.innerHTML = badges.map(b => `<span class="bdg">${b}</span>`).join('');
+  // Cada badge pode ser só texto ("Pediatra") ou um objeto {"texto":"...", "link":"https://..."}.
+  // Em "link", o valor "agendar" usa o link de agendamento do médico.
+  if (badgesEl) badgesEl.innerHTML = badges.map(b => {
+    if (b && typeof b === 'object') {
+      // aceita {texto|label|text} e {link|url|href}
+      const txt = b.texto ?? b.label ?? b.text ?? '';
+      const lk  = b.link ?? b.url ?? b.href ?? '';
+      const destino = lk === 'agendar' ? agendamento.url : urlSegura(lk);
+      if (destino) return `<a class="bdg bdg-link"${attrsLink(destino)}>${txt}</a>`;
+      return `<span class="bdg">${txt}</span>`;
+    }
+    return `<span class="bdg">${b}</span>`;
+  }).join('');
+
+  // Botão "Agendar consulta" no cartão do médico (só aparece se houver link)
+  const btnAg = document.getElementById('profileAgendar');
+  if (btnAg) {
+    if (agendamento.url) {
+      btnAg.setAttribute('href', agendamento.url);
+      if (/^https?:/i.test(agendamento.url)) { btnAg.setAttribute('target','_blank'); btnAg.setAttribute('rel','noopener noreferrer'); }
+      setText('profileAgendarTxt', agendamento.texto);
+      btnAg.style.display = 'flex';
+    } else {
+      btnAg.style.display = 'none';
+    }
+  }
 
   // Bio (até 3 parágrafos)
   ['profileBio1','profileBio2','profileBio3'].forEach((id, i) => {
@@ -3184,7 +3623,7 @@ if ('serviceWorker' in navigator) {
 // ─── INICIALIZAÇÃO ────────────────────────────────────────────────────────────
 aplicarConfig()
   .catch(e => { console.error('[aplicarConfig] falhou, seguindo com defaults:', e); })
-  .then(() => { load(); atualizarNavCalendario(); renderInicio(); renderSus(); renderPriv(); renderReg(); });
+  .then(() => { load(); atualizarNavCalendario(); buildCalendarioAtivo(); renderInicio(); renderSus(); renderPriv(); renderReg(); });
 </script>
 </body>
 </html>
