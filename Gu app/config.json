@@ -2,14 +2,17 @@
   "app_titulo": "Carteirinha Digital de Vacinas",
   "app_subtitulo": "Acompanhe as vacinas do seu bebê",
   "logo": "icons/icon-192.png",
+
   "medico_nome": "Gustavo Piva Vicentini",
   "medico_cargo": "Pediatra",
   "medico_crm": "184184",
+  "medico_rqe": "84911",
   "medico_instagram": "@pediatria.nerd",
-  "medico_whatsapp":"",
+  "medico_whatsapp": "",
   "medico_foto": "gu.foto.png",
+
   "medico_badges": [
-   {
+    {
       "label": "São Paulo",
       "url": ""
     },
@@ -17,14 +20,25 @@
       "label": "@pediatra.nerd",
       "url": "https://instagram.com/pediatra.nerd"
     },
-    "CRM 184184",
-    "RQE 84911"
+    {
+      "label": "CRM 184184",
+      "url": ""
+    },
+    {
+      "label": "RQE 84911",
+      "url": ""
+    }
   ],
+
+  "medico_formacao": [
     "EPM",
-    "UNIFESP",
+    "UNIFESP"
+  ],
+
   "medico_bio": [
     "O que é que há, papais e mamães? Este aplicativo foi criado com muito carinho para ajudar vocês a acompanhar o calendário vacinal dos seus filhos de forma simples e organizada. As vacinas são a ferramenta mais eficaz da medicina preventiva. Vamos juntos proteger nossas crianças!"
   ],
+
   "quote": "\"Vacinas salvam vidas\"",
   "cor_principal": "#56070C",
   "cor_fundo_leve": "#E0E0E0",
