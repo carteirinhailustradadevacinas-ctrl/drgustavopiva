@@ -3,58 +3,1146 @@
   "app_subtitulo": "Acompanhe as vacinas do seu bebê",
   "logo": "icons/icon-192.png",
   "medico_nome": "Gustavo Piva Vicentini",
-  "medico_cargo": "Pediatria",
-  "medico_crm": "184184/84911",
-  "medico_instagram": "@Pediatra.nerd",
-  "medico_foto": "gu.foto.jpg",
+  "medico_cargo": "Pediatra",
+  "medico_crm": "184184",
+  "medico_instagram": "@pediatria.nerd",
+  "medico_whatsapp":"",
+  "medico_foto": "gu.foto.png",
   "medico_badges": [
+   {
+      "label": "São Paulo",
+      "url": ""
+    },
+    {
+      "label": "@pediatra.nerd",
+      "url": "https://instagram.com/pediatra.nerd"
+    },
     "CRM 184184",
-    "RQE 84911",
-    "UNIFESP",
-    "EPM"
+    "RQE 84911"
   ],
+    "EPM",
+    "UNIFESP",
   "medico_bio": [
     "O que é que há, papais e mamães? Este aplicativo foi criado com muito carinho para ajudar vocês a acompanhar o calendário vacinal dos seus filhos de forma simples e organizada. As vacinas são a ferramenta mais eficaz da medicina preventiva. Vamos juntos proteger nossas crianças!"
   ],
-  "quote": "\"Vacinas salvam vidas, cuidado com as fake news\"",
+  "quote": "\"Vacinas salvam vidas\"",
   "cor_principal": "#56070C",
   "cor_fundo_leve": "#E0E0E0",
   "cor_borda": "#8A4B56",
   "calendario": {
-    "nome": "Gustavo Piva Vicentini",
+    "nome": "Gustavo",
     "overrides": {
       "nirsev": 0,
+      "hexa_d1": 2,
+      "rota3_d1": 2,
       "menB_d1": 3,
-      "menB_d2": 5,
-      "menB_d3": 12,
-      "meningACWYp_d2": 5,
       "meningACWYp_d1": 3,
-      "meningACWYp_d3": 12,
-      "meningACWYp_r2": 48,
+      "hexa_d2": 4,
+      "rota3_d2": 4,
       "pneumo20_d2": 4,
+      "menB_d2": 5,
+      "meningACWYp_d2": 5,
+      "hexa_d3": 6,
+      "rota3_d3": 6,
       "pneumo20_d3": 6,
-      "pneumo20_r": 12,
-      "hepAR": 21,
+      "fa_d1": 9,
+      "tetraV_d1": 12,
+      "menB_d3": 12,
+      "meningACWY_d1": 12,
+      "hexa_r": 15,
+      "hepA_d1": 15,
+      "hepAR": 12,
+      "hepA1": 18,
+      "vip_r": 48,
+      "fa_r": 48,
+      "meningACWYp_r": 48,
       "dengue_priv_d1": 48,
       "dengue_priv_d2": 51,
-      "dt_7a": null
+      "dtpa4": 48,
+      "hpv9_d1": 108,
+      "hpv9_d2": 114,
+      "meningACWY_r": 132
     },
-    "ocultar": [
-      "dt_7a"
+    "excluir": ["penta2", "vip2", "varicela2"],
+    "excluir_mesmo_mes": [
+      {
+        "se_presente": ["hexa", "hexa_d1", "hexa_d2", "hexa_d3", "hexa_r"],
+        "remover": ["penta", "penta1", "penta2", "penta3", "vip", "vip1", "vip2", "vip3", "vip_r", "hepB", "hepB1", "hepB2", "hepB3"]
+      },
+      {
+        "se_presente": ["pentaA", "pentaA_d1", "pentaA_d2", "pentaA_d3"],
+        "remover": ["penta", "penta1", "penta2", "penta3", "vip", "vip1", "vip2", "vip3"]
+      }
     ],
     "incluir_privadas": [
       "nirsev",
+      "hexa",
+      "rota3",
+      "pneumo20",
       "menB",
       "meningACWYp",
-      "pneumo20",
+      "pentaA",
       "hepAR",
-      "dengue"
+      "dengue",
+      "dtpa4",
+      "hpv9"
     ],
     "agruparComoMulti": [
-      "dengue"
+      "dengue",
+      "hpv9"
     ],
     "subOverrides": {
-      "hepAR": "Reforço (2ª dose)"
+      "hepAR": "1ª dose (particular)",
+      "hexa_d2": "2ª dose (4 meses) — Pode ser substituída pela Pentavalente acelular (particular) + Hepatite B (SUS)",
+      "hexa_r": "Pode ser substituída pela Pentavalente acelular (particular)"
+    },
+    "adicionar": [
+      {
+        "id": "varicela_priv_d1",
+        "n": "Varicela",
+        "sub": "1ª dose (particular)",
+        "age": 12,
+        "particular": true,
+        "infoId": "varicela2"
+      }
+    ]
+  },
+  "pacotes": {
+    "pneumo_rie": {
+      "liberar_sus": [
+        "pneumo20_sus_d1",
+        "pneumo20_sus_d2",
+        "pneumo20_sus_d3",
+        "pneumo20_sus_r"
+      ],
+      "excluir": [
+        "pneumo1",
+        "pneumo2",
+        "pneumoR"
+      ],
+      "retirar_privadas": [
+        "pneumo20"
+      ],
+      "subOverrides": {
+        "pneumo20_sus_d1": "1ª dose — esquema especial CRIE/RIE (3+1)",
+        "pneumo20_sus_d2": "2ª dose — esquema especial CRIE/RIE (3+1)",
+        "pneumo20_sus_d3": "3ª dose — esquema especial CRIE/RIE (3+1)",
+        "pneumo20_sus_r": "Reforço — esquema especial CRIE/RIE (3+1)"
+      },
+      "observacoes": [
+        "Esquema especial de Pneumo 20 (VPC20) pelo CRIE/RIE em 4 doses (2, 4, 6 e 12 meses), com indicação e laudo médico. Substitui o esquema de rotina do SUS e as doses particulares.",
+        "A partir dos 2 anos, o CRIE pode indicar também a vacina pneumocócica polissacarídica (VPP23), conforme a condição. Confirme no CRIE."
+      ]
+    },
+    "influenza_crie": {
+      "adicionar": [
+        {
+          "id": "gripe_crie",
+          "n": "Gripe (CRIE/RIE)",
+          "sub": "Dose anual a partir dos 6 anos, com indicação do CRIE/RIE",
+          "age": 72,
+          "particular": false,
+          "categoria": "crie"
+        }
+      ],
+      "observacoes": [
+        "Até os 5 anos, a vacina da gripe vem pelas campanhas anuais do SUS. A partir dos 6 anos, esta criança mantém o direito à vacina da gripe pelo CRIE/RIE, com indicação médica."
+      ]
+    },
+    "nirsev_1a": {
+      "liberar_sus": [
+        "nirsev_sus"
+      ],
+      "retirar_privadas": [
+        "nirsev"
+      ],
+      "subOverrides": {
+        "nirsev_sus": "Direito SUS (RIE/CRIE, com laudo): prematuros ≤36s6d com menos de 6 meses ou comorbidade elegível, de fevereiro a agosto"
+      },
+      "observacoes": [
+        "Nirsevimabe disponível pelo SUS no 1º ano de vida, pela RIE/CRIE, com laudo médico. Substitui a dose particular."
+      ]
+    },
+    "nirsev_2a": {
+      "adicionar": [
+        {
+          "id": "nirsev_2a",
+          "n": "Nirsevimabe (VSR) — 2ª temporada",
+          "sub": "Criança com menos de 24 meses e comorbidade elegível: fevereiro a agosto, com laudo na RIE/CRIE",
+          "age": 12,
+          "particular": false,
+          "categoria": "crie",
+          "infoId": "nirsev"
+        }
+      ],
+      "observacoes": [
+        "No 2º ano de vida, a criança com comorbidade elegível tem direito a uma nova dose de Nirsevimabe pelo SUS, antes da temporada do VSR."
+      ]
+    },
+    "acelular_crie": {
+      "renomear": {
+        "penta1": {
+          "n": "Pentavalente acelular (CRIE)",
+          "sub": "1ª dose (DTPa+Hib+VIP): substitui a Pentavalente e a VIP da mesma idade; não inclui hepatite B: complete com a hepatite B isolada (CRIE/pediatra)",
+          "figurinha": "06b.PentavalenteAcelular.png",
+          "categoria": "crie"
+        },
+        "penta2": {
+          "n": "Pentavalente acelular (CRIE)",
+          "sub": "2ª dose (DTPa+Hib+VIP): substitui a Pentavalente e a VIP da mesma idade; não inclui hepatite B: complete com a hepatite B isolada (CRIE/pediatra)",
+          "figurinha": "06b.PentavalenteAcelular.png",
+          "categoria": "crie"
+        },
+        "penta3": {
+          "n": "Pentavalente acelular (CRIE)",
+          "sub": "3ª dose (DTPa+Hib+VIP): substitui a Pentavalente e a VIP da mesma idade; não inclui hepatite B: complete com a hepatite B isolada (CRIE/pediatra)",
+          "figurinha": "06b.PentavalenteAcelular.png",
+          "categoria": "crie"
+        },
+        "dtp1r": {
+          "n": "DTPa (CRIE)",
+          "sub": "1º Reforço (tríplice bacteriana acelular)",
+          "categoria": "crie"
+        },
+        "dtp2r": {
+          "n": "DTPa (CRIE)",
+          "sub": "2º Reforço (tríplice bacteriana acelular)",
+          "categoria": "crie"
+        }
+      },
+      "excluir": [
+        "vip1",
+        "vip2",
+        "vip3"
+      ],
+      "avisos": [
+        {
+          "vacinas": [
+            "hexa",
+            "pentaA"
+          ],
+          "texto": "Esta criança tem indicação de vacina acelular pelo CRIE/RIE (gratuita, com laudo). Esta dose particular pode ser substituída pela vacina do SUS."
+        }
+      ],
+      "observacoes": [
+        "Com indicação do CRIE/RIE, a vacina acelular contra coqueluche (Pentavalente acelular e DTPa) é oferecida no SUS no lugar da Pentavalente e da DTP."
+      ]
+    },
+    "acelular_crie_extremo": {
+      "renomear": {
+        "penta1": {
+          "n": "Pentavalente acelular (CRIE)",
+          "sub": "1ª dose (DTPa+Hib+VIP): substitui a Pentavalente e a VIP da mesma idade; não inclui hepatite B: complete com a hepatite B isolada (CRIE/pediatra)",
+          "figurinha": "06b.PentavalenteAcelular.png",
+          "categoria": "crie"
+        },
+        "penta2": {
+          "n": "Pentavalente acelular (CRIE)",
+          "sub": "2ª dose (DTPa+Hib+VIP): substitui a Pentavalente e a VIP da mesma idade; não inclui hepatite B: complete com a hepatite B isolada (CRIE/pediatra)",
+          "figurinha": "06b.PentavalenteAcelular.png",
+          "categoria": "crie"
+        },
+        "penta3": {
+          "n": "Pentavalente acelular (CRIE)",
+          "sub": "3ª dose (DTPa+Hib+VIP): substitui a Pentavalente e a VIP da mesma idade; não inclui hepatite B: complete com a hepatite B isolada (CRIE/pediatra)",
+          "figurinha": "06b.PentavalenteAcelular.png",
+          "categoria": "crie"
+        },
+        "dtp1r": {
+          "n": "DTPa (CRIE)",
+          "sub": "1º Reforço (tríplice bacteriana acelular)",
+          "categoria": "crie"
+        },
+        "dtp2r": {
+          "n": "DTPa (CRIE)",
+          "sub": "2º Reforço (tríplice bacteriana acelular)",
+          "categoria": "crie"
+        },
+        "vip1": {
+          "extra": {
+            "notPrem": true
+          }
+        },
+        "vip2": {
+          "extra": {
+            "notPrem": true
+          }
+        },
+        "vip3": {
+          "extra": {
+            "notPrem": true
+          }
+        }
+      },
+      "renomear_quando": {
+        "peso_menor_que": 1500,
+        "ig_menor_que": 33
+      },
+      "observacoes": [
+        "Prematuros com menos de 33 semanas ou menos de 1.500 g têm direito às vacinas acelulares (menos reativas) pelo CRIE, no lugar da Pentavalente e da DTP."
+      ]
+    },
+    "vivas_avaliacao": {
+      "avisos": [
+        {
+          "vacinas": [
+            "bcg",
+            "rota1",
+            "rota2",
+            "rota3",
+            "scr0",
+            "scr1",
+            "tetraviral",
+            "varicela2",
+            "fa1",
+            "faR"
+          ],
+          "texto": "Vacina de vírus vivo: antes de aplicar, é necessária a avaliação do imunologista/CRIE, por causa da condição de saúde."
+        }
+      ],
+      "observacoes": [
+        "Vacinas de vírus vivos (BCG, Rotavírus, Tríplice Viral, Tetraviral, Varicela e Febre Amarela) só devem ser aplicadas após avaliação do imunologista/CRIE."
+      ]
+    },
+    "vivas_contraind": {
+      "avisos": [
+        {
+          "vacinas": [
+            "bcg",
+            "rota1",
+            "rota2",
+            "rota3",
+            "scr0",
+            "scr1",
+            "tetraviral",
+            "varicela2",
+            "fa1",
+            "faR"
+          ],
+          "texto": "Vacina de vírus vivo CONTRAINDICADA enquanto houver baixa grave de células de defesa. Só aplicar com liberação do imunologista/CRIE."
+        }
+      ]
+    },
+    "bcg_imunodef": {
+      "avisos": [
+        {
+          "vacinas": [
+            "bcg"
+          ],
+          "texto": "BCG é contraindicada em imunodeficiência: só aplicar após avaliação do imunologista/CRIE."
+        }
+      ]
     }
-  }
+  },
+  "condicoes": [
+    {
+      "id": "cardiaco",
+      "nome": "Problemas no coração",
+      "busca": [
+        "coração",
+        "cardíaco",
+        "cardiopatia",
+        "cardiopata",
+        "cardiopatia congênita",
+        "hipertensão pulmonar"
+      ],
+      "descricao": "Alterações do coração (congênitas ou adquiridas)",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Guia MS 2026 – nirsevimabe; Manual CRIE MS (2023)",
+      "observacoes": [
+        "Apenas ter o diagnóstico não altera o calendário. Marque os itens abaixo que se aplicam ao seu filho. Cardiopatias leves sem necessidade de medicação não dão direito ao Nirsevimabe pelo SUS."
+      ],
+      "criterios": [
+        {
+          "id": "cronica",
+          "texto": "Criança com problema cardíaco crônico em acompanhamento com especialista (indica vacinação pneumocócica especial e gripe no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        },
+        {
+          "id": "repercussao",
+          "texto": "Problema cardíaco com necessidade de remédios contínuos, indicação de cirurgia ou pressão alta no pulmão (dá direito ao Nirsevimabe no 1º ano).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a"
+          ]
+        },
+        {
+          "id": "repercussao_2a",
+          "texto": "Para o 2º ano de vida: continua necessitando de remédios para o coração ou acompanhamento (dá direito ao Nirsevimabe no 2º ano).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_2a"
+          ]
+        },
+        {
+          "id": "febre",
+          "texto": "Risco de descompensação grave do coração em caso de febre (indica vacina acelular contra coqueluche no CRIE).",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "acelular_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pulmao",
+      "nome": "Problemas no pulmão",
+      "busca": [
+        "pulmão",
+        "pulmonar",
+        "pneumopatia",
+        "displasia broncopulmonar",
+        "displasia",
+        "asma",
+        "asma grave",
+        "fibrose"
+      ],
+      "descricao": "Doenças respiratórias crônicas, displasia broncopulmonar ou asma",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Guia MS 2026 – nirsevimabe; Manual CRIE MS (2023)",
+      "observacoes": [
+        "Asma leve não altera a vacinação pneumocócica, mas dá direito à vacina da gripe pelo CRIE. Para a prevenção do vírus sincicial (Nirsevimabe), a indicação é voltada à doença pulmonar crônica da prematuridade."
+      ],
+      "criterios": [
+        {
+          "id": "cronica",
+          "texto": "Doença crônica do pulmão ou asma moderada a grave (indica vacinação pneumocócica especial e gripe no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        },
+        {
+          "id": "dpcp",
+          "texto": "Doença pulmonar da prematuridade (bebê que precisou de oxigênio por 28 dias ou mais ao nascer) — dá direito ao Nirsevimabe no 1º ano.",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a"
+          ]
+        },
+        {
+          "id": "dpcp_2a",
+          "texto": "Para o 2º ano de vida: precisou de oxigênio, corticoide ou diurético nos últimos 6 meses (dá direito ao Nirsevimabe no 2º ano).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_2a"
+          ]
+        },
+        {
+          "id": "febre",
+          "texto": "Risco de piora respiratória grave se tiver febre (indica vacina acelular no CRIE).",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "acelular_crie"
+          ]
+        },
+        {
+          "id": "imuno",
+          "texto": "Uso de corticoide em dose alta por mais de 14 dias ou outros remédios imunossupressores.",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "vivas_avaliacao"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aplv",
+      "nome": "Alergia ao Leite de Vaca (APLV)",
+      "busca": [
+        "aplv",
+        "alergia à proteína do leite de vaca",
+        "alergia ao leite",
+        "leite"
+      ],
+      "descricao": "Alergia confirmada à proteína do leite de vaca",
+      "fonte": "Calendário Nacional 2026; NT 49/2025-DPNI/SVSA/MS",
+      "avisos": [
+        {
+          "vacinas": [
+            "scr0",
+            "scr1"
+          ],
+          "texto": "Importante para APLV: Algumas marcas da vacina Tríplice Viral contêm traços de proteína do leite. Avise no posto para aplicarem a versão isenta de proteína de leite."
+        }
+      ],
+      "observacoes": [
+        "Intolerância à lactose NÃO é alergia e não altera a aplicação de nenhuma vacina. Caso a criança tenha alergia grave a outros componentes (como gelatina), consulte o médico antes de vacinar."
+      ]
+    },
+    {
+      "id": "prematuro",
+      "nome": "Bebês Prematuros",
+      "busca": [
+        "prematuro",
+        "prematuridade",
+        "nasceu antes do tempo"
+      ],
+      "descricao": "Nascimento com 36 semanas e 6 dias ou menos",
+      "fonte": "Guia MS 2026 – nirsevimabe; NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "prematuro": true,
+      "retirar_privadas": [
+        "nirsev"
+      ],
+      "usar": [
+        "nirsev_1a",
+        "pneumo_rie",
+        "acelular_crie_extremo"
+      ],
+      "avisos": [
+        {
+          "vacinas": [
+            "bcg"
+          ],
+          "peso_menor_que": 2000,
+          "texto": "Se o bebê nasceu com menos de 2 kg: a vacina BCG deve ser adiada até atingir esse peso."
+        },
+        {
+          "vacinas": [
+            "hepB0",
+            "penta1",
+            "penta2",
+            "penta3",
+            "hexa"
+          ],
+          "peso_menor_que": 2000,
+          "ig_menor_que": 33,
+          "texto": "Prematuros com menos de 2 kg ou menos de 33 semanas precisam garantidamente de 4 doses de Hepatite B. O esquema normal do aplicativo já cobre todas."
+        }
+      ],
+      "observacoes": [
+        "Prematuros até 36 semanas e 6 dias têm direito ao Nirsevimabe no SUS até os 6 meses de vida.",
+        "Bebês nascidos com menos de 33 semanas ou menos de 1,5 kg têm direito às vacinas acelulares (menos reativas) no CRIE."
+      ],
+      "criterios": [
+        {
+          "id": "internado",
+          "texto": "Bebê ainda internado na UTI ou UTI Neonatal na época de tomar a vacina (indica vacina acelular pelo CRIE).",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "acelular_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "down",
+      "nome": "Síndrome de Down (Trissomia 21)",
+      "busca": [
+        "down",
+        "síndrome de down",
+        "trissomia",
+        "trissomia 21",
+        "t21"
+      ],
+      "descricao": "Trissomia do cromossomo 21",
+      "fonte": "Guia MS 2026 – nirsevimabe; NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "nirsev_1a",
+        "nirsev_2a",
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "observacoes": [
+        "Todas as crianças com Síndrome de Down até 2 anos têm direito ao Nirsevimabe pelo SUS no período de circulação do vírus (fevereiro a agosto).",
+        "Também possuem esquema especial para vacina de pneumococo e gripe pelo SUS."
+      ],
+      "criterios": [
+        {
+          "id": "neuro",
+          "texto": "Criança com problemas neurológicos associados ou convulsões (indica vacina acelular no CRIE).",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "acelular_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "digeorge",
+      "nome": "Síndrome de DiGeorge (deleção 22q11.2)",
+      "busca": [
+        "digeorge",
+        "di george",
+        "22q11",
+        "deleção 22q11.2",
+        "imunodeficiência"
+      ],
+      "descricao": "Condição genética que pode afetar a imunidade e o coração",
+      "fonte": "Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie",
+        "vivas_avaliacao"
+      ],
+      "observacoes": [
+        "Antes de aplicar vacinas de vírus vivos (como BCG, Rotavírus, Tríplice Viral, Varicela e Febre Amarela), é necessária uma avaliação do imunologista para garantir a segurança."
+      ],
+      "criterios": [
+        {
+          "id": "iei",
+          "texto": "Alteração de imunidade confirmada pelo imunologista (indica esquema pneumocócico especial e gripe no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "tgrave",
+          "texto": "Baixa grave de células de defesa (vacinas de vírus vivos são contraindicadas).",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "vivas_contraind",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "nirsev",
+          "texto": "Criança com até 24 meses e imunidade reduzida (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "asplenia",
+      "nome": "Ausência ou mau funcionamento do Baço",
+      "busca": [
+        "asplenia",
+        "hipoesplenia",
+        "sem baço",
+        "baço",
+        "disfunção esplênica",
+        "ivemark",
+        "heterotaxia"
+      ],
+      "descricao": "Sem o baço ou quando o baço não funciona perfeitamente",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "observacoes": [
+        "O baço protege contra infecções graves por certas bactérias. Por isso, a criança tem direito a esquemas reforçados no CRIE contra Pneumococo, Meningococo, Haemophilus, Hepatite A e Catapora."
+      ]
+    },
+    {
+      "id": "turner_williams",
+      "nome": "Síndrome de Turner ou Williams",
+      "busca": [
+        "turner",
+        "williams",
+        "síndrome de turner",
+        "síndrome de williams"
+      ],
+      "descricao": "Condições genéticas específicas",
+      "fonte": "Manual CRIE MS (2023); NT 52/2026-CGICI/DPNI/SVSA/MS",
+      "observacoes": [
+        "Essas síndromes por si só não alteram as vacinas normais. Caso a criança apresente outro problema de saúde (como alteração no coração ou rins), marque essa opção específica no aplicativo."
+      ]
+    },
+    {
+      "id": "hiv",
+      "nome": "Crianças com HIV ou expostas ao vírus",
+      "busca": [
+        "hiv",
+        "aids",
+        "exposto ao hiv",
+        "imunodeficiência adquirida"
+      ],
+      "descricao": "Crianças diagnosticadas com HIV ou filhas de mães soropositivas",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Criança confirmada com HIV (indica vacinação pneumocócica reforçada, gripe e avaliação de vacinas de vírus vivo no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie",
+            "vivas_avaliacao",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "nirsev",
+          "texto": "Criança de até 2 anos com imunidade muito baixa decorrente do HIV (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ],
+      "observacoes": [
+        "Bebês apenas expostos ao HIV ao nascer tomam a BCG e a vacina do rotavírus normalmente. Crianças com o vírus recebem acompanhamento no CRIE."
+      ]
+    },
+    {
+      "id": "iei",
+      "nome": "Imunodeficiência Primária (Erros Inatos da Imunidade)",
+      "busca": [
+        "imunodeficiência primária",
+        "erro inato da imunidade",
+        "eii",
+        "scid"
+      ],
+      "descricao": "Problemas de nascença no sistema de defesa do corpo",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Diagnóstico confirmado por médico especialista (indica vacinas especiais para Pneumococo, Gripe e avaliação de vacinas vivas).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie",
+            "vivas_avaliacao",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "nirsev",
+          "texto": "Baixa imunidade grave em crianças com menos de 2 anos (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oncologico",
+      "nome": "Tratamento de Câncer / Doenças Oncológicas",
+      "busca": [
+        "câncer",
+        "leucemia",
+        "linfoma",
+        "oncológico",
+        "quimioterapia"
+      ],
+      "descricao": "Crianças em tratamento contra o câncer ou quimioterapia",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Doença em tratamento ativo ou até a alta médica (indica proteção pneumocócica especial, gripe e pausa em vacinas de vírus vivos).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie",
+            "vivas_avaliacao",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "nirsev",
+          "texto": "Crianças de até 2 anos em quimioterapia ou radioterapia (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transplante_sol",
+      "nome": "Transplante de Órgãos (Fígado, Rim, Coração)",
+      "busca": [
+        "transplante",
+        "transplante de rim",
+        "transplante de fígado",
+        "transplante de coração"
+      ],
+      "descricao": "Crianças que passaram ou vão passar por transplante de órgão",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Transplantados de órgãos sólidos (indica esquema pneumocócico especial, gripe e avaliação cuidadosa de vacinas vivas pelo CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie",
+            "vivas_avaliacao",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "nirsev",
+          "texto": "Transplantados com menos de 2 anos (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tcth",
+      "nome": "Transplante de Medula Óssea ou CAR-T",
+      "busca": [
+        "tcth",
+        "transplante de medula",
+        "medula óssea",
+        "car-t",
+        "células-tronco"
+      ],
+      "descricao": "Transplante de células-tronco ou imunoterapia CAR-T",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie",
+        "vivas_avaliacao",
+        "bcg_imunodef"
+      ],
+      "observacoes": [
+        "A criança que passa por transplante de medula precisa refazer a sua carteira de vacinas após o procedimento, conforme orientação do CRIE e do médico especialista."
+      ],
+      "criterios": [
+        {
+          "id": "nirsev",
+          "texto": "Transplantados de medula com até 24 meses de idade (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "imunossupressao",
+      "nome": "Uso de Remédios Imunossupressores ou Corticoides",
+      "busca": [
+        "imunossupressor",
+        "corticoide",
+        "corticoide em dose alta",
+        "imunossupressão"
+      ],
+      "descricao": "Tratamentos contínuos que diminuem a imunidade",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Criança usando remédios imunossupressores ou corticoides por mais de 2 semanas (indica esquema de pneumococo especial e gripe pelo CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie",
+            "vivas_avaliacao",
+            "bcg_imunodef"
+          ]
+        },
+        {
+          "id": "nirsev",
+          "texto": "Corticoides em doses altas por mais de 14 dias em menores de 2 anos (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renal",
+      "nome": "Problemas nos Rins (Doença Renal Crônica ou Síndrome Nefrótica)",
+      "busca": [
+        "rim",
+        "renal",
+        "nefropatia",
+        "hemodiálise",
+        "síndrome nefrótica"
+      ],
+      "descricao": "Doenças renais crônicas ou crianças em hemodiálise",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Doença renal crônica, hemodiálise ou síndrome nefrótica (indica vacina pneumocócica especial, gripe e imunização contra hepatite B e catapora no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hepatico",
+      "nome": "Problemas no Fígado (Hepatopatia Crônica)",
+      "busca": [
+        "fígado",
+        "hepatopatia",
+        "cirrose",
+        "hepatite crônica"
+      ],
+      "descricao": "Doenças crônicas do fígado",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Problema crônico no fígado (dá direito a vacinas especiais contra Pneumococo, Gripe, Hepatite A e Meningite C no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fistula_dvp",
+      "nome": "Vazamento de Líquor ou Válvula na Cabeça (DVP)",
+      "busca": [
+        "fístula liquórica",
+        "dvp",
+        "derivação ventrículo-peritoneal",
+        "hidrocefalia"
+      ],
+      "descricao": "Crianças com fístula liquórica ou uso de derivação ventrículo-peritoneal",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Presença de fístula de líquor ou válvula (DVP) — indica esquema pneumocócico reforçado e proteção contra meningite no CRIE.",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "implante_coclear",
+      "nome": "Implante Coclear (Aparelho Auditivo Cirúrgico)",
+      "busca": [
+        "implante coclear",
+        "surdez"
+      ],
+      "descricao": "Crianças que usam ou vão colocar implante coclear",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Candidatos ou usuários de implante coclear (indica vacinação reforçada contra Pneumococo, Gripe, Haemophilus e Meningococo no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "diabetes",
+      "nome": "Diabetes Infantil",
+      "busca": [
+        "diabetes",
+        "diabetes tipo 1"
+      ],
+      "descricao": "Diabetes Mellitus em crianças",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Criança com diagnóstico de diabetes (tem direito à vacinação reforçada contra Pneumococo e Gripe pelo CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neuro",
+      "nome": "Doenças Neurológicas Crônicas ou Paralisia Cerebral",
+      "busca": [
+        "neurológica",
+        "epilepsia",
+        "paralisia cerebral",
+        "convulsão",
+        "doença convulsiva"
+      ],
+      "descricao": "Condições neurológicas graves ou crises convulsivas frequentes",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Doença neurológica grave (indica esquema de pneumococo especial e vacina da gripe pelo CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+          "usar": [
+            "pneumo_rie",
+            "influenza_crie"
+          ]
+        },
+        {
+          "id": "acelular",
+          "texto": "Histórico de convulsões ou doenças do cérebro (indica vacina acelular contra coqueluche no CRIE para evitar reações com febre).",
+          "fonte": "Manual CRIE MS (2023)",
+          "usar": [
+            "acelular_crie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fibrose_cistica",
+      "nome": "Fibrose Cística",
+      "busca": [
+        "fibrose cística",
+        "mucoviscidose"
+      ],
+      "descricao": "Condição genética que afeta pulmões e sistema digestivo",
+      "fonte": "Guia MS 2026 – nirsevimabe; NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "nirsev_1a",
+        "nirsev_2a",
+        "pneumo_rie",
+        "influenza_crie"
+      ],
+      "observacoes": [
+        "Crianças com fibrose cística até 2 anos têm direito garantido ao Nirsevimabe no SUS (fevereiro a agosto), além de vacinas pneumocócicas e gripe reforçadas."
+      ]
+    },
+    {
+      "id": "doencas_deposito",
+      "nome": "Doenças de Depósito (ex.: Gaucher, Pompe)",
+      "busca": [
+        "doença de depósito",
+        "gaucher",
+        "pompe",
+        "depósito"
+      ],
+      "descricao": "Doenças metabólicas de depósito",
+      "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS; Manual CRIE MS (2023)",
+      "usar": [
+        "pneumo_rie"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Diagnóstico de doença de depósito (indica esquema pneumocócico especial no CRIE).",
+          "fonte": "NT 52/2026-CGICI/DPNI/SVSA/MS",
+          "usar": [
+            "pneumo_rie"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neuromuscular",
+      "nome": "Doenças Neuromusculares Graves (ex.: AME)",
+      "busca": [
+        "neuromuscular",
+        "ame",
+        "atrofia muscular espinhal",
+        "distrofia muscular",
+        "miopatia congênita"
+      ],
+      "descricao": "Fraqueza dos músculos que atrapalha a respiração e a tosse",
+      "fonte": "Guia MS 2026 – nirsevimabe",
+      "usar": [
+        "nirsev_1a",
+        "nirsev_2a"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Fraqueza muscular respiratória (como AME, distrofias ou miopatias) em crianças de até 2 anos (dá direito ao Nirsevimabe pelo SUS).",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vias_aereas",
+      "nome": "Malformações das Vias Aéreas / Respiração",
+      "busca": [
+        "vias aéreas",
+        "traqueomalácia",
+        "pierre robin",
+        "hipoplasia pulmonar",
+        "estenose traqueal"
+      ],
+      "descricao": "Alterações de nascença na traqueia ou pulmões que dificultam respirar",
+      "fonte": "Guia MS 2026 – nirsevimabe",
+      "usar": [
+        "nirsev_1a",
+        "nirsev_2a"
+      ],
+      "criterios": [
+        {
+          "id": "elegivel",
+          "texto": "Alteração física nas vias aéreas em menores de 2 anos (ex.: traqueomalácia grave, Pierre Robin, estenose de traqueia) — dá direito ao Nirsevimabe pelo SUS.",
+          "fonte": "Guia MS 2026 – nirsevimabe",
+          "usar": [
+            "nirsev_1a",
+            "nirsev_2a"
+          ]
+        }
+      ]
+    }
+  ]
 }
